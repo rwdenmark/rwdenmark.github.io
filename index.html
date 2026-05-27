@@ -7,7 +7,6 @@
   <meta name="description" content="Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data." />
   <style>
     :root {
-      /* GitHub dark palette */
       --canvas: #0d1117;
       --header-bg: #010409;
       --card-bg: #161b22;
@@ -31,25 +30,14 @@
       position: relative;
     }
     .bg-circuit {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      user-select: none;
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0; pointer-events: none; user-select: none;
     }
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.15);
-      pointer-events: none;
-      z-index: 2;
+    body::before, body::after {
+      content: ""; position: fixed; top: 0; bottom: 0;
+      width: 1px; background: rgba(255, 255, 255, 0.15);
+      pointer-events: none; z-index: 2;
     }
     body::before { left: calc(50% - 490px); }
     body::after  { right: calc(50% - 490px); }
@@ -57,73 +45,24 @@
       body::before, body::after { display: none; }
       .bg-circuit { display: none; }
     }
-    header, main, footer {
-      position: relative;
-      z-index: 3;
-    }
+    header, main, footer { position: relative; z-index: 3; }
     header {
       background: var(--header-bg);
       border-bottom: 1px solid var(--border);
       padding: 24px 0;
     }
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    main .container,
-    footer .container {
-      background: var(--canvas);
-    }
-    .name-row {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: -0.015em;
-      color: var(--text);
-    }
-    .location {
-      font-size: 1rem;
-      color: var(--muted);
-    }
-    .tagline {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 0;
-    }
-    main {
-      flex: 1;
-      padding: 24px 0;
-    }
-    main p {
-      margin: 0 0 24px;
-    }
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 20px 0;
-    }
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-    }
-    .links a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-    .links a:hover {
-      color: var(--accent-hover);
-      text-decoration: underline;
-    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+    main .container, footer .container { background: var(--canvas); }
+    .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
+    .location { font-size: 1rem; color: var(--muted); }
+    .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
+    main { flex: 1; padding: 24px 0; }
+    main p { margin: 0 0 24px; }
+    footer { border-top: 1px solid var(--border); padding: 20px 0; }
+    .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+    .links a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+    .links a:hover { color: var(--accent-hover); text-decoration: underline; }
     @media (max-width: 520px) {
       header { padding: 20px 0; }
       main { padding: 20px 0; }
@@ -172,22 +111,13 @@
           <circle cx="100" cy="150" r="2"/>
           <circle cx="100" cy="100" r="2"/>
         </g>
-        <path d="M 0,40 L 70,40 L 70,90 L 150,90"
-              stroke="#79c0ff" stroke-width="1.5" fill="none"
-              stroke-dasharray="16 600"
-              stroke-linecap="round">
+        <path d="M 0,40 L 70,40 L 70,90 L 150,90" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="16 600" stroke-linecap="round">
           <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="4s" repeatCount="indefinite"/>
         </path>
-        <path d="M 210,0 L 210,50 L 260,50 L 260,130"
-              stroke="#79c0ff" stroke-width="1.5" fill="none"
-              stroke-dasharray="14 600"
-              stroke-linecap="round">
+        <path d="M 210,0 L 210,50 L 260,50 L 260,130" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="14 600" stroke-linecap="round">
           <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="5.5s" repeatCount="indefinite"/>
         </path>
-        <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280"
-              stroke="#79c0ff" stroke-width="1.5" fill="none"
-              stroke-dasharray="18 600"
-              stroke-linecap="round">
+        <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="18 600" stroke-linecap="round">
           <animate attributeName="stroke-dashoffset" from="0" to="-300" dur="7s" repeatCount="indefinite"/>
         </path>
       </pattern>
