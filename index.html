@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan Denmark</title>
-  <meta name="description" content="Backend software engineer. Java, SQL, partner integration in regulated data environments." />
+  <meta name="description" content="Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data." />
   <style>
     :root {
       /* GitHub dark palette */
       --canvas: #0d1117;
       --header-bg: #010409;
+      --card-bg: #161b22;
       --border: #30363d;
       --text: #e6edf3;
       --muted: #7d8590;
@@ -27,6 +28,38 @@
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    .bg-circuit {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+      z-index: 2;
+    }
+    body::before { left: calc(50% - 490px); }
+    body::after  { right: calc(50% - 490px); }
+    @media (max-width: 1044px) {
+      body::before, body::after { display: none; }
+      .bg-circuit { display: none; }
+    }
+    header, main, footer {
+      position: relative;
+      z-index: 3;
     }
     header {
       background: var(--header-bg);
@@ -37,6 +70,10 @@
       max-width: 980px;
       margin: 0 auto;
       padding: 0 32px;
+    }
+    main .container,
+    footer .container {
+      background: var(--canvas);
     }
     .name-row {
       display: flex;
@@ -97,18 +134,78 @@
   </style>
 </head>
 <body>
+  <svg class="bg-circuit" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="circuit-pattern" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
+        <g stroke="#1f6feb" stroke-width="1" fill="none" opacity="0.35">
+          <path d="M 0,40 L 70,40 L 70,90 L 150,90"/>
+          <path d="M 210,0 L 210,50 L 260,50 L 260,130"/>
+          <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280"/>
+          <path d="M 180,150 L 220,150 L 220,200 L 280,200"/>
+          <path d="M 100,150 L 100,180"/>
+          <rect x="100" y="100" width="60" height="40" rx="2"/>
+          <g stroke-width="1">
+            <line x1="108" y1="100" x2="108" y2="95"/>
+            <line x1="120" y1="100" x2="120" y2="95"/>
+            <line x1="132" y1="100" x2="132" y2="95"/>
+            <line x1="144" y1="100" x2="144" y2="95"/>
+            <line x1="156" y1="100" x2="156" y2="95"/>
+            <line x1="108" y1="140" x2="108" y2="145"/>
+            <line x1="120" y1="140" x2="120" y2="145"/>
+            <line x1="132" y1="140" x2="132" y2="145"/>
+            <line x1="144" y1="140" x2="144" y2="145"/>
+            <line x1="156" y1="140" x2="156" y2="145"/>
+          </g>
+          <rect x="200" y="70" width="22" height="10" rx="1"/>
+          <rect x="20" y="220" width="10" height="22" rx="1"/>
+          <rect x="160" y="190" width="40" height="6" rx="1"/>
+        </g>
+        <g fill="#1f6feb" opacity="0.55">
+          <circle cx="70" cy="40" r="2"/>
+          <circle cx="70" cy="90" r="2"/>
+          <circle cx="210" cy="50" r="2"/>
+          <circle cx="260" cy="50" r="2"/>
+          <circle cx="50" cy="170" r="2"/>
+          <circle cx="130" cy="220" r="2"/>
+          <circle cx="220" cy="150" r="2"/>
+          <circle cx="220" cy="200" r="2"/>
+          <circle cx="100" cy="150" r="2"/>
+          <circle cx="100" cy="100" r="2"/>
+        </g>
+        <path d="M 0,40 L 70,40 L 70,90 L 150,90"
+              stroke="#79c0ff" stroke-width="1.5" fill="none"
+              stroke-dasharray="16 600"
+              stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="4s" repeatCount="indefinite"/>
+        </path>
+        <path d="M 210,0 L 210,50 L 260,50 L 260,130"
+              stroke="#79c0ff" stroke-width="1.5" fill="none"
+              stroke-dasharray="14 600"
+              stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="5.5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280"
+              stroke="#79c0ff" stroke-width="1.5" fill="none"
+              stroke-dasharray="18 600"
+              stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset" from="0" to="-300" dur="7s" repeatCount="indefinite"/>
+        </path>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#circuit-pattern)"/>
+  </svg>
   <header>
     <div class="container">
       <div class="name-row">
         <h1>Ryan Denmark</h1>
         <span class="location">Eagan, MN</span>
       </div>
-      <p class="tagline">Backend software engineer. Java, SQL, partner integration in regulated data environments.</p>
+      <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
     </div>
   </header>
   <main>
     <div class="container">
-      <p>Seven years at Smart Data Solutions building multi-stage data pipelines and X12 EDI healthcare integrations. Currently between roles and shipping side projects.</p>
+      <p>Backend engineer with seven years at Smart Data Solutions in Eagan, the last five as a Software Engineer on the Implementation team. Owned more than 25 enterprise client implementations from requirements through production, building multi-stage data pipelines in Java and SQL that moved high-volume claims and partner data inside HIPAA-regulated systems. Before SDS, two years at Beyond Impact in Minneapolis as an Infrastructure Support Specialist, supporting client Microsoft Azure environments with production on-call rotations.</p>
       <p>Project links and writeups landing here soon.</p>
     </div>
   </main>
