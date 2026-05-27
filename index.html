@@ -52,12 +52,13 @@
       padding: 24px 0;
     }
     .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+    main > .container { flex: 1; }
     main .container, footer .container { background: var(--canvas); }
     .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
     .location { font-size: 1rem; color: var(--muted); }
     .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
-    main { flex: 1; padding: 24px 0; }
+    main { flex: 1; padding: 24px 0; display: flex; flex-direction: column; }
     main p { margin: 0 0 24px; }
     footer { border-top: 1px solid var(--border); padding: 20px 0; }
     .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
