@@ -73,6 +73,43 @@
     .section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
     .section-title + p { margin-top: 0; }
     .section-title:not(:first-child) { margin-top: 32px; }
+    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .project-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-stack span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+    .project-card p { margin: 0; font-size: 0.95rem; }
+    .project-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+    .project-actions a {
+      color: var(--accent);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+    .project-actions a:hover {
+      border-color: var(--accent);
+      background: rgba(47, 129, 247, 0.08);
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
     main { flex: 1; padding: 24px 0; }
     main p { margin: 0 0 24px; }
     footer { padding: 0; }
@@ -164,7 +201,26 @@
       <h2 class="section-title">Professional Summary</h2>
       <p>Backend engineer with seven years at Smart Data Solutions in Eagan, the last five as a Software Engineer on the Implementation team. Owned more than 25 enterprise client implementations from requirements through production, building multi-stage data pipelines in Java and SQL that moved high-volume claims and partner data inside HIPAA-regulated systems. Before SDS, two years at Beyond Impact in Minneapolis as an Infrastructure Support Specialist, supporting client Microsoft Azure environments with production on-call rotations.</p>
       <h2 class="section-title">Project Links</h2>
-      <p>Project links and writeups landing here soon.</p>
+      <div class="projects">
+        <article class="project-card">
+          <h3>WoW Explorer</h3>
+          <div class="project-stack">
+            <span>Java 21</span>
+            <span>Spring Boot 3.5</span>
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Vite</span>
+            <span>Tailwind</span>
+            <span>PostgreSQL</span>
+            <span>Battle.net API</span>
+          </div>
+          <p>Full-stack World of Warcraft character lookup. Pulls live data from the Battle.net OAuth API and Raider.IO and returns item level, raid progress, Mythic+ score, achievements, mounts, and the official Blizzard character render. First load may take a few seconds while the free-tier backend wakes up.</p>
+          <div class="project-actions">
+            <a href="https://wow-explorer.onrender.com/" rel="noopener" target="_blank">Live Demo</a>
+            <a href="https://github.com/rwdenmark/wow-explorer" rel="noopener" target="_blank">View on GitHub</a>
+          </div>
+        </article>
+      </div>
     </div>
   </main>
   <footer>
