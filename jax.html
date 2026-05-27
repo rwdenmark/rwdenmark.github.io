@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ryan Denmark</title>
-  <meta name="description" content="Backend software engineer. Java, SQL, partner integration in regulated data environments." />
+  <title>Jax — Ryan Denmark</title>
+  <meta name="description" content="Jax, our golden retriever." />
   <style>
     :root {
       /* GitHub dark palette */
       --canvas: #0d1117;
       --header-bg: #010409;
+      --card-bg: #161b22;
       --border: #30363d;
       --text: #e6edf3;
       --muted: #7d8590;
@@ -63,10 +64,39 @@
     }
     main {
       flex: 1;
-      padding: 24px 0;
+      padding: 24px 0 48px;
     }
-    main p {
-      margin: 0 0 24px;
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .page-subtitle {
+      color: var(--muted);
+      margin: 0 0 32px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card:hover img {
+      transform: scale(1.03);
     }
     footer {
       border-top: 1px solid var(--border);
@@ -89,10 +119,14 @@
     }
     @media (max-width: 520px) {
       header { padding: 20px 0; }
-      main { padding: 20px 0; }
+      main { padding: 20px 0 32px; }
       footer { padding: 16px 0; }
       .container { padding: 0 20px; }
       h1 { font-size: 1.875rem; }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -108,17 +142,31 @@
   </header>
   <main>
     <div class="container">
-      <p>Seven years at Smart Data Solutions building multi-stage data pipelines and X12 EDI healthcare integrations. Currently between roles and shipping side projects.</p>
-      <p>Project links and writeups landing here soon.</p>
+      <h2 class="page-title">Jax</h2>
+      <p class="page-subtitle">Our golden retriever.</p>
+      <div class="gallery">
+        <div class="card"><img src="jax/jax-01.jpg" alt="Jax with Ryan in the yard" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-02.jpg" alt="Jax as a puppy on his back" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-03.jpg" alt="Jax sitting on a blanket" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-04.jpg" alt="Jax sniffing behind furniture" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-05.jpg" alt="Jax with toys" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-06.jpg" alt="Jax sitting with leash on" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-07.jpg" alt="Jax with a frisbee on his face outside" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-08.jpg" alt="Jax and the cat on a dog bed" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-09.jpg" alt="Jax upside down" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-10.jpg" alt="Jax smiling indoors" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-11.jpg" alt="Jax with Ryan in the car" loading="lazy" /></div>
+        <div class="card"><img src="jax/jax-12.jpg" alt="Jax in a birthday bandana" loading="lazy" /></div>
+      </div>
     </div>
   </main>
   <footer>
     <div class="container">
       <nav class="links" aria-label="Contact and profiles">
+        <a href="index.html">Home</a>
         <a href="https://github.com/rwdenmark" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener">LinkedIn</a>
         <a href="mailto:ryanwdenmark@gmail.com">Email</a>
-        <a href="jax.html">Jax</a>
       </nav>
     </div>
   </footer>
