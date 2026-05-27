@@ -7,73 +7,96 @@
   <meta name="description" content="Backend software engineer. Java, SQL, partner integration in regulated data environments." />
   <style>
     :root {
-      --ink: #0b0b0b;
-      --muted: #555;
-      --bg: #fafafa;
-      --accent: #1f3a5f;
+      /* GitHub dark palette */
+      --canvas: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #7d8590;
+      --accent: #2f81f7;
+      --accent-hover: #58a6ff;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    html, body { margin: 0; padding: 0; height: 100%; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.55;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--canvas);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     main {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 80px 24px 64px;
+      max-width: 720px;
+      margin: 64px auto;
+      padding: 48px 56px 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
     }
     h1 {
       font-size: 2.25rem;
       font-weight: 700;
-      margin: 0 0 8px;
+      margin: 0;
       letter-spacing: -0.01em;
+      color: var(--text);
     }
-    .title {
+    .location {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .tagline {
       color: var(--muted);
       font-size: 1.05rem;
-      margin: 0 0 32px;
+      margin: 0 0 40px;
     }
-    p { margin: 0 0 16px; }
+    .body p {
+      margin: 0 0 24px;
+      color: var(--text);
+    }
     .links {
-      margin-top: 32px;
+      margin-top: 40px;
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 20px;
     }
     .links a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s ease;
+      transition: color 0.15s ease;
     }
-    .links a:hover { border-bottom-color: var(--accent); }
-    footer {
-      margin-top: 64px;
-      font-size: 0.85rem;
-      color: var(--muted);
+    .links a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+    @media (max-width: 520px) {
+      main { margin: 24px 16px; padding: 32px 24px; }
+      h1 { font-size: 1.75rem; }
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>Ryan Denmark</h1>
-    <p class="title">Backend software engineer. Java, SQL, partner integration in regulated data environments.</p>
-
-    <p>Seven years at Smart Data Solutions building multi-stage data pipelines and X12 EDI healthcare integrations. Currently between roles and shipping side projects.</p>
-
-    <p>Project links and writeups landing here soon.</p>
-
+    <div class="header">
+      <h1>Ryan Denmark</h1>
+      <span class="location">Eagan, MN</span>
+    </div>
+    <p class="tagline">Backend software engineer. Java, SQL, partner integration in regulated data environments.</p>
+    <div class="body">
+      <p>Seven years at Smart Data Solutions building multi-stage data pipelines and X12 EDI healthcare integrations. Currently between roles and shipping side projects.</p>
+      <p>Project links and writeups landing here soon.</p>
+    </div>
     <nav class="links" aria-label="Contact and profiles">
       <a href="https://github.com/rwdenmark" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener">LinkedIn</a>
       <a href="mailto:ryanwdenmark@gmail.com">Email</a>
     </nav>
-
-    <footer>Eagan, MN</footer>
   </main>
 </body>
 </html>
