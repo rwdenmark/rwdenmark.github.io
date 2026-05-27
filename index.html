@@ -63,13 +63,16 @@
       border-left: 2px solid var(--border);
       border-right: 2px solid var(--border);
       border-bottom: 2px solid var(--border);
-      padding: 24px 32px;
+      padding: 12px 32px 24px;
     }
     .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
     .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
     .location { font-size: 1rem; color: var(--muted); }
     .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
+    .section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
+    .section-title + p { margin-top: 0; }
+    .section-title:not(:first-child) { margin-top: 32px; }
     main { flex: 1; padding: 24px 0; }
     main p { margin: 0 0 24px; }
     footer { padding: 0; }
@@ -158,7 +161,9 @@
   </header>
   <main>
     <div class="container">
+      <h2 class="section-title">Professional Summary</h2>
       <p>Backend engineer with seven years at Smart Data Solutions in Eagan, the last five as a Software Engineer on the Implementation team. Owned more than 25 enterprise client implementations from requirements through production, building multi-stage data pipelines in Java and SQL that moved high-volume claims and partner data inside HIPAA-regulated systems. Before SDS, two years at Beyond Impact in Minneapolis as an Infrastructure Support Specialist, supporting client Microsoft Azure environments with production on-call rotations.</p>
+      <h2 class="section-title">Project Links</h2>
       <p>Project links and writeups landing here soon.</p>
     </div>
   </main>
