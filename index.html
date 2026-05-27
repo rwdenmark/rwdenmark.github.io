@@ -34,9 +34,21 @@
       width: 100vw; height: 100vh;
       z-index: 0; pointer-events: none; user-select: none;
     }
+    .rail-bg {
+      position: fixed;
+      top: 0; bottom: 0;
+      left: calc(50% - 490px);
+      right: calc(50% - 490px);
+      background: var(--canvas);
+      z-index: 1;
+      pointer-events: none;
+    }
+    @media (max-width: 1044px) {
+      .rail-bg { left: 0; right: 0; }
+    }
     body::before, body::after {
       content: ""; position: fixed; top: 0; bottom: 0;
-      width: 1px; background: rgba(255, 255, 255, 0.15);
+      width: 2px; background: rgba(255, 255, 255, 0.15);
       pointer-events: none; z-index: 2;
     }
     body::before { left: calc(50% - 490px); }
@@ -46,34 +58,44 @@
       .bg-circuit { display: none; }
     }
     header, main, footer { position: relative; z-index: 3; }
-    header {
+    header .container {
       background: var(--header-bg);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
+      border-left: 2px solid var(--border);
+      border-right: 2px solid var(--border);
+      border-bottom: 2px solid var(--border);
+      padding: 24px 32px;
     }
     .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
-    main > .container { flex: 1; }
-    main .container, footer .container { background: var(--canvas); }
     .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
     .location { font-size: 1rem; color: var(--muted); }
     .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
-    main { flex: 1; padding: 24px 0; display: flex; flex-direction: column; }
+    main { flex: 1; padding: 24px 0; }
     main p { margin: 0 0 24px; }
-    footer { border-top: 1px solid var(--border); padding: 20px 0; }
+    footer { padding: 0; }
+    footer .container { background: var(--header-bg); border-top: 2px solid var(--border); padding: 20px 32px; }
     .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
     .links a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
     .links a:hover { color: var(--accent-hover); text-decoration: underline; }
+    @media (max-width: 1044px) {
+      header .container { background: transparent; border: none; }
+      header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
+      header .container { padding: 0 32px; }
+      footer { background: var(--header-bg); padding: 20px 0; border-top: 2px solid var(--border); }
+      footer .container { background: transparent; border-top: none; padding: 0 32px; }
+    }
     @media (max-width: 520px) {
-      header { padding: 20px 0; }
+      header .container { padding: 20px 20px; }
       main { padding: 20px 0; }
       footer { padding: 16px 0; }
+      footer .container { padding: 0 20px; }
       .container { padding: 0 20px; }
       h1 { font-size: 1.875rem; }
     }
   </style>
 </head>
 <body>
+  <div class="rail-bg" aria-hidden="true"></div>
   <svg class="bg-circuit" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
     <defs>
       <pattern id="circuit-pattern" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
