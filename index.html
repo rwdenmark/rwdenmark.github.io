@@ -106,6 +106,15 @@
       gap: 12px;
     }
     .project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+    .project-thumb {
+      aspect-ratio: 3 / 2;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+      background: var(--canvas);
+    }
     .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
     .project-stack span {
       font-size: 0.8rem;
@@ -256,6 +265,7 @@
       <h2 class="section-title">Personal Projects</h2>
       <div class="projects">
         <article class="project-card">
+          <img class="project-thumb" src="WoW_Explorer_Sample.png" alt="WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render." loading="lazy" />
           <h3>WoW Explorer</h3>
           <div class="project-stack">
             <span>Java</span>
@@ -275,6 +285,7 @@
           </div>
         </article>
         <article class="project-card">
+          <img class="project-thumb" src="Ranger_Survivor_Sample.png" alt="Top-down view of Ranger Survivor showing the player character with bow, a skeleton enemy, grass tiles, water, trees, and corner forts." loading="lazy" />
           <h3>Ranger Survivor</h3>
           <div class="project-stack">
             <span>Java</span>
