@@ -179,6 +179,13 @@
       .container { padding: 0 20px; }
       h1 { font-size: 1.875rem; }
     }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -304,6 +311,7 @@
           </div>
         </article>
         <article class="project-card">
+          <img class="project-thumb" src="Spring_Boot_Sample.svg" alt="IntelliJ IDEA Darcula editor view of a Spring Boot UserController.java REST controller with annotations and a GET endpoint." loading="lazy" />
           <h3>Spring Boot Learning</h3>
           <div class="project-stack">
             <span>Java</span>
