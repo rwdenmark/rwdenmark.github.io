@@ -57,7 +57,7 @@
       body::before, body::after { display: none; }
       .bg-circuit { display: none; }
     }
-    header, main { position: relative; z-index: 3; }
+    header, main, footer { position: relative; z-index: 3; }
     header .container {
       background: var(--header-bg);
       border-left: 2px solid var(--border);
@@ -71,6 +71,8 @@
     }
     .links a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
     .links a:hover { color: var(--accent-hover); text-decoration: underline; }
+    .links a.active { color: var(--text); }
+    .links a.active:hover { color: var(--text); text-decoration: none; cursor: default; }
     .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
     .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
@@ -118,10 +120,20 @@
     }
     main { flex: 1; padding: 24px 0; }
     main p { margin: 0 0 24px; }
+    footer { padding: 0; }
+    footer .container {
+      background: var(--header-bg);
+      border-left: 2px solid var(--border);
+      border-right: 2px solid var(--border);
+      border-top: 2px solid var(--border);
+      height: 40px;
+    }
     @media (max-width: 1044px) {
       header .container { background: transparent; border: none; }
       header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
       header .container { padding: 0 32px; }
+      footer { background: var(--header-bg); border-top: 2px solid var(--border); }
+      footer .container { background: transparent; border: none; height: 40px; }
     }
     @media (max-width: 520px) {
       header .container { padding: 20px 20px; }
@@ -192,11 +204,11 @@
       </div>
       <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
       <nav class="links" aria-label="Contact and profiles">
-        <a href="index.html">Home</a>
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="jax.html">Jax</a>
         <a href="https://github.com/rwdenmark" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener">LinkedIn</a>
         <a href="mailto:ryanwdenmark@gmail.com">Email</a>
-        <a href="jax.html">Jax</a>
       </nav>
     </div>
   </header>
@@ -261,5 +273,8 @@
       </div>
     </div>
   </main>
+  <footer>
+    <div class="container"></div>
+  </footer>
 </body>
 </html>
