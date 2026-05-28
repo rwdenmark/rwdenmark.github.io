@@ -91,7 +91,16 @@
     .location { font-size: 1rem; color: var(--muted); }
     .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
     main { flex: 1; padding: 24px 0 48px; }
-    .resume-actions { display: flex; justify-content: flex-end; }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-header .section-title {
+      margin: 0; padding: 0; border-bottom: none;
+    }
     .download-pdf {
       display: inline-flex; align-items: center; gap: 8px;
       color: var(--accent);
@@ -260,15 +269,14 @@
   </header>
   <main>
     <div class="container">
-      <div class="resume-actions">
+      <div class="section-header">
+        <h2 class="section-title">Professional Summary</h2>
         <a class="download-pdf" href="Resume_Ryan_Denmark.pdf" download>
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v6.69l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.53a.75.75 0 0 1 1.06-1.06l1.97 1.97V1.75A.75.75 0 0 1 8 1Z"/><path d="M2.5 11.25a.75.75 0 0 1 .75.75v1.5c0 .138.112.25.25.25h9c.138 0 .25-.112.25-.25V12a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.5 15.25h-9A1.75 1.75 0 0 1 1.75 13.5V12a.75.75 0 0 1 .75-.75Z"/></svg>
           Download PDF
         </a>
       </div>
-
-      <h2 class="section-title">Professional Summary</h2>
-      <p class="summary">Backend engineer with 5+ years on cross-functional teams, building production data pipelines and HIPAA-regulated partner integrations that move high-volume data between partner systems and our platform. Comfortable shipping under audit pressure, with strict data formats and partner inputs that arrive incomplete or unexpected. A feature isn't done until it's shipped, monitored, and stable in production.</p>
+      <p class="summary">Backend engineer with 7+ years on cross-functional teams, building production data pipelines and HIPAA-regulated partner integrations that move high-volume data between partner systems and our platform. Comfortable shipping under audit pressure, with strict data formats and partner inputs that arrive incomplete or unexpected. A feature isn't done until it's shipped, monitored, and stable in production.</p>
 
       <h2 class="section-title">Technical Skills</h2>
       <div class="skill-row">
