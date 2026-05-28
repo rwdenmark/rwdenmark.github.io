@@ -66,13 +66,25 @@
       padding: 12px 32px 20px;
     }
     .links {
-      display: flex; flex-wrap: wrap; gap: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
       margin-top: 16px;
+      font-size: 0.95rem;
     }
-    .links a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
-    .links a:hover { color: var(--accent-hover); text-decoration: underline; }
-    .links a.active { color: var(--text); }
-    .links a.active:hover { color: var(--text); text-decoration: none; cursor: default; }
+    .links-group { display: flex; flex-wrap: wrap; gap: 20px; }
+    .links a {
+      color: var(--accent); text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .links a:hover {
+      color: var(--accent-hover);
+      border-bottom-color: var(--accent-hover);
+      text-decoration: none;
+    }
+    .links a.active { color: var(--text); border-bottom-color: var(--accent); }
+    .links a.active:hover { color: var(--text); border-bottom-color: var(--accent); cursor: default; }
     .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
     .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
@@ -179,12 +191,17 @@
         <span class="location">Eagan, MN</span>
       </div>
       <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
-      <nav class="links" aria-label="Contact and profiles">
-        <a href="index.html">Home</a>
-        <a href="jax.html" class="active" aria-current="page">Jax</a>
-        <a href="https://github.com/rwdenmark" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener">LinkedIn</a>
-        <a href="mailto:ryanwdenmark@gmail.com">Email</a>
+      <nav class="links" aria-label="Main navigation">
+        <div class="links-group">
+          <a href="index.html">Home</a>
+          <a href="resume.html">Resume</a>
+          <a href="jax.html" class="active" aria-current="page">Jax</a>
+        </div>
+        <div class="links-group">
+          <a href="https://github.com/rwdenmark" rel="noopener" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener" target="_blank">LinkedIn</a>
+          <a href="mailto:ryanwdenmark@gmail.com" rel="noopener" target="_blank">Email</a>
+        </div>
       </nav>
     </div>
   </header>
