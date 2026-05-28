@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan Denmark</title>
   <meta name="description" content="Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.ico" />
   <style>
     :root {
       --canvas: #0d1117;
@@ -138,14 +140,21 @@
       border-left: 2px solid var(--border);
       border-right: 2px solid var(--border);
       border-top: 2px solid var(--border);
-      height: 40px;
+      min-height: 40px;
+      padding: 10px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
     }
+    footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+    footer a:hover { color: var(--accent-hover); text-decoration: underline; }
     @media (max-width: 1044px) {
       header .container { background: transparent; border: none; }
       header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
       header .container { padding: 0 32px; }
       footer { background: var(--header-bg); border-top: 2px solid var(--border); }
-      footer .container { background: transparent; border: none; height: 40px; }
+      footer .container { background: transparent; border: none; }
     }
     @media (max-width: 520px) {
       header .container { padding: 20px 20px; }
@@ -232,7 +241,10 @@
   <main>
     <div class="container">
       <h2 class="section-title">About Me</h2>
-      <p>Hi, I'm Ryan. I've been a backend engineer for the last seven years, primarily focused on client integrations. Throughout my career I've owned dozens of enterprise client implementations from requirements through production, moving high-volume partner data inside HIPAA-regulated systems. Before that I spent two years as an Infrastructure Support Specialist supporting client Microsoft Azure environments.</p>
+      <p>I'm a backend engineer. I've spent the last seven years at a healthcare-data company doing client-facing implementation work. Partner integrations, multi-stage pipelines, HIPAA-regulated data in Java and SQL.</p>
+      <p>What I enjoy most is the client side of the work. Sitting with a client, understanding what they actually need, and building toward the real solution rather than the literal ask. The work I'm proudest of is making a complicated system understandable to the people who had to use it.</p>
+      <p>Throughout my career I've worked in production systems under HIPAA compliance and HITRUST audit pressure. That shaped how I think about backend engineering. I deliver carefully, I'm explicit about how failures get handled, and I focus on building systems the next engineer can actually read months later.</p>
+      <p>Currently looking for a backend role doing integration-heavy work with regulated or high-volume data.</p>
       <h2 class="section-title">Personal Projects</h2>
       <div class="projects">
         <article class="project-card">
@@ -291,7 +303,18 @@
     </div>
   </main>
   <footer>
-    <div class="container"></div>
+    <div class="container">
+      <a href="https://github.com/rwdenmark/rwdenmark.github.io" rel="noopener" target="_blank">View source on GitHub</a>
+      <span>Last updated <span class="last-updated">May 2026</span></span>
+    </div>
   </footer>
+  <script>
+    document.querySelectorAll('.last-updated').forEach(function(el) {
+      var d = new Date(document.lastModified);
+      if (!isNaN(d)) {
+        el.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+    });
+  </script>
 </body>
 </html>
