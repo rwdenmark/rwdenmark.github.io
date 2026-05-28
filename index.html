@@ -116,7 +116,15 @@
       border-radius: 12px;
     }
     .project-card p { margin: 0; font-size: 0.95rem; }
+    .project-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0;
+      font-style: italic;
+      margin-top: auto;
+    }
     .project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 8px; }
+    .project-note + .project-actions { margin-top: 0; padding-top: 0; }
     .project-actions a {
       color: var(--accent);
       text-decoration: none;
@@ -241,7 +249,7 @@
   <main>
     <div class="container">
       <h2 class="section-title">About Me</h2>
-      <p>I'm a backend engineer. I've spent the last seven years at a healthcare-data company doing client-facing implementation work. Partner integrations, multi-stage pipelines, HIPAA-regulated data in Java and SQL.</p>
+      <p>I've spent the last seven years at a healthcare-data company doing client-facing implementation work. Partner integrations, multi-stage pipelines, HIPAA-regulated data in Java and SQL.</p>
       <p>What I enjoy most is the client side of the work. Sitting with a client, understanding what they actually need, and building toward the real solution rather than the literal ask. The work I'm proudest of is making a complicated system understandable to the people who had to use it.</p>
       <p>Throughout my career I've worked in production systems under HIPAA compliance and HITRUST audit pressure. That shaped how I think about backend engineering. I deliver carefully, I'm explicit about how failures get handled, and I focus on building systems the next engineer can actually read months later.</p>
       <p>Currently looking for a backend role doing integration-heavy work with regulated or high-volume data.</p>
@@ -259,7 +267,8 @@
             <span>PostgreSQL</span>
             <span>Battle.net API</span>
           </div>
-          <p>Full-stack World of Warcraft character lookup. Pulls live data from the Battle.net OAuth API and Raider.IO and returns item level, raid progress, Mythic+ score, achievements, mounts, and the official Blizzard character render. First load may take a few seconds while the free-tier backend wakes up.</p>
+          <p>Full-stack World of Warcraft character lookup. Pulls live data from the Battle.net OAuth API and Raider.IO and returns item level, raid progress, Mythic+ score, achievements, mounts, and the official Blizzard character render.</p>
+          <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
           <div class="project-actions">
             <a href="https://github.com/rwdenmark/wow-explorer" rel="noopener" target="_blank">View on GitHub</a>
             <a href="https://wow-explorer.onrender.com/" rel="noopener" target="_blank">Live Demo</a>
@@ -276,7 +285,8 @@
             <span>JavaScript</span>
             <span>A* Pathfinding</span>
           </div>
-          <p>Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, dodge skeletons that spawn from corner forts and A*-path toward you. Procedurally generated maps each run, with grass, paths, mountains, water, and trees. Spring Boot REST backend persists scores and serves a moderated leaderboard via the PurgoMalum profanity API. First load may take a few seconds while the free-tier backend wakes up.</p>
+          <p>Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing skeletons across procedurally generated maps. Spring Boot REST backend persists scores to a moderated leaderboard.</p>
+          <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
           <div class="project-actions">
             <a href="https://github.com/rwdenmark/ranger-survivor" rel="noopener" target="_blank">View on GitHub</a>
             <a href="https://ranger-survivor.onrender.com" rel="noopener" target="_blank">Live Demo</a>
