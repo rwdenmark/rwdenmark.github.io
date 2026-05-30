@@ -48,7 +48,14 @@ jobs:
         id: current
         run: |
           resp=$(curl -s https://api.counterapi.dev/v1/rwdenmark/portfolio-2026)
-          count=$(echo "$resp" | jq -r '.count // 0')
+          # counterapi.dev returns an empty body when the counter doesn't exist yet,
+          # which breaks jq. Default to 0 if the response is empty or not valid JSON.
+          if [ -z "$resp" ] || ! echo "$resp" | jq -e . >/dev/null 2>&1; then
+            echo "Counter not initialized or non-JSON response. Treating as 0."
+            count=0
+          else
+            count=$(echo "$resp" | jq -r '.count // 0')
+          fi
           echo "count=$count" >> $GITHUB_OUTPUT
 
       - name: Calculate hits today
