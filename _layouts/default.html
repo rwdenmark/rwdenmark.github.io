@@ -8,6 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}" />
   <link rel="alternate icon" href="{{ '/favicon.ico' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}" />
+  <script src="{{ '/assets/script.js' | relative_url }}" defer></script>
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:title" content="{{ page.og_title | default: page.title }}" />
@@ -17,6 +18,28 @@
   <meta name="twitter:title" content="{{ page.og_title | default: page.title }}" />
   <meta name="twitter:description" content="{{ page.og_description | default: page.description }}" />
   <meta name="twitter:image" content="{{ '/og-image.png' | absolute_url }}" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ryan Denmark",
+    "givenName": "Ryan",
+    "familyName": "Denmark",
+    "jobTitle": "Backend Software Engineer",
+    "url": "{{ site.url }}/",
+    "email": "ryanwdenmark@gmail.com",
+    "sameAs": [
+      "https://github.com/rwdenmark",
+      "https://www.linkedin.com/in/rwdenmark"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Eagan",
+      "addressRegion": "MN",
+      "addressCountry": "US"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="rail-bg" aria-hidden="true"></div>
@@ -104,6 +127,5 @@
     </div>
   </footer>
   <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-  <script src="{{ '/assets/script.js' | relative_url }}"></script>
 </body>
 </html>

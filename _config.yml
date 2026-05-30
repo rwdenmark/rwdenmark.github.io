@@ -8,8 +8,9 @@ exclude:
   - .gitignore
   - .github
 
-# Tightest plugin set — GitHub Pages allows these by default
-plugins: []
+# GitHub Pages allows these plugins out of the box
+plugins:
+  - jekyll-sitemap
 
 # Disable Jekyll's default markdown processing on .html files (they're already HTML)
 markdown: kramdown
