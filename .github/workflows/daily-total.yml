@@ -9,6 +9,11 @@ on:
     - cron: '0 6 * * *'   # midnight Central during CST (Nov–Mar)
   workflow_dispatch:
 
+# Force the Node.js 20-based actions (checkout, action-send-mail) onto Node 24,
+# matching the GitHub Actions runner default that goes into effect June 16, 2026.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   check-time:
     runs-on: ubuntu-latest
