@@ -1,0 +1,85 @@
+name: Daily hits email
+
+# GitHub Actions cron runs in UTC and ignores DST.
+# To always fire at midnight Central, schedule both 5:00 and 6:00 UTC and
+# have the workflow itself check which one is actually midnight Central.
+on:
+  schedule:
+    - cron: '0 5 * * *'   # midnight Central during CDT (Mar–Nov)
+    - cron: '0 6 * * *'   # midnight Central during CST (Nov–Mar)
+  workflow_dispatch:
+
+jobs:
+  check-time:
+    runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.tc.outputs.proceed }}
+    steps:
+      - name: Only proceed if it is midnight Central
+        id: tc
+        run: |
+          hour=$(TZ='America/Chicago' date +%H)
+          if [ "$hour" = "00" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "proceed=true" >> $GITHUB_OUTPUT
+          else
+            echo "proceed=false" >> $GITHUB_OUTPUT
+            echo "Local hour is $hour Central, skipping (other DST cron firing)."
+          fi
+
+  email-daily:
+    needs: check-time
+    if: needs.check-time.outputs.proceed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read yesterday's count
+        id: yesterday
+        run: |
+          if [ -f .github/count.txt ]; then
+            echo "count=$(cat .github/count.txt)" >> $GITHUB_OUTPUT
+          else
+            echo "count=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fetch current total
+        id: current
+        run: |
+          resp=$(curl -s https://api.counterapi.dev/v1/rwdenmark/portfolio-2026)
+          count=$(echo "$resp" | jq -r '.count // 0')
+          echo "count=$count" >> $GITHUB_OUTPUT
+
+      - name: Calculate hits today
+        id: daily
+        run: |
+          hits=$((${{ steps.current.outputs.count }} - ${{ steps.yesterday.outputs.count }}))
+          # Guard against a negative number if the counter ever resets
+          if [ "$hits" -lt 0 ]; then hits=0; fi
+          echo "hits=$hits" >> $GITHUB_OUTPUT
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "Daily statistics for your developer website"
+          to: ryanwdenmark@gmail.com
+          from: Portfolio Bot <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            Here are the daily statistics for your developer website.
+
+            Total hits: ${{ steps.daily.outputs.hits }}
+
+      - name: Store today's count for tomorrow
+        run: |
+          echo "${{ steps.current.outputs.count }}" > .github/count.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/count.txt
+          git diff --cached --quiet || git commit -m "chore: store daily view count [skip ci]"
+          git push
