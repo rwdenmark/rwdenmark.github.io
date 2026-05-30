@@ -1,414 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ryan Denmark</title>
-  <meta name="description" content="Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data." />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" href="favicon.ico" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rwdenmark.github.io/" />
-  <meta property="og:title" content="Ryan Denmark — Backend Software Engineer" />
-  <meta property="og:description" content="End-to-end client implementations in Java and SQL. Pipelines, partner integrations, regulated data." />
-  <meta property="og:image" content="https://rwdenmark.github.io/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ryan Denmark — Backend Software Engineer" />
-  <meta name="twitter:description" content="End-to-end client implementations in Java and SQL. Pipelines, partner integrations, regulated data." />
-  <meta name="twitter:image" content="https://rwdenmark.github.io/og-image.png" />
-  <style>
-    :root {
-      --canvas: #0d1117;
-      --header-bg: #010409;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #7d8590;
-      --accent: #2f81f7;
-      --accent-hover: #58a6ff;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background: var(--canvas);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-    .bg-circuit {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0; pointer-events: none; user-select: none;
-    }
-    .rail-bg {
-      position: fixed;
-      top: 0; bottom: 0;
-      left: calc(50% - 490px);
-      right: calc(50% - 490px);
-      background: var(--canvas);
-      z-index: 1;
-      pointer-events: none;
-    }
-    @media (max-width: 1044px) {
-      .rail-bg { left: 0; right: 0; }
-    }
-    body::before, body::after {
-      content: ""; position: fixed; top: 0; bottom: 0;
-      width: 2px; background: rgba(255, 255, 255, 0.15);
-      pointer-events: none; z-index: 2;
-    }
-    body::before { left: calc(50% - 490px); }
-    body::after  { right: calc(50% - 490px); }
-    @media (max-width: 1044px) {
-      body::before, body::after { display: none; }
-      .bg-circuit { display: none; }
-    }
-    header, main, footer { position: relative; z-index: 3; }
-    header .container {
-      background: var(--header-bg);
-      border-left: 2px solid var(--border);
-      border-right: 2px solid var(--border);
-      border-bottom: 2px solid var(--border);
-      padding: 12px 32px 20px;
-    }
-    .links {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-      margin-top: 16px;
-      font-size: 0.95rem;
-    }
-    .links-group { display: flex; flex-wrap: wrap; gap: 20px; }
-    .links a {
-      color: var(--accent); text-decoration: none;
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .links a:hover {
-      color: var(--accent-hover);
-      border-bottom-color: var(--accent-hover);
-      text-decoration: none;
-    }
-    .links a.active { color: var(--text); border-bottom-color: var(--accent); }
-    .links a.active:hover { color: var(--text); border-bottom-color: var(--accent); cursor: default; }
-    .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
-    .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
-    h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
-    .location { font-size: 1rem; color: var(--muted); }
-    .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
-    .section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
-    .section-title + p { margin-top: 0; }
-    .section-title:not(:first-child) { margin-top: 32px; }
-    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-    .project-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
-    .project-thumb {
-      aspect-ratio: 3 / 2;
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      object-fit: cover;
-      display: block;
-      background: var(--canvas);
-    }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 4px; }
-    .project-stack span {
-      font-size: 0.78rem;
-      color: var(--muted);
-      background: var(--canvas);
-      border: 1px solid var(--border);
-      padding: 2px 8px;
-      border-radius: 12px;
-    }
-    .project-card p { margin: 0; font-size: 0.95rem; }
-    .project-note {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 0;
-      font-style: italic;
-      margin-top: auto;
-    }
-    .project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 8px; }
-    .project-note + .project-actions { margin-top: 0; padding-top: 0; }
-    .project-actions a {
-      color: var(--accent);
-      text-decoration: none;
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-    }
-    .project-actions a:hover {
-      border-color: var(--accent);
-      background: rgba(47, 129, 247, 0.08);
-      color: var(--accent-hover);
-      text-decoration: none;
-    }
-    main { flex: 1; padding: 24px 0; }
-    main p { margin: 0 0 24px; }
-    footer { padding: 0; }
-    footer .container {
-      background: var(--header-bg);
-      border-left: 2px solid var(--border);
-      border-right: 2px solid var(--border);
-      border-top: 2px solid var(--border);
-      min-height: 40px;
-      padding: 10px 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
-    footer a:hover { color: var(--accent-hover); text-decoration: underline; }
-    @media (max-width: 1044px) {
-      header .container { background: transparent; border: none; }
-      header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
-      header .container { padding: 0 32px; }
-      footer { background: var(--header-bg); border-top: 2px solid var(--border); }
-      footer .container { background: transparent; border: none; }
-    }
-    @media (max-width: 520px) {
-      header .container { padding: 20px 20px; }
-      main { padding: 20px 0; }
-      .container { padding: 0 20px; }
-      h1 { font-size: 1.875rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    .copy-toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      color: var(--text);
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      z-index: 100;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      pointer-events: none;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      max-width: calc(100vw - 48px);
-    }
-    .copy-toast.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .copy-toast { transition: opacity 0.01ms; transform: none; }
-    }
-  </style>
-</head>
-<body>
-  <div class="rail-bg" aria-hidden="true"></div>
-  <svg class="bg-circuit" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <pattern id="circuit-pattern" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
-        <g stroke="#1f6feb" stroke-width="1" fill="none" opacity="0.35">
-          <path d="M 0,40 L 70,40 L 70,90 L 150,90"/>
-          <path d="M 210,0 L 210,50 L 260,50 L 260,130"/>
-          <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280"/>
-          <path d="M 180,150 L 220,150 L 220,200 L 280,200"/>
-          <path d="M 100,150 L 100,180"/>
-          <rect x="100" y="100" width="60" height="40" rx="2"/>
-          <g stroke-width="1">
-            <line x1="108" y1="100" x2="108" y2="95"/>
-            <line x1="120" y1="100" x2="120" y2="95"/>
-            <line x1="132" y1="100" x2="132" y2="95"/>
-            <line x1="144" y1="100" x2="144" y2="95"/>
-            <line x1="156" y1="100" x2="156" y2="95"/>
-            <line x1="108" y1="140" x2="108" y2="145"/>
-            <line x1="120" y1="140" x2="120" y2="145"/>
-            <line x1="132" y1="140" x2="132" y2="145"/>
-            <line x1="144" y1="140" x2="144" y2="145"/>
-            <line x1="156" y1="140" x2="156" y2="145"/>
-          </g>
-          <rect x="200" y="70" width="22" height="10" rx="1"/>
-          <rect x="20" y="220" width="10" height="22" rx="1"/>
-          <rect x="160" y="190" width="40" height="6" rx="1"/>
-        </g>
-        <g fill="#1f6feb" opacity="0.55">
-          <circle cx="70" cy="40" r="2"/>
-          <circle cx="70" cy="90" r="2"/>
-          <circle cx="210" cy="50" r="2"/>
-          <circle cx="260" cy="50" r="2"/>
-          <circle cx="50" cy="170" r="2"/>
-          <circle cx="130" cy="220" r="2"/>
-          <circle cx="220" cy="150" r="2"/>
-          <circle cx="220" cy="200" r="2"/>
-          <circle cx="100" cy="150" r="2"/>
-          <circle cx="100" cy="100" r="2"/>
-        </g>
-        <path d="M 0,40 L 70,40 L 70,90 L 150,90" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="16 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="4s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 210,0 L 210,50 L 260,50 L 260,130" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="14 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="5.5s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="18 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-300" dur="7s" repeatCount="indefinite"/>
-        </path>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#circuit-pattern)"/>
-  </svg>
-  <header>
-    <div class="container">
-      <div class="name-row">
-        <h1>Ryan Denmark</h1>
-        <span class="location">Eagan, MN</span>
-      </div>
-      <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
-      <nav class="links" aria-label="Main navigation">
-        <div class="links-group">
-          <a href="index.html" class="active" aria-current="page">Home</a>
-          <a href="resume.html">Resume</a>
-          <a href="jax.html">Jax</a>
-        </div>
-        <div class="links-group">
-          <a href="https://github.com/rwdenmark" rel="noopener" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener" target="_blank">LinkedIn</a>
-          <a href="mailto:ryanwdenmark@gmail.com" id="email-link" data-email="ryanwdenmark@gmail.com" aria-label="Copy email address">Email</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <p>I've spent the last seven years at a healthcare-data company doing client-facing implementation work. Partner integrations, multi-stage pipelines, HIPAA-regulated data in Java and SQL.</p>
-      <p>What I enjoy most is the client side of the work. Sitting with a client, understanding what they actually need, and building toward the real solution rather than the literal ask. The work I'm proudest of is making a complicated system understandable to the people who had to use it.</p>
-      <p>Throughout my career I've worked in production systems under HIPAA compliance and HITRUST audit pressure. That shaped how I think about backend engineering. I deliver carefully, I'm explicit about how failures get handled, and I focus on building systems the next engineer can actually read months later.</p>
-      <p>Currently looking for a backend role doing integration-heavy work with regulated or high-volume data.</p>
-      <h2 class="section-title">Personal Projects</h2>
-      <div class="projects">
-        <article class="project-card">
-          <img class="project-thumb" src="projects/wow-explorer.png" alt="WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render." loading="lazy" />
-          <h3>WoW Explorer</h3>
-          <div class="project-stack">
-            <span>Java</span>
-            <span>Spring Boot</span>
-            <span>PostgreSQL</span>
-            <span>TypeScript</span>
-            <span>Battle.net API</span>
-          </div>
-          <p>Spring Boot REST service that aggregates a WoW character profile from Battle.net OAuth and Raider.IO. Returns item level, raid and Mythic+ scores, achievements, mounts, and the Blizzard render.</p>
-          <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
-          <div class="project-actions">
-            <a href="https://github.com/rwdenmark/wow-explorer" rel="noopener" target="_blank">View on GitHub</a>
-            <a href="https://wow-explorer.onrender.com/" rel="noopener" target="_blank">Live Demo</a>
-          </div>
-        </article>
-        <article class="project-card">
-          <img class="project-thumb" src="projects/ranger-survivor.png" alt="Top-down view of Ranger Survivor showing the player character with bow, a skeleton enemy, grass tiles, water, trees, and corner forts." loading="lazy" />
-          <h3>Ranger Survivor</h3>
-          <div class="project-stack">
-            <span>Java</span>
-            <span>Spring Boot</span>
-            <span>PostgreSQL</span>
-            <span>JavaScript</span>
-            <span>A* Pathfinding</span>
-          </div>
-          <p>Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing skeletons. Spring Boot REST backend persists scores to a moderated leaderboard.</p>
-          <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
-          <div class="project-actions">
-            <a href="https://github.com/rwdenmark/ranger-survivor" rel="noopener" target="_blank">View on GitHub</a>
-            <a href="https://ranger-survivor.onrender.com" rel="noopener" target="_blank">Live Demo</a>
-          </div>
-        </article>
-        <article class="project-card">
-          <img class="project-thumb" src="projects/spring-boot-starter.png" alt="IntelliJ IDEA Darcula editor view of Spring Boot Java source code from the spring-boot-starter project." loading="lazy" />
-          <h3>Spring Boot Starter</h3>
-          <div class="project-stack">
-            <span>Java</span>
-            <span>Spring Boot</span>
-            <span>PostgreSQL</span>
-            <span>Docker</span>
-            <span>JUnit</span>
-          </div>
-          <p>Spring Boot service template I reuse when starting a new backend. REST endpoints over PostgreSQL via docker-compose, JUnit integration tests that spin up a real database.</p>
-          <div class="project-actions">
-            <a href="https://github.com/rwdenmark/spring-boot-starter" rel="noopener" target="_blank">View on GitHub</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="container">
-      <a href="https://github.com/rwdenmark/rwdenmark.github.io" rel="noopener" target="_blank">View source on GitHub</a>
-      <span>Last updated <span class="last-updated">May 2026</span></span>
-    </div>
-  </footer>
-  <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-  <script>
-    document.querySelectorAll('.last-updated').forEach(function(el) {
-      var d = new Date(document.lastModified);
-      if (!isNaN(d)) {
-        el.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-    });
+---
+layout: default
+page_id: home
+title: Ryan Denmark
+og_title: Ryan Denmark — Backend Software Engineer
+description: Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.
+og_description: End-to-end client implementations in Java and SQL. Pipelines, partner integrations, regulated data.
+---
 
-    (function() {
-      var link = document.getElementById('email-link');
-      var toast = document.getElementById('copy-toast');
-      if (!link || !toast) return;
-      var timer;
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var addr = link.dataset.email;
-        var done = function(ok) {
-          toast.textContent = ok ? 'Copied ' + addr : addr;
-          toast.classList.add('visible');
-          clearTimeout(timer);
-          timer = setTimeout(function() { toast.classList.remove('visible'); }, 2500);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(addr).then(function() { done(true); }, function() { done(false); });
-        } else {
-          try {
-            var ta = document.createElement('textarea');
-            ta.value = addr;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            var ok = document.execCommand('copy');
-            document.body.removeChild(ta);
-            done(ok);
-          } catch (err) {
-            done(false);
-          }
-        }
-      });
-    })();
+<h2 class="section-title">About Me</h2>
+<p>I've spent the last seven years at a healthcare-data company doing client-facing implementation work. Partner integrations, multi-stage pipelines, HIPAA-regulated data in Java and SQL.</p>
+<p>What I enjoy most is the client side of the work. Sitting with a client, understanding what they actually need, and building toward the real solution rather than the literal ask. The work I'm proudest of is making a complicated system understandable to the people who had to use it.</p>
+<p>Throughout my career I've worked in production systems under HIPAA compliance and HITRUST audit pressure. That shaped how I think about backend engineering. I deliver carefully, I'm explicit about how failures get handled, and I focus on building systems the next engineer can actually read months later.</p>
+<p>Currently looking for a backend role doing integration-heavy work with regulated or high-volume data.</p>
 
-    // Daily hit counter ping — fire and forget
-    fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
-  </script>
-</body>
-</html>
+<h2 class="section-title">Personal Projects</h2>
+<div class="projects">
+  <article class="project-card">
+    <img class="project-thumb" src="{{ '/projects/wow-explorer.png' | relative_url }}" alt="WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render." loading="lazy" />
+    <h3>WoW Explorer</h3>
+    <div class="project-stack">
+      <span>Java</span>
+      <span>Spring Boot</span>
+      <span>PostgreSQL</span>
+      <span>TypeScript</span>
+      <span>Battle.net API</span>
+    </div>
+    <p>Spring Boot REST service that aggregates a WoW character profile from Battle.net OAuth and Raider.IO. Returns item level, raid and Mythic+ scores, achievements, mounts, and the Blizzard render.</p>
+    <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
+    <div class="project-actions">
+      <a href="https://github.com/rwdenmark/wow-explorer" rel="noopener noreferrer" target="_blank">View on GitHub</a>
+      <a href="https://wow-explorer.onrender.com/" rel="noopener noreferrer" target="_blank">Live Demo</a>
+    </div>
+  </article>
+  <article class="project-card">
+    <img class="project-thumb" src="{{ '/projects/ranger-survivor.png' | relative_url }}" alt="Top-down view of Ranger Survivor showing the player character with bow, a skeleton enemy, grass tiles, water, trees, and corner forts." loading="lazy" />
+    <h3>Ranger Survivor</h3>
+    <div class="project-stack">
+      <span>Java</span>
+      <span>Spring Boot</span>
+      <span>PostgreSQL</span>
+      <span>JavaScript</span>
+      <span>A* Pathfinding</span>
+    </div>
+    <p>Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing skeletons. Spring Boot REST backend persists scores to a moderated leaderboard.</p>
+    <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
+    <div class="project-actions">
+      <a href="https://github.com/rwdenmark/ranger-survivor" rel="noopener noreferrer" target="_blank">View on GitHub</a>
+      <a href="https://ranger-survivor.onrender.com" rel="noopener noreferrer" target="_blank">Live Demo</a>
+    </div>
+  </article>
+  <article class="project-card">
+    <img class="project-thumb" src="{{ '/projects/spring-boot-starter.png' | relative_url }}" alt="IntelliJ IDEA Darcula editor view of Spring Boot Java source code from the spring-boot-starter project." loading="lazy" />
+    <h3>Spring Boot Starter</h3>
+    <div class="project-stack">
+      <span>Java</span>
+      <span>Spring Boot</span>
+      <span>PostgreSQL</span>
+      <span>Docker</span>
+      <span>JUnit</span>
+    </div>
+    <p>Spring Boot service template I reuse when starting a new backend. REST endpoints over PostgreSQL via docker-compose, JUnit integration tests that spin up a real database.</p>
+    <div class="project-actions">
+      <a href="https://github.com/rwdenmark/spring-boot-starter" rel="noopener noreferrer" target="_blank">View on GitHub</a>
+    </div>
+  </article>
+</div>

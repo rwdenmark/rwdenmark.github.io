@@ -1,0 +1,15 @@
+title: Ryan Denmark
+url: https://rwdenmark.github.io
+author: Ryan Denmark
+
+# Don't process these files/folders into the built site
+exclude:
+  - README.md
+  - .gitignore
+  - .github
+
+# Tightest plugin set — GitHub Pages allows these by default
+plugins: []
+
+# Disable Jekyll's default markdown processing on .html files (they're already HTML)
+markdown: kramdown

@@ -1,474 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume — Ryan Denmark</title>
-  <meta name="description" content="Resume of Ryan Denmark — backend software engineer specializing in Java, SQL, data pipelines, and HIPAA-regulated partner integrations." />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" href="favicon.ico" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rwdenmark.github.io/resume.html" />
-  <meta property="og:title" content="Resume — Ryan Denmark" />
-  <meta property="og:description" content="Backend engineer with 7+ years building production data pipelines and HIPAA-regulated partner integrations in Java and SQL." />
-  <meta property="og:image" content="https://rwdenmark.github.io/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Resume — Ryan Denmark" />
-  <meta name="twitter:description" content="Backend engineer with 7+ years building production data pipelines and HIPAA-regulated partner integrations in Java and SQL." />
-  <meta name="twitter:image" content="https://rwdenmark.github.io/og-image.png" />
-  <style>
-    :root {
-      --canvas: #0d1117;
-      --header-bg: #010409;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #7d8590;
-      --accent: #2f81f7;
-      --accent-hover: #58a6ff;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background: var(--canvas);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-    .bg-circuit {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0; pointer-events: none; user-select: none;
-    }
-    .rail-bg {
-      position: fixed;
-      top: 0; bottom: 0;
-      left: calc(50% - 490px);
-      right: calc(50% - 490px);
-      background: var(--canvas);
-      z-index: 1;
-      pointer-events: none;
-    }
-    @media (max-width: 1044px) {
-      .rail-bg { left: 0; right: 0; }
-    }
-    body::before, body::after {
-      content: ""; position: fixed; top: 0; bottom: 0;
-      width: 2px; background: rgba(255, 255, 255, 0.15);
-      pointer-events: none; z-index: 2;
-    }
-    body::before { left: calc(50% - 490px); }
-    body::after  { right: calc(50% - 490px); }
-    @media (max-width: 1044px) {
-      body::before, body::after { display: none; }
-      .bg-circuit { display: none; }
-    }
-    header, main, footer { position: relative; z-index: 3; }
-    header .container {
-      background: var(--header-bg);
-      border-left: 2px solid var(--border);
-      border-right: 2px solid var(--border);
-      border-bottom: 2px solid var(--border);
-      padding: 12px 32px 20px;
-    }
-    .links {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-      margin-top: 16px;
-      font-size: 0.95rem;
-    }
-    .links-group { display: flex; flex-wrap: wrap; gap: 20px; }
-    .links a {
-      color: var(--accent); text-decoration: none;
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .links a:hover {
-      color: var(--accent-hover);
-      border-bottom-color: var(--accent-hover);
-      text-decoration: none;
-    }
-    .links a.active { color: var(--text); border-bottom-color: var(--accent); }
-    .links a.active:hover { color: var(--text); border-bottom-color: var(--accent); cursor: default; }
-    .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
-    .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
-    h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
-    .location { font-size: 1rem; color: var(--muted); }
-    .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
-    main { flex: 1; padding: 24px 0 48px; }
-    .section-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      flex-wrap: wrap; gap: 16px;
-      margin-bottom: 12px;
-      padding-bottom: 6px;
-      border-bottom: 2px solid var(--border);
-    }
-    .section-header .section-title {
-      margin: 0; padding: 0; border-bottom: none;
-    }
-    .download-pdf {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--accent);
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-    }
-    .download-pdf:hover {
-      border-color: var(--accent);
-      background: rgba(47, 129, 247, 0.08);
-      color: var(--accent-hover);
-      text-decoration: none;
-    }
-    .download-pdf svg { width: 14px; height: 14px; }
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin: 32px 0 12px;
-      padding-bottom: 6px;
-      border-bottom: 2px solid var(--border);
-    }
-    .summary { margin: 0 0 8px; }
-    .skill-row {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 16px;
-      padding: 8px 0;
-    }
-    .skill-row + .skill-row { border-top: 1px solid var(--border); }
-    .skill-label {
-      font-weight: 600;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .skill-value { font-size: 0.95rem; }
-    @media (max-width: 640px) {
-      .skill-row { grid-template-columns: 1fr; gap: 4px; }
-    }
-    .job { margin-top: 24px; }
-    .job:first-of-type { margin-top: 0; }
-    .job-header {
-      display: flex; justify-content: space-between; align-items: baseline;
-      flex-wrap: wrap; gap: 8px;
-    }
-    .job-company { font-weight: 700; font-size: 1.05rem; margin: 0; }
-    .job-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-    .job-subtitle { color: var(--muted); font-size: 0.95rem; margin: 0 0 4px; font-style: italic; }
-    .role { margin-top: 14px; }
-    .role:first-child { margin-top: 8px; }
-    .role-header {
-      display: flex; justify-content: space-between; align-items: baseline;
-      flex-wrap: wrap; gap: 8px;
-    }
-    .role-title { font-weight: 600; font-size: 0.98rem; margin: 0; color: var(--text); }
-    .role-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-    .role ul { margin: 6px 0 0; padding-left: 20px; }
-    .role li { margin-bottom: 4px; font-size: 0.95rem; }
-    .education-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      flex-wrap: wrap; gap: 8px;
-    }
-    .education-degree { margin: 0; font-size: 0.98rem; }
-    .education-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-    footer { padding: 0; }
-    footer .container {
-      background: var(--header-bg);
-      border-left: 2px solid var(--border);
-      border-right: 2px solid var(--border);
-      border-top: 2px solid var(--border);
-      min-height: 40px;
-      padding: 10px 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
-    footer a:hover { color: var(--accent-hover); text-decoration: underline; }
-    @media (max-width: 1044px) {
-      header .container { background: transparent; border: none; }
-      header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
-      header .container { padding: 0 32px; }
-      footer { background: var(--header-bg); border-top: 2px solid var(--border); }
-      footer .container { background: transparent; border: none; }
-    }
-    @media (max-width: 520px) {
-      header .container { padding: 20px 20px; }
-      main { padding: 20px 0 32px; }
-      .container { padding: 0 20px; }
-      h1 { font-size: 1.875rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    .copy-toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      color: var(--text);
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      z-index: 100;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      pointer-events: none;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      max-width: calc(100vw - 48px);
-    }
-    .copy-toast.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .copy-toast { transition: opacity 0.01ms; transform: none; }
-    }
-  </style>
-</head>
-<body>
-  <div class="rail-bg" aria-hidden="true"></div>
-  <svg class="bg-circuit" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <pattern id="circuit-pattern" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
-        <g stroke="#1f6feb" stroke-width="1" fill="none" opacity="0.35">
-          <path d="M 0,40 L 70,40 L 70,90 L 150,90"/>
-          <path d="M 210,0 L 210,50 L 260,50 L 260,130"/>
-          <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280"/>
-          <path d="M 180,150 L 220,150 L 220,200 L 280,200"/>
-          <path d="M 100,150 L 100,180"/>
-          <rect x="100" y="100" width="60" height="40" rx="2"/>
-          <g stroke-width="1">
-            <line x1="108" y1="100" x2="108" y2="95"/>
-            <line x1="120" y1="100" x2="120" y2="95"/>
-            <line x1="132" y1="100" x2="132" y2="95"/>
-            <line x1="144" y1="100" x2="144" y2="95"/>
-            <line x1="156" y1="100" x2="156" y2="95"/>
-            <line x1="108" y1="140" x2="108" y2="145"/>
-            <line x1="120" y1="140" x2="120" y2="145"/>
-            <line x1="132" y1="140" x2="132" y2="145"/>
-            <line x1="144" y1="140" x2="144" y2="145"/>
-            <line x1="156" y1="140" x2="156" y2="145"/>
-          </g>
-          <rect x="200" y="70" width="22" height="10" rx="1"/>
-          <rect x="20" y="220" width="10" height="22" rx="1"/>
-          <rect x="160" y="190" width="40" height="6" rx="1"/>
-        </g>
-        <g fill="#1f6feb" opacity="0.55">
-          <circle cx="70" cy="40" r="2"/>
-          <circle cx="70" cy="90" r="2"/>
-          <circle cx="210" cy="50" r="2"/>
-          <circle cx="260" cy="50" r="2"/>
-          <circle cx="50" cy="170" r="2"/>
-          <circle cx="130" cy="220" r="2"/>
-          <circle cx="220" cy="150" r="2"/>
-          <circle cx="220" cy="200" r="2"/>
-          <circle cx="100" cy="150" r="2"/>
-          <circle cx="100" cy="100" r="2"/>
-        </g>
-        <path d="M 0,40 L 70,40 L 70,90 L 150,90" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="16 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="4s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 210,0 L 210,50 L 260,50 L 260,130" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="14 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-260" dur="5.5s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 0,170 L 50,170 L 50,220 L 130,220 L 130,280" stroke="#79c0ff" stroke-width="1.5" fill="none" stroke-dasharray="18 600" stroke-linecap="round">
-          <animate attributeName="stroke-dashoffset" from="0" to="-300" dur="7s" repeatCount="indefinite"/>
-        </path>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#circuit-pattern)"/>
-  </svg>
-  <header>
-    <div class="container">
-      <div class="name-row">
-        <h1>Ryan Denmark</h1>
-        <span class="location">Eagan, MN</span>
-      </div>
-      <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
-      <nav class="links" aria-label="Main navigation">
-        <div class="links-group">
-          <a href="index.html">Home</a>
-          <a href="resume.html" class="active" aria-current="page">Resume</a>
-          <a href="jax.html">Jax</a>
-        </div>
-        <div class="links-group">
-          <a href="https://github.com/rwdenmark" rel="noopener" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/rwdenmark" rel="noopener" target="_blank">LinkedIn</a>
-          <a href="mailto:ryanwdenmark@gmail.com" id="email-link" data-email="ryanwdenmark@gmail.com" aria-label="Copy email address">Email</a>
-        </div>
-      </nav>
+---
+layout: default
+page_id: resume
+title: Resume — Ryan Denmark
+description: Resume of Ryan Denmark — backend software engineer specializing in Java, SQL, data pipelines, and HIPAA-regulated partner integrations.
+og_description: Backend engineer with 7+ years building production data pipelines and HIPAA-regulated partner integrations in Java and SQL.
+---
+
+<div class="section-header">
+  <h2 class="resume-section-title">Professional Summary</h2>
+  <a class="download-pdf" href="{{ '/Resume_Ryan_Denmark.pdf' | relative_url }}" download>
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v6.69l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.53a.75.75 0 0 1 1.06-1.06l1.97 1.97V1.75A.75.75 0 0 1 8 1Z"/><path d="M2.5 11.25a.75.75 0 0 1 .75.75v1.5c0 .138.112.25.25.25h9c.138 0 .25-.112.25-.25V12a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.5 15.25h-9A1.75 1.75 0 0 1 1.75 13.5V12a.75.75 0 0 1 .75-.75Z"/></svg>
+    Download PDF
+  </a>
+</div>
+<p class="summary">Backend engineer with 7+ years on cross-functional teams, building production data pipelines and HIPAA-regulated partner integrations that move high-volume data between partner systems and our platform. Comfortable shipping under audit pressure, with strict data formats and partner inputs that arrive incomplete or unexpected. A feature isn't done until it's shipped, monitored, and stable in production.</p>
+
+<h2 class="resume-section-title">Technical Skills</h2>
+<div class="skill-row">
+  <div class="skill-label">Tech Stack</div>
+  <div class="skill-value">Java, Spring Boot, MySQL, REST APIs, XML, JSON</div>
+</div>
+<div class="skill-row">
+  <div class="skill-label">Tooling &amp; Cloud</div>
+  <div class="skill-value">IntelliJ IDEA, Git, GitHub, Gradle, Postman, Microsoft Azure, GitHub Copilot, Anthropic Claude</div>
+</div>
+<div class="skill-row">
+  <div class="skill-label">Data &amp; Architecture</div>
+  <div class="skill-value">Multi-stage scheduled-job pipelines, entity matching/resolution, schema translation, relational databases, partner integrations (X12 EDI, file feeds, REST APIs), high-volume transactional data movement</div>
+</div>
+<div class="skill-row">
+  <div class="skill-label">Standards &amp; Compliance</div>
+  <div class="skill-value">HIPAA and X12 EDI transactions covering 837 (Claims), 835 (Remittance), 270/271 (Eligibility/Status), 834 (Enrollment), 277CA (Claims Acknowledgement), 999 (Functional Acknowledgement)</div>
+</div>
+<div class="skill-row">
+  <div class="skill-label">Engineering Practice</div>
+  <div class="skill-value">Ownership from design through production. Code review and mentorship. Works with PM, BA, and dev teams. AI-assisted development for daily code generation, review, and debugging. On-call for production incidents.</div>
+</div>
+
+<h2 class="resume-section-title">Professional Experience</h2>
+
+<div class="job">
+  <div class="job-header">
+    <p class="job-company">Smart Data Solutions, Eagan, MN</p>
+  </div>
+  <p class="job-subtitle">Healthcare claims processing and payer integration platform</p>
+
+  <div class="role">
+    <div class="role-header">
+      <p class="role-title">Software Engineer II, Implementation</p>
+      <span class="role-dates">Dec 2024 &ndash; May 2026</span>
     </div>
-  </header>
-  <main>
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Professional Summary</h2>
-        <a class="download-pdf" href="Resume_Ryan_Denmark.pdf" download>
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v6.69l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.53a.75.75 0 0 1 1.06-1.06l1.97 1.97V1.75A.75.75 0 0 1 8 1Z"/><path d="M2.5 11.25a.75.75 0 0 1 .75.75v1.5c0 .138.112.25.25.25h9c.138 0 .25-.112.25-.25V12a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.5 15.25h-9A1.75 1.75 0 0 1 1.75 13.5V12a.75.75 0 0 1 .75-.75Z"/></svg>
-          Download PDF
-        </a>
-      </div>
-      <p class="summary">Backend engineer with 7+ years on cross-functional teams, building production data pipelines and HIPAA-regulated partner integrations that move high-volume data between partner systems and our platform. Comfortable shipping under audit pressure, with strict data formats and partner inputs that arrive incomplete or unexpected. A feature isn't done until it's shipped, monitored, and stable in production.</p>
+    <ul>
+      <li>Lead engineer, mentoring junior developers and reviewing code across the wider development team.</li>
+      <li>Built shared base classes for commonly duplicated client logic like mapping, validation, and routing, so new implementations could extend proven code instead of re-implementing it.</li>
+      <li>Diagnosed a defect in an abstract class affecting roughly 15% of the client base and drove the fix to production, restoring a critical processing queue and retiring a manual dashboard workaround.</li>
+      <li>Owned the most heavily customized client implementations, those with non-standard partner integrations outside the platform's standard workflow, and delivered them on schedule and stable in production.</li>
+      <li>Led design reviews on complex and high-value engagements to catch scope and technical risks before kickoff.</li>
+    </ul>
+  </div>
 
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="skill-row">
-        <div class="skill-label">Tech Stack</div>
-        <div class="skill-value">Java, Spring Boot, MySQL, REST APIs, XML, JSON</div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label">Tooling &amp; Cloud</div>
-        <div class="skill-value">IntelliJ IDEA, Git, GitHub, Gradle, Postman, Microsoft Azure, GitHub Copilot, Anthropic Claude</div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label">Data &amp; Architecture</div>
-        <div class="skill-value">Multi-stage scheduled-job pipelines, entity matching/resolution, schema translation, relational databases, partner integrations (X12 EDI, file feeds, REST APIs), high-volume transactional data movement</div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label">Standards &amp; Compliance</div>
-        <div class="skill-value">HIPAA and X12 EDI transactions covering 837 (Claims), 835 (Remittance), 270/271 (Eligibility/Status), 834 (Enrollment), 277CA (Claims Acknowledgement), 999 (Functional Acknowledgement)</div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label">Engineering Practice</div>
-        <div class="skill-value">Ownership from design through production. Code review and mentorship. Works with PM, BA, and dev teams. AI-assisted development for daily code generation, review, and debugging. On-call for production incidents.</div>
-      </div>
-
-      <h2 class="section-title">Professional Experience</h2>
-
-      <div class="job">
-        <div class="job-header">
-          <p class="job-company">Smart Data Solutions, Eagan, MN</p>
-        </div>
-        <p class="job-subtitle">Healthcare claims processing and payer integration platform</p>
-
-        <div class="role">
-          <div class="role-header">
-            <p class="role-title">Software Engineer II, Implementation</p>
-            <span class="role-dates">Dec 2024 &ndash; May 2026</span>
-          </div>
-          <ul>
-            <li>Lead engineer, mentoring junior developers and reviewing code across the wider development team.</li>
-            <li>Built shared base classes for commonly duplicated client logic like mapping, validation, and routing, so new implementations could extend proven code instead of re-implementing it.</li>
-            <li>Diagnosed a defect in an abstract class affecting roughly 15% of the client base and drove the fix to production, restoring a critical processing queue and retiring a manual dashboard workaround.</li>
-            <li>Owned the most heavily customized client implementations, those with non-standard partner integrations outside the platform's standard workflow, and delivered them on schedule and stable in production.</li>
-            <li>Led design reviews on complex and high-value engagements to catch scope and technical risks before kickoff.</li>
-          </ul>
-        </div>
-
-        <div class="role">
-          <div class="role-header">
-            <p class="role-title">Software Engineer I, Implementation</p>
-            <span class="role-dates">Apr 2021 &ndash; Dec 2024</span>
-          </div>
-          <ul>
-            <li>Delivered over 25 client implementations from requirements through go-live.</li>
-            <li>Designed and built data processing pipelines as a series of separately scheduled jobs (import &rarr; parse &rarr; validate &rarr; export &rarr; transport) handling thousands of transactions per client per day.</li>
-            <li>Implemented bidirectional partner data routing for over 30 partners through mixed protocols (X12 EDI, REST APIs, custom flat-file formats), extending existing platform workflows.</li>
-            <li>Developed entity-matching logic to reconcile records across multiple client sources.</li>
-            <li>Shipped HIPAA-regulated integrations across the X12 EDI transaction set (837, 835, 270/271, 834, 277CA, 999). Implementations passed HITRUST and SOC 2 audits across 5 years with no findings in code I owned.</li>
-          </ul>
-        </div>
-
-        <div class="role">
-          <div class="role-header">
-            <p class="role-title">Account Management Programmer</p>
-            <span class="role-dates">Feb 2019 &ndash; Apr 2021</span>
-          </div>
-          <ul>
-            <li>Resolved support tickets and delivered change requests and small projects for existing client accounts.</li>
-            <li>Mentored new hires through paired shadowing.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="job">
-        <div class="job-header">
-          <p class="job-company">Beyond Impact, Minneapolis, MN</p>
-        </div>
-        <div class="role">
-          <div class="role-header">
-            <p class="role-title">Infrastructure Support Specialist</p>
-            <span class="role-dates">May 2017 &ndash; Jan 2019</span>
-          </div>
-          <ul>
-            <li>Supported client Azure environments, including provisioning, networking, and production on-call.</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 class="section-title">Education</h2>
-      <div class="education-row">
-        <p class="education-degree">Bachelor of Science, Computer Science (Minor in Mathematics) &mdash; Bemidji State University, Bemidji, MN</p>
-        <span class="education-dates">May 2017</span>
-      </div>
+  <div class="role">
+    <div class="role-header">
+      <p class="role-title">Software Engineer I, Implementation</p>
+      <span class="role-dates">Apr 2021 &ndash; Dec 2024</span>
     </div>
-  </main>
-  <footer>
-    <div class="container">
-      <a href="https://github.com/rwdenmark/rwdenmark.github.io" rel="noopener" target="_blank">View source on GitHub</a>
-      <span>Last updated <span class="last-updated">May 2026</span></span>
-    </div>
-  </footer>
-  <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-  <script>
-    document.querySelectorAll('.last-updated').forEach(function(el) {
-      var d = new Date(document.lastModified);
-      if (!isNaN(d)) {
-        el.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-    });
+    <ul>
+      <li>Delivered over 25 client implementations from requirements through go-live.</li>
+      <li>Designed and built data processing pipelines as a series of separately scheduled jobs (import &rarr; parse &rarr; validate &rarr; export &rarr; transport) handling thousands of transactions per client per day.</li>
+      <li>Implemented bidirectional partner data routing for over 30 partners through mixed protocols (X12 EDI, REST APIs, custom flat-file formats), extending existing platform workflows.</li>
+      <li>Developed entity-matching logic to reconcile records across multiple client sources.</li>
+      <li>Shipped HIPAA-regulated integrations across the X12 EDI transaction set (837, 835, 270/271, 834, 277CA, 999). Implementations passed HITRUST and SOC 2 audits across 5 years with no findings in code I owned.</li>
+    </ul>
+  </div>
 
-    (function() {
-      var link = document.getElementById('email-link');
-      var toast = document.getElementById('copy-toast');
-      if (!link || !toast) return;
-      var timer;
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var addr = link.dataset.email;
-        var done = function(ok) {
-          toast.textContent = ok ? 'Copied ' + addr : addr;
-          toast.classList.add('visible');
-          clearTimeout(timer);
-          timer = setTimeout(function() { toast.classList.remove('visible'); }, 2500);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(addr).then(function() { done(true); }, function() { done(false); });
-        } else {
-          try {
-            var ta = document.createElement('textarea');
-            ta.value = addr;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            var ok = document.execCommand('copy');
-            document.body.removeChild(ta);
-            done(ok);
-          } catch (err) {
-            done(false);
-          }
-        }
-      });
-    })();
-  </script>
-</body>
-</html>
+  <div class="role">
+    <div class="role-header">
+      <p class="role-title">Account Management Programmer</p>
+      <span class="role-dates">Feb 2019 &ndash; Apr 2021</span>
+    </div>
+    <ul>
+      <li>Resolved support tickets and delivered change requests and small projects for existing client accounts.</li>
+      <li>Mentored new hires through paired shadowing.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <p class="job-company">Beyond Impact, Minneapolis, MN</p>
+  </div>
+  <div class="role">
+    <div class="role-header">
+      <p class="role-title">Infrastructure Support Specialist</p>
+      <span class="role-dates">May 2017 &ndash; Jan 2019</span>
+    </div>
+    <ul>
+      <li>Supported client Azure environments, including provisioning, networking, and production on-call.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 class="resume-section-title">Education</h2>
+<div class="education-row">
+  <p class="education-degree">Bachelor of Science, Computer Science (Minor in Mathematics) &mdash; Bemidji State University, Bemidji, MN</p>
+  <span class="education-dates">May 2017</span>
+</div>
