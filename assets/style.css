@@ -127,6 +127,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .project-thumb {
   aspect-ratio: 3 / 2;
   width: 100%;
+  height: auto;
   border-radius: 6px;
   border: 1px solid var(--border);
   object-fit: cover;
