@@ -113,6 +113,31 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
 
+/* testimonial + reference cards */
+.testimonial-card, .reference-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.testimonial-card blockquote, .reference-card blockquote {
+  margin: 0 0 12px;
+  padding: 0;
+  font-style: italic;
+  color: var(--text);
+}
+.testimonial-card blockquote { font-size: 1.05rem; }
+.reference-card blockquote p { margin: 0 0 10px; }
+.reference-card blockquote p:last-child { margin-bottom: 0; }
+.testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.testimonial-attribution strong { color: var(--text); }
+.reference-header { margin-bottom: 12px; }
+.reference-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: var(--text); }
+.reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
+.reference-meta { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
+
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 .project-card {
   background: var(--card-bg);
