@@ -173,8 +173,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-header {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
-  margin-top: 32px;
-  margin-bottom: 12px;
+  margin: 0 0 16px;
   padding-bottom: 6px;
   border-bottom: 2px solid var(--border);
 }
