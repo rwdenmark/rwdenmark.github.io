@@ -88,18 +88,20 @@ header .container {
 h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
 .location { font-size: 1rem; color: var(--muted); }
 .availability {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
+  margin-left: auto;
+  font-size: 1rem;
   color: var(--muted);
 }
 .status-dot {
   display: inline-block;
   width: 8px;
   height: 8px;
+  margin-right: 6px;
   background: #2da44e;
   border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
   box-shadow: 0 0 6px rgba(45, 164, 78, 0.6);
 }
 .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
