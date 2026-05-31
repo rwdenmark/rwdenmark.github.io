@@ -100,14 +100,15 @@
       <div class="name-row">
         <h1>Ryan Denmark</h1>
         <span class="location">Eagan, MN</span>
+        <span class="availability" aria-label="Currently available for backend roles"><span class="status-dot" aria-hidden="true"></span>Currently looking</span>
       </div>
       <p class="tagline">Backend software engineer. End-to-end client implementations in Java and SQL. Multi-stage pipelines, REST APIs, partner integration, regulated data.</p>
       <nav class="links" aria-label="Main navigation">
         <div class="links-group">
           <a href="{{ '/index.html' | relative_url }}"{% if page.page_id == 'home' %} class="active" aria-current="page"{% endif %}>Home</a>
           <a href="{{ '/projects.html' | relative_url }}"{% if page.page_id == 'projects' %} class="active" aria-current="page"{% endif %}>Projects</a>
-          <a href="{{ '/resume.html' | relative_url }}"{% if page.page_id == 'resume' %} class="active" aria-current="page"{% endif %}>Resume</a>
           <a href="{{ '/about.html' | relative_url }}"{% if page.page_id == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
+          <a href="{{ '/resume.html' | relative_url }}"{% if page.page_id == 'resume' %} class="active" aria-current="page"{% endif %}>Resume</a>
         </div>
         <div class="links-group">
           <a href="https://github.com/rwdenmark" rel="noopener noreferrer" target="_blank">GitHub</a>
