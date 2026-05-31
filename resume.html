@@ -2,8 +2,8 @@
 layout: default
 page_id: resume
 title: Resume — Ryan Denmark
-description: Resume of Ryan Denmark — backend software engineer specializing in Java, SQL, data pipelines, and HIPAA-regulated partner integrations.
-og_description: Backend engineer with 7+ years building production data pipelines and HIPAA-regulated partner integrations in Java and SQL.
+description: Resume of Ryan Denmark — backend software engineer specializing in Java, SQL, data pipelines, and HIPAA-regulated healthcare data integrations.
+og_description: Backend engineer with 7+ years building production pipelines and HIPAA-regulated integrations in Java and SQL.
 ---
 
 <div class="section-header">
@@ -13,7 +13,7 @@ og_description: Backend engineer with 7+ years building production data pipeline
     Download PDF
   </a>
 </div>
-<p class="summary">Backend engineer with 7+ years on cross-functional teams, building production data pipelines and HIPAA-regulated partner integrations that move high-volume data between partner systems and our platform. Comfortable shipping under audit pressure, with strict data formats and partner inputs that arrive incomplete or unexpected. A feature isn't done until it's shipped, monitored, and stable in production.</p>
+<p class="summary">Backend engineer with 7+ years on cross-functional teams, building production pipelines and HIPAA-regulated integrations that move high-volume data across partner systems. Ships reliably under audit pressure against strict data formats, even when submissions arrive incomplete or out of spec. My best work makes a complicated system understandable to the people who use it, and almost always starts with the client conversations that shape it.</p>
 
 <h2 class="resume-section-title">Technical Skills</h2>
 <div class="skill-row">
@@ -22,19 +22,19 @@ og_description: Backend engineer with 7+ years building production data pipeline
 </div>
 <div class="skill-row">
   <div class="skill-label">Tooling &amp; Cloud</div>
-  <div class="skill-value">IntelliJ IDEA, Git, GitHub, Gradle, Postman, Microsoft Azure, GitHub Copilot, Anthropic Claude</div>
+  <div class="skill-value">IntelliJ IDEA, Git, GitHub, Gradle, Postman, CI/CD, Bash, Microsoft Azure, GitHub Copilot, Anthropic Claude</div>
 </div>
 <div class="skill-row">
   <div class="skill-label">Data &amp; Architecture</div>
-  <div class="skill-value">Multi-stage scheduled-job pipelines, entity matching/resolution, schema translation, relational databases, partner integrations (X12 EDI, file feeds, REST APIs), high-volume transactional data movement</div>
+  <div class="skill-value">Multi-stage scheduled-job pipelines, ETL/ELT, entity matching/resolution, schema translation, relational databases, partner integrations (X12 EDI, file feeds, REST APIs)</div>
 </div>
 <div class="skill-row">
   <div class="skill-label">Standards &amp; Compliance</div>
-  <div class="skill-value">HIPAA and X12 EDI transactions covering 837 (Claims), 835 (Remittance), 270/271 (Eligibility/Status), 834 (Enrollment), 277CA (Claims Acknowledgement), 999 (Functional Acknowledgement)</div>
+  <div class="skill-value">Healthcare claims processing, HIPAA, HITRUST, SOC 2, and X12 EDI transactions covering 837 (Claims), 835 (Remittance), 834 (Enrollment), 270/271 (Eligibility/Status), 277CA (Claims Ack), 999 (Functional Ack)</div>
 </div>
 <div class="skill-row">
   <div class="skill-label">Engineering Practice</div>
-  <div class="skill-value">Ownership from design through production. Code review and mentorship. Works with PM, BA, and dev teams. AI-assisted development for daily code generation, review, and debugging. On-call for production incidents.</div>
+  <div class="skill-value">Ownership from design through production. Code review and mentorship. Cross-functional collaboration across product, business, and engineering. Debugging and troubleshooting under production pressure. AI-assisted development for daily code generation and review. On-call for production incidents.</div>
 </div>
 
 <h2 class="resume-section-title">Professional Experience</h2>
@@ -47,40 +47,40 @@ og_description: Backend engineer with 7+ years building production data pipeline
 
   <div class="role">
     <div class="role-header">
-      <p class="role-title">Software Engineer II, Implementation</p>
+      <p class="role-title">Software Engineer II</p>
       <span class="role-dates">Dec 2024 &ndash; May 2026</span>
     </div>
     <ul>
       <li>Lead engineer, mentoring junior developers and reviewing code across the wider development team.</li>
-      <li>Built shared base classes for commonly duplicated client logic like mapping, validation, and routing, so new implementations could extend proven code instead of re-implementing it.</li>
+      <li>Refactored commonly duplicated client logic for mapping, validation, and routing into shared base classes, so new implementations could extend proven code instead of re-implementing it.</li>
       <li>Diagnosed a defect in an abstract class affecting roughly 15% of the client base and drove the fix to production, restoring a critical processing queue and retiring a manual dashboard workaround.</li>
-      <li>Owned the most heavily customized client implementations, those with non-standard partner integrations outside the platform's standard workflow, and delivered them on schedule and stable in production.</li>
-      <li>Led design reviews on complex and high-value engagements to catch scope and technical risks before kickoff.</li>
+      <li>Owned 5+ heavily customized client implementations, delivering each on schedule and stable in production.</li>
+      <li>Led 5+ pre-kickoff design reviews on the team's most complex implementations, surfacing risks early so deadlines and project plans matched true scope.</li>
     </ul>
   </div>
 
   <div class="role">
     <div class="role-header">
-      <p class="role-title">Software Engineer I, Implementation</p>
+      <p class="role-title">Software Engineer I</p>
       <span class="role-dates">Apr 2021 &ndash; Dec 2024</span>
     </div>
     <ul>
-      <li>Delivered over 25 client implementations from requirements through go-live.</li>
-      <li>Designed and built data processing pipelines as a series of separately scheduled jobs (import &rarr; parse &rarr; validate &rarr; export &rarr; transport) handling thousands of transactions per client per day.</li>
-      <li>Implemented bidirectional partner data routing for over 30 partners through mixed protocols (X12 EDI, REST APIs, custom flat-file formats), extending existing platform workflows.</li>
-      <li>Developed entity-matching logic to reconcile records across multiple client sources.</li>
-      <li>Shipped HIPAA-regulated integrations across the X12 EDI transaction set (837, 835, 270/271, 834, 277CA, 999). Implementations passed HITRUST and SOC 2 audits across 5 years with no findings in code I owned.</li>
+      <li>Delivered 25+ client implementations from requirements through go-live.</li>
+      <li>Designed and built multi-stage scheduled-job pipelines (staged as import, parse, validate, export, transport) handling thousands of transactions per client per day.</li>
+      <li>Implemented bidirectional partner data routing for 30+ partners through mixed protocols (X12 EDI, REST APIs, custom flat-file formats), reusing the platform's standard pipeline framework.</li>
+      <li>Developed entity-matching logic that standardized claim data against eligibility records on 80% of implementations, routing unmatched cases into client-specific fallout flows.</li>
+      <li>Shipped HIPAA-regulated integrations across the full X12 EDI transaction set. Implementations passed HITRUST and SOC 2 audits over 7 years with no findings in code I owned.</li>
     </ul>
   </div>
 
   <div class="role">
     <div class="role-header">
-      <p class="role-title">Account Management Programmer</p>
+      <p class="role-title">Support Engineer</p>
       <span class="role-dates">Feb 2019 &ndash; Apr 2021</span>
     </div>
     <ul>
-      <li>Resolved support tickets and delivered change requests and small projects for existing client accounts.</li>
-      <li>Mentored new hires through paired shadowing.</li>
+      <li>Resolved 1000+ client tickets generating $300K+ in billing with zero formal escalations.</li>
+      <li>Trained 5+ new hires through manager-assigned paired shadowing, ramping them to solo ticket work within a few weeks.</li>
     </ul>
   </div>
 </div>
@@ -95,7 +95,7 @@ og_description: Backend engineer with 7+ years building production data pipeline
       <span class="role-dates">May 2017 &ndash; Jan 2019</span>
     </div>
     <ul>
-      <li>Supported client Azure environments, including provisioning, networking, and production on-call.</li>
+      <li>Supported 30+ client Azure environments on a monthly production on-call rotation, and deployed SCCM across the fleet to automate Windows security updates and software distribution.</li>
     </ul>
   </div>
 </div>
