@@ -1,12 +1,14 @@
 name: Daily hits email
 
-# GitHub Actions cron runs in UTC and ignores DST.
-# To always fire at midnight Central, schedule both 5:00 and 6:00 UTC and
-# have the workflow itself check which one is actually midnight Central.
+# GitHub Actions cron runs in UTC and is often delayed by tens of minutes
+# (occasionally hours) at the top of the hour. We schedule both 5:00 and 6:00 UTC
+# so at least one fires close to midnight Central year-round across DST, and the
+# job itself uses a date-stamped state file to make sure we only email once per
+# Central calendar day no matter when the runner actually picks the job up.
 on:
   schedule:
-    - cron: '0 5 * * *'   # midnight Central during CDT (Mar–Nov)
-    - cron: '0 6 * * *'   # midnight Central during CST (Nov–Mar)
+    - cron: '0 5 * * *'
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 # Force the Node.js 20-based actions (checkout, action-send-mail) onto Node 24,
@@ -15,32 +17,32 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  check-time:
-    runs-on: ubuntu-latest
-    outputs:
-      proceed: ${{ steps.tc.outputs.proceed }}
-    steps:
-      - name: Only proceed if it is midnight Central
-        id: tc
-        run: |
-          hour=$(TZ='America/Chicago' date +%H)
-          if [ "$hour" = "00" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "proceed=true" >> $GITHUB_OUTPUT
-          else
-            echo "proceed=false" >> $GITHUB_OUTPUT
-            echo "Local hour is $hour Central, skipping (other DST cron firing)."
-          fi
-
   email-daily:
-    needs: check-time
-    if: needs.check-time.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
 
+      - name: Skip if already emailed today (Central)
+        id: gate
+        run: |
+          today=$(TZ='America/Chicago' date +%Y-%m-%d)
+          if [ -f .github/last-run-date.txt ]; then
+            last=$(cat .github/last-run-date.txt)
+          else
+            last=""
+          fi
+          echo "today=$today" >> $GITHUB_OUTPUT
+          if [ "$today" = "$last" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            echo "Already emailed for $today, skipping."
+            echo "proceed=false" >> $GITHUB_OUTPUT
+          else
+            echo "proceed=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Read yesterday's count
+        if: steps.gate.outputs.proceed == 'true'
         id: yesterday
         run: |
           if [ -f .github/count.txt ]; then
@@ -50,6 +52,7 @@ jobs:
           fi
 
       - name: Fetch current total
+        if: steps.gate.outputs.proceed == 'true'
         id: current
         run: |
           resp=$(curl -s https://api.counterapi.dev/v1/rwdenmark/portfolio-2026)
@@ -64,6 +67,7 @@ jobs:
           echo "count=$count" >> $GITHUB_OUTPUT
 
       - name: Calculate hits today
+        if: steps.gate.outputs.proceed == 'true'
         id: daily
         run: |
           hits=$((${{ steps.current.outputs.count }} - ${{ steps.yesterday.outputs.count }}))
@@ -72,6 +76,7 @@ jobs:
           echo "hits=$hits" >> $GITHUB_OUTPUT
 
       - name: Send email
+        if: steps.gate.outputs.proceed == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -87,11 +92,13 @@ jobs:
 
             Total hits: ${{ steps.daily.outputs.hits }}
 
-      - name: Store today's count for tomorrow
+      - name: Store today's count and date for tomorrow
+        if: steps.gate.outputs.proceed == 'true'
         run: |
           echo "${{ steps.current.outputs.count }}" > .github/count.txt
+          echo "${{ steps.gate.outputs.today }}" > .github/last-run-date.txt
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/count.txt
+          git add .github/count.txt .github/last-run-date.txt
           git diff --cached --quiet || git commit -m "chore: store daily view count [skip ci]"
           git push
