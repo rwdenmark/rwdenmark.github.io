@@ -92,6 +92,9 @@ h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; c
   font-size: 1rem;
   color: var(--muted);
 }
+@media (max-width: 640px) {
+  .availability { margin-left: 0; }
+}
 .status-dot {
   display: inline-block;
   width: 8px;
