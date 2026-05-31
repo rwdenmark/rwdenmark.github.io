@@ -133,10 +133,14 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-card blockquote p:last-child { margin-bottom: 0; }
 .testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .testimonial-attribution strong { color: var(--text); }
+.testimonial-attribution a, .testimonial-attribution a:visited { color: var(--accent); text-decoration: none; }
+.testimonial-attribution a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-header { margin-bottom: 12px; }
 .reference-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: var(--text); }
 .reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
 .reference-meta { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
+.reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
+.reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 .project-card {
