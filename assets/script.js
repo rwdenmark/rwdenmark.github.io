@@ -92,7 +92,11 @@
         return r.ok ? r.json() : [];
       })
       .then(function (events) {
-        console.log('[commits] events received, count:', Array.isArray(events) ? events.length : 'NOT AN ARRAY', events);
+        console.log('[commits] events received, count:', Array.isArray(events) ? events.length : 'NOT AN ARRAY');
+        var typeCounts = {};
+        events.forEach(function (e) { typeCounts[e.type] = (typeCounts[e.type] || 0) + 1; });
+        console.log('[commits] event types:', typeCounts);
+        console.log('[commits] first event:', events[0]);
         var commits = [];
         var seen = {};
         events.forEach(function (e) {
