@@ -385,18 +385,6 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   .commit-msg { flex-basis: 100%; white-space: normal; }
 }
 
-/* ---------- footer accent line (subtle 1px above existing border) ---------- */
-footer { position: relative; }
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent 10%, var(--accent) 50%, transparent 90%);
-  opacity: 0.35;
-  pointer-events: none;
-}
-
 /* ---------- copy-to-clipboard toast ---------- */
 .copy-toast {
   position: fixed;
