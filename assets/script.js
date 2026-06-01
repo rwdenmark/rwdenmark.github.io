@@ -97,6 +97,9 @@
         events.forEach(function (e) { typeCounts[e.type] = (typeCounts[e.type] || 0) + 1; });
         console.log('[commits] event types:', typeCounts);
         console.log('[commits] first event:', events[0]);
+        var firstPush = events.find(function (e) { return e.type === 'PushEvent'; });
+        console.log('[commits] first PushEvent payload keys:', firstPush ? Object.keys(firstPush.payload || {}) : 'none');
+        console.log('[commits] first PushEvent payload:', firstPush ? firstPush.payload : 'none');
         var commits = [];
         var seen = {};
         events.forEach(function (e) {
