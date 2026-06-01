@@ -23,17 +23,6 @@ html { scroll-behavior: smooth; }
   border-radius: 3px;
 }
 
-/* fade-in: applied by script.js, revealed when scrolled into view */
-.fade-in {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 500ms ease, transform 500ms ease;
-  will-change: opacity, transform;
-}
-.fade-in.is-visible {
-  opacity: 1;
-  transform: none;
-}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   color: var(--text);
@@ -457,7 +446,6 @@ footer::before {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
-  .fade-in { opacity: 1; transform: none; }
   .copy-toast { transition: opacity 0.01ms; transform: none; }
 }
 

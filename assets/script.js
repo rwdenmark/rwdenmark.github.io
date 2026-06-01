@@ -63,40 +63,6 @@
     fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
   }
 
-  // ---------- fade-in on scroll
-  // Applies .fade-in to selected blocks then reveals them as they enter the viewport.
-  // CSS handles the actual transition. Reduced-motion users skip the hidden state via CSS.
-  (function () {
-    if (!('IntersectionObserver' in window)) return;
-    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
-    var selectors = [
-      'main .section-title',
-      'main > .container > p',
-      'main .testimonial-card',
-      'main .reference-card',
-      'main .project-card',
-      'main .skill-row',
-      'main .job',
-      'main #recent-commits'
-    ].join(',');
-
-    var els = document.querySelectorAll(selectors);
-    els.forEach(function (el) { el.classList.add('fade-in'); });
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    els.forEach(function (el) { io.observe(el); });
-  })();
-
   // ---------- recent commits feed (homepage only)
   // Public GitHub events API, no auth. Silently no-ops on failure or rate limit.
   (function () {
