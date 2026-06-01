@@ -64,11 +64,20 @@
   }
 
   // ---------- recent commits feed (homepage only)
-  // Public GitHub events API, no auth. Silently no-ops on failure or rate limit.
+  // Auto-discovers your most-recently-pushed public repos (excluding forks and archived),
+  // then fetches recent commits from each. Shows the 5 most recent across all.
+  // No auth, no maintenance. Silently no-ops on failure or rate limit.
   (function () {
     if (!isHome) return;
     var mount = document.getElementById('recent-commits');
     if (!mount) return;
+
+    var OWNER = 'rwdenmark';
+    var MAX_REPOS = 5;
+    var PER_REPO = 3;
+    var TOTAL = 5;
+    // Skip the portfolio repo itself so the feed surfaces engineering work, not site tweaks.
+    var EXCLUDE = { 'rwdenmark.github.io': true };
 
     function escapeHtml(s) {
       return String(s).replace(/[<>&"]/g, function (c) {
@@ -85,42 +94,43 @@
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    console.log('[commits] fetch starting');
-    fetch('https://api.github.com/users/rwdenmark/events/public')
-      .then(function (r) {
-        console.log('[commits] response status:', r.status, 'ok:', r.ok);
-        return r.ok ? r.json() : [];
+    var reposUrl = 'https://api.github.com/users/' + OWNER + '/repos?sort=pushed&per_page=30';
+    fetch(reposUrl)
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (repos) {
+        if (!Array.isArray(repos)) return [];
+        return repos
+          .filter(function (r) { return !r.fork && !r.archived && !EXCLUDE[r.name]; })
+          .slice(0, MAX_REPOS)
+          .map(function (r) { return r.name; });
       })
-      .then(function (events) {
-        console.log('[commits] events received, count:', Array.isArray(events) ? events.length : 'NOT AN ARRAY');
-        var typeCounts = {};
-        events.forEach(function (e) { typeCounts[e.type] = (typeCounts[e.type] || 0) + 1; });
-        console.log('[commits] event types:', typeCounts);
-        console.log('[commits] first event:', events[0]);
-        var firstPush = events.find(function (e) { return e.type === 'PushEvent'; });
-        console.log('[commits] first PushEvent payload keys:', firstPush ? Object.keys(firstPush.payload || {}) : 'none');
-        console.log('[commits] first PushEvent payload:', firstPush ? firstPush.payload : 'none');
-        var commits = [];
-        var seen = {};
-        events.forEach(function (e) {
-          if (e.type !== 'PushEvent' || !e.payload || !e.payload.commits) return;
-          var repoFull = e.repo && e.repo.name;
-          if (!repoFull) return;
-          var repoShort = repoFull.split('/').pop();
-          e.payload.commits.forEach(function (c) {
-            if (commits.length >= 5) return;
-            if (seen[c.sha]) return;
-            seen[c.sha] = true;
-            commits.push({
-              repo: repoShort,
-              message: c.message.split('\n')[0],
-              date: e.created_at,
-              url: 'https://github.com/' + repoFull + '/commit/' + c.sha
-            });
-          });
+      .then(function (repoNames) {
+        if (repoNames.length === 0) return [];
+        var fetches = repoNames.map(function (repo) {
+          var url = 'https://api.github.com/repos/' + OWNER + '/' + repo + '/commits?per_page=' + PER_REPO;
+          return fetch(url)
+            .then(function (r) { return r.ok ? r.json() : []; })
+            .then(function (arr) {
+              return (Array.isArray(arr) ? arr : []).map(function (c) {
+                return {
+                  repo: repo,
+                  message: (c.commit && c.commit.message ? c.commit.message.split('\n')[0] : ''),
+                  date: (c.commit && c.commit.author && c.commit.author.date) ||
+                        (c.commit && c.commit.committer && c.commit.committer.date),
+                  url: c.html_url
+                };
+              });
+            })
+            .catch(function () { return []; });
         });
-
-        console.log('[commits] parsed commits, count:', commits.length, commits);
+        return Promise.all(fetches);
+      })
+      .then(function (results) {
+        if (!results || results.length === 0) return;
+        var all = [];
+        results.forEach(function (arr) { all = all.concat(arr); });
+        all.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+        var commits = all.slice(0, TOTAL);
 
         if (commits.length === 0) return;
 
@@ -135,6 +145,6 @@
         html += '</ul>';
         mount.innerHTML = html;
       })
-      .catch(function (err) { console.error('[commits] fetch/parse error:', err); });
+      .catch(function () { /* silently skip on network error or rate limit */ });
   })();
 })();
