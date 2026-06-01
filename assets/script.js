@@ -85,9 +85,14 @@
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
+    console.log('[commits] fetch starting');
     fetch('https://api.github.com/users/rwdenmark/events/public')
-      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (r) {
+        console.log('[commits] response status:', r.status, 'ok:', r.ok);
+        return r.ok ? r.json() : [];
+      })
       .then(function (events) {
+        console.log('[commits] events received, count:', Array.isArray(events) ? events.length : 'NOT AN ARRAY', events);
         var commits = [];
         var seen = {};
         events.forEach(function (e) {
@@ -108,6 +113,8 @@
           });
         });
 
+        console.log('[commits] parsed commits, count:', commits.length, commits);
+
         if (commits.length === 0) return;
 
         var html = '<h2 class="section-title">Recent Activity</h2><ul class="commits-list">';
@@ -121,6 +128,6 @@
         html += '</ul>';
         mount.innerHTML = html;
       })
-      .catch(function () { /* silently skip on network error */ });
+      .catch(function (err) { console.error('[commits] fetch/parse error:', err); });
   })();
 })();
