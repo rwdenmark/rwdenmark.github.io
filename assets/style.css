@@ -13,6 +13,27 @@
 /* ---------- base ---------- */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* keyboard focus ring — visible only on tab navigation, not mouse clicks */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* fade-in: applied by script.js, revealed when scrolled into view */
+.fade-in {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms ease, transform 500ms ease;
+  will-change: opacity, transform;
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: none;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   color: var(--text);
@@ -141,6 +162,13 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   border-radius: 8px;
   padding: 20px 24px;
   margin-bottom: 16px;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+.testimonial-card:hover, .reference-card:hover {
+  transform: translateY(-2px);
+  border-top-color: var(--accent-hover);
+  border-right-color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
 }
 .testimonial-card blockquote, .reference-card blockquote {
   margin: 0 0 12px;
@@ -171,6 +199,11 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
 }
 .project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .project-thumb {
@@ -228,6 +261,10 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 .section-header .resume-section-title {
   margin: 0; padding: 0; border-bottom: none;
+}
+.section-header .download-pdf {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 .download-pdf {
   display: inline-flex; align-items: center; gap: 8px;
@@ -314,6 +351,63 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 .card:hover img { transform: scale(1.03); }
 
+/* ---------- recent commits feed (homepage) ---------- */
+.commits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.commit-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+.commit-item:last-child { border-bottom: none; }
+.commit-repo {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.commit-repo:hover { color: var(--accent-hover); text-decoration: underline; }
+.commit-msg {
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.commit-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 520px) {
+  .commit-item { flex-wrap: wrap; gap: 6px 12px; }
+  .commit-msg { flex-basis: 100%; white-space: normal; }
+}
+
+/* ---------- footer accent line (subtle 1px above existing border) ---------- */
+footer { position: relative; }
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 10%, var(--accent) 50%, transparent 90%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
 /* ---------- copy-to-clipboard toast ---------- */
 .copy-toast {
   position: fixed;
@@ -362,6 +456,8 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto; }
+  .fade-in { opacity: 1; transform: none; }
   .copy-toast { transition: opacity 0.01ms; transform: none; }
 }
 
