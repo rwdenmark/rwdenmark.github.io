@@ -44,6 +44,23 @@ og_description: Personal projects in Java and Spring Boot — REST APIs, OAuth i
     </div>
   </article>
   <article class="project-card">
+    <img class="project-thumb" src="{{ '/projects/X12-Parser.png' | relative_url }}" alt="X12 Parser web UI showing a raw 837 claim on the left and its parsed JSON output on the right, with Load 837P, 837I, and 837D buttons in the header." width="2511" height="1211" loading="lazy" />
+    <h3>X12 Parser</h3>
+    <div class="project-stack">
+      <span>Java</span>
+      <span>Spring Boot</span>
+      <span>X12 EDI</span>
+      <span>Docker</span>
+      <span>JUnit</span>
+    </div>
+    <p>Web service that parses X12 837 healthcare claim files (Professional, Institutional, Dental) into structured JSON. Detects the TR3 variant from the envelope, walks the HL hierarchy, and returns billing provider, subscriber, patient, claim, and service line data as a nested tree.</p>
+    <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
+    <div class="project-actions">
+      <a href="https://github.com/rwdenmark/x12-parser" rel="noopener noreferrer" target="_blank">View on GitHub</a>
+      <a href="https://x12-parser.onrender.com/" rel="noopener noreferrer" target="_blank">Live Demo</a>
+    </div>
+  </article>
+  <article class="project-card">
     <img class="project-thumb" src="{{ '/projects/spring-boot-starter.png' | relative_url }}" alt="IntelliJ IDEA Darcula editor view of Spring Boot Java source code from the spring-boot-starter project." width="853" height="569" loading="lazy" />
     <h3>Spring Boot Starter</h3>
     <div class="project-stack">
