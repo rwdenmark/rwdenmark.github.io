@@ -6,7 +6,7 @@ Personal portfolio site for Ryan Denmark. Live at <https://rwdenmark.github.io/>
 
 Jekyll (built-in to GitHub Pages, no extra config required). Plain HTML, CSS, and vanilla JS — no Node, no local build step.
 
-Layout and shared chrome (header, footer, animated circuit background, copy-to-clipboard toast) live in `_layouts/default.html`. Styles in `assets/style.css`. Client-side JS in `assets/script.js`. Each page (`index.html`, `resume.html`, `jax.html`) is just front matter plus page-specific content.
+Layout and shared chrome (header, footer, animated circuit background, copy-to-clipboard toast) live in `_layouts/default.html`. Styles in `assets/style.css`. Client-side JS in `assets/script.js`. Each page (`index.html`, `resume.html`, `about.html`) is just front matter plus page-specific content.
 
 ## Layout
 
@@ -14,15 +14,17 @@ Layout and shared chrome (header, footer, animated circuit background, copy-to-c
 _config.yml                 Jekyll config
 _layouts/default.html       Shared page chrome
 assets/style.css            All CSS
-assets/script.js            All client JS (email-copy, last-updated, hit-counter ping)
+assets/script.js            All client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed)
 index.html                  Home: about + project cards
 resume.html                 Resume page (mirrors Resume_Ryan_Denmark.pdf)
-jax.html                    Photo gallery
-.github/workflows/          Daily hit-count email workflow
+about.html                  About + photo galleries (Jax, Boundary Waters)
+.github/workflows/          Daily hit-count email + hourly recent-commits cache
 favicon.svg, favicon.ico    Favicons
 og-image.png                Open Graph preview image
 projects/                   Project card thumbnails
 jax/                        Photos for the gallery
+boundary-waters/            Photos for the gallery
+commits.json                Cached recent-commits feed (generated hourly by the workflow)
 ```
 
 ## Deploy
