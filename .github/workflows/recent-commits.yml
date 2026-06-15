@@ -1,0 +1,66 @@
+name: Recent commits cache
+
+# Generates commits.json once an hour so the home page reads a static file
+# instead of calling the GitHub API from each visitor's browser (which hit the
+# unauthenticated 60/hour-per-IP limit and silently blanked the feed).
+#
+# GitHub Actions cron is best-effort and often delayed by tens of minutes, so
+# this runs "roughly hourly," which is plenty for a recent-activity widget.
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+# Concurrency guard: never let a delayed run overlap the next scheduled one.
+concurrency:
+  group: recent-commits
+  cancel-in-progress: true
+
+# Force JS-based actions onto Node 24 to match the runner default from 2026-06-16.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build-cache:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OWNER: rwdenmark
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate commits.json
+        run: |
+          set -euo pipefail
+
+          # Five most-recently-pushed repos, excluding forks, archived, and the
+          # portfolio repo itself so the feed surfaces engineering work, not site tweaks.
+          repos=$(gh api "users/$OWNER/repos?sort=pushed&per_page=30" \
+            | jq -r '[.[] | select(.fork==false and .archived==false and .name!="rwdenmark.github.io")][0:5] | .[].name')
+
+          : > all.ndjson
+          for repo in $repos; do
+            gh api "repos/$OWNER/$repo/commits?per_page=3" \
+              | jq --arg repo "$repo" -c '.[] | {
+                  repo: $repo,
+                  message: (.commit.message | split("\n")[0]),
+                  date: (.commit.author.date // .commit.committer.date),
+                  url: .html_url
+                }' >> all.ndjson || true
+          done
+
+          # Merge, sort newest-first, keep the 5 most recent across all repos.
+          jq -s 'sort_by(.date) | reverse | .[0:5]' all.ndjson > commits.json
+          rm -f all.ndjson
+          echo "Wrote commits.json:"
+          cat commits.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add commits.json
+          git diff --cached --quiet || git commit -m "chore: update recent commits cache [skip ci]"
+          git push

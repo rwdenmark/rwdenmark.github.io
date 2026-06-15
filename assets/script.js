@@ -55,6 +55,29 @@
     });
   })();
 
+  // ---------- about page: photo gallery tabs (Jax / Boundary Waters)
+  // Swaps which gallery is visible. Only the images change; nothing else on the page moves.
+  (function () {
+    var tabs = document.querySelectorAll('.gallery-tab');
+    if (!tabs.length) return;
+    var panels = document.querySelectorAll('[data-gallery-panel]');
+
+    function activate(name) {
+      tabs.forEach(function (t) {
+        var on = t.dataset.gallery === name;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        p.hidden = p.dataset.galleryPanel !== name;
+      });
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { activate(t.dataset.gallery); });
+    });
+  })();
+
   // ---------- home page only: ping the daily hit counter
   // Fire and forget. The workflow at .github/workflows/daily-total.yml reads from this counter.
   var path = window.location.pathname;
@@ -64,20 +87,13 @@
   }
 
   // ---------- recent commits feed (homepage only)
-  // Auto-discovers your most-recently-pushed public repos (excluding forks and archived),
-  // then fetches recent commits from each. Shows the 5 most recent across all.
-  // No auth, no maintenance. Silently no-ops on failure or rate limit.
+  // Reads a static commits.json generated ~hourly by .github/workflows/recent-commits.yml.
+  // Server-side generation avoids the unauthenticated GitHub API rate limit (60/hour per IP)
+  // that used to silently blank this section. No-ops if the file is missing or empty.
   (function () {
     if (!isHome) return;
     var mount = document.getElementById('recent-commits');
     if (!mount) return;
-
-    var OWNER = 'rwdenmark';
-    var MAX_REPOS = 5;
-    var PER_REPO = 3;
-    var TOTAL = 5;
-    // Skip the portfolio repo itself so the feed surfaces engineering work, not site tweaks.
-    var EXCLUDE = { 'rwdenmark.github.io': true };
 
     function escapeHtml(s) {
       return String(s).replace(/[<>&"]/g, function (c) {
@@ -94,45 +110,11 @@
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    var reposUrl = 'https://api.github.com/users/' + OWNER + '/repos?sort=pushed&per_page=30';
-    fetch(reposUrl)
+    var url = mount.dataset.commitsUrl || 'commits.json';
+    fetch(url)
       .then(function (r) { return r.ok ? r.json() : []; })
-      .then(function (repos) {
-        if (!Array.isArray(repos)) return [];
-        return repos
-          .filter(function (r) { return !r.fork && !r.archived && !EXCLUDE[r.name]; })
-          .slice(0, MAX_REPOS)
-          .map(function (r) { return r.name; });
-      })
-      .then(function (repoNames) {
-        if (repoNames.length === 0) return [];
-        var fetches = repoNames.map(function (repo) {
-          var url = 'https://api.github.com/repos/' + OWNER + '/' + repo + '/commits?per_page=' + PER_REPO;
-          return fetch(url)
-            .then(function (r) { return r.ok ? r.json() : []; })
-            .then(function (arr) {
-              return (Array.isArray(arr) ? arr : []).map(function (c) {
-                return {
-                  repo: repo,
-                  message: (c.commit && c.commit.message ? c.commit.message.split('\n')[0] : ''),
-                  date: (c.commit && c.commit.author && c.commit.author.date) ||
-                        (c.commit && c.commit.committer && c.commit.committer.date),
-                  url: c.html_url
-                };
-              });
-            })
-            .catch(function () { return []; });
-        });
-        return Promise.all(fetches);
-      })
-      .then(function (results) {
-        if (!results || results.length === 0) return;
-        var all = [];
-        results.forEach(function (arr) { all = all.concat(arr); });
-        all.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
-        var commits = all.slice(0, TOTAL);
-
-        if (commits.length === 0) return;
+      .then(function (commits) {
+        if (!Array.isArray(commits) || commits.length === 0) return;
 
         var html = '<h2 class="section-title">Recent Activity</h2><ul class="commits-list">';
         commits.forEach(function (c) {
@@ -145,6 +127,6 @@
         html += '</ul>';
         mount.innerHTML = html;
       })
-      .catch(function () { /* silently skip on network error or rate limit */ });
+      .catch(function () { /* silently skip if the cache file is missing or unreadable */ });
   })();
 })();

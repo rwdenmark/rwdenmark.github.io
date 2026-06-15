@@ -340,6 +340,26 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 .card:hover img { transform: scale(1.03); }
 
+/* about page: photo gallery tabs (Jax / Boundary Waters) */
+.gallery-tabs { display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; margin: 32px 0 16px; }
+.gallery-tab {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 0 2px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.gallery-tab:hover { color: var(--accent-hover); }
+.gallery-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+.gallery-tab.active:hover { color: var(--text); cursor: default; }
+.gallery-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
 /* ---------- recent commits feed (homepage) ---------- */
 .commits-list {
   list-style: none;
