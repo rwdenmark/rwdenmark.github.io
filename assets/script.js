@@ -86,12 +86,11 @@
     fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
   }
 
-  // ---------- recent commits feed (homepage only)
+  // ---------- recent commits feed (renders wherever #recent-commits exists; the Projects page)
   // Reads a static commits.json generated ~hourly by .github/workflows/recent-commits.yml.
   // Server-side generation avoids the unauthenticated GitHub API rate limit (60/hour per IP)
   // that used to silently blank this section. No-ops if the file is missing or empty.
   (function () {
-    if (!isHome) return;
     var mount = document.getElementById('recent-commits');
     if (!mount) return;
 
