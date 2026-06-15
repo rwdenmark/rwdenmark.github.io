@@ -142,6 +142,8 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
+/* Recent Activity heading (Projects page): equal gap above and below */
+#recent-commits .section-title { margin-top: 16px; margin-bottom: 16px; }
 
 /* testimonial + reference cards */
 .testimonial-card, .reference-card {
