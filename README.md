@@ -17,13 +17,14 @@ assets/style.css            All CSS
 assets/script.js            All client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed)
 index.html                  Home: about + project cards
 resume.html                 Resume page (mirrors Resume_Ryan_Denmark.pdf)
-about.html                  About + photo galleries (Jax, Boundary Waters)
+about.html                  About + photo galleries (Jax, Boundary Waters, Cats)
 .github/workflows/          Daily hit-count email + hourly recent-commits cache
 favicon.svg, favicon.ico    Favicons
 og-image.png                Open Graph preview image
 projects/                   Project card thumbnails
 jax/                        Photos for the gallery
 boundary-waters/            Photos for the gallery
+cats/                       Photos for the gallery
 commits.json                Cached recent-commits feed (generated hourly by the workflow)
 ```
 
