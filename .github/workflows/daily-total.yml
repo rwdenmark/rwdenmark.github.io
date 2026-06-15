@@ -11,6 +11,13 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 
+# Shared push lock with the hourly recent-commits workflow so the two never push to
+# main at the same time. cancel-in-progress is false so a newer run never cancels this
+# email job mid-flight; if recent-commits is mid-push, this job simply waits its turn.
+concurrency:
+  group: main-push
+  cancel-in-progress: false
+
 # Force the Node.js 20-based actions (checkout, action-send-mail) onto Node 24,
 # matching the GitHub Actions runner default that goes into effect June 16, 2026.
 env:
@@ -23,6 +30,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Skip if already emailed today (Central)
         id: gate
@@ -105,5 +114,21 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .github/count.txt .github/last-run-date.txt
-          git diff --cached --quiet || git commit -m "chore: store daily view count [skip ci]"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: store daily view count [skip ci]"
+          # The hourly recent-commits workflow also pushes to main and can fire on
+          # this same top-of-hour minute, so a bare push may be rejected as
+          # non-fast-forward. Rebase onto the latest main and retry up to 5x.
+          n=0
+          until git push; do
+            n=$((n+1))
+            if [ "$n" -ge 5 ]; then
+              echo "::error::Failed to push after $n attempts."
+              exit 1
+            fi
+            echo "Push rejected (attempt $n); rebasing onto latest main..."
+            git pull --rebase origin main
+          done
