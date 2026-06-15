@@ -326,6 +326,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .page-title { font-size: 1.75rem; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
 .page-subtitle { color: var(--muted); margin: 0 0 32px; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.gallery[hidden] { display: none; }  /* honor the hidden attr; .gallery display:grid would otherwise override it */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -450,43 +451,4 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  html { scroll-behavior: auto; }
-  .copy-toast { transition: opacity 0.01ms; transform: none; }
-}
-
-/* ---------- print: clean black-on-white for the resume ---------- */
-@media print {
-  :root {
-    --canvas: #ffffff;
-    --header-bg: #ffffff;
-    --card-bg: #ffffff;
-    --border: #cccccc;
-    --text: #000000;
-    --muted: #555555;
-    --accent: #000000;
-    --accent-hover: #000000;
-  }
-  body { background: #ffffff; color: #000000; }
-  .bg-circuit, .rail-bg, body::before, body::after { display: none !important; }
-  header .container, footer .container {
-    background: #ffffff; border: none; padding: 0;
-  }
-  .links, .download-pdf, .copy-toast { display: none !important; }
-  header { border-bottom: 1px solid #cccccc; padding: 0 0 8px; margin-bottom: 16px; }
-  footer { display: none; }
-  h1 { font-size: 1.5rem; }
-  .resume-section-title {
-    border-bottom: 1px solid #000000;
-    page-break-after: avoid;
-    margin-top: 16px;
-  }
-  .job, .role, .skill-row {
-    page-break-inside: avoid;
-  }
-  a { color: #000000; text-decoration: none; }
-  .role ul { padding-left: 16px; }
-  .role li { font-size: 0.9rem; margin-bottom: 2px; }
-}
+    animation-iteration-count: 1
