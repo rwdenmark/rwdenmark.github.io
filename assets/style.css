@@ -264,9 +264,8 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 .cert-logo { width: 36px; height: 36px; flex-shrink: 0; border-radius: 7px; display: block; }
 .cert-card h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
-.cert-meta { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.cert-meta { margin: 0 0 0 auto; font-size: 0.9rem; color: var(--muted); }
 .cert-link {
-  margin-left: auto;
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--accent);
   text-decoration: none;
