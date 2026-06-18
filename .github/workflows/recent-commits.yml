@@ -64,11 +64,21 @@ jobs:
           echo "Wrote commits.json:"
           cat commits.json
 
+      - name: Compute last content-update date
+        run: |
+          # Date of the most recent commit that changed real content — anything except
+          # the bot-maintained housekeeping files (.github/*, commits.json) and this file
+          # itself. So the footer reflects content edits (any page, the resume PDF, new
+          # About photos), not the hourly cache pushes or the daily counter commits.
+          d=$(git log -1 --no-merges --format=%cs -- . ':(exclude).github' ':(exclude)commits.json' ':(exclude)last-updated.txt')
+          echo "Last content update: $d"
+          echo "$d" > last-updated.txt
+
       - name: Commit if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add commits.json
+          git add commits.json last-updated.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

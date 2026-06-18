@@ -1,15 +1,34 @@
 (function () {
   'use strict';
 
-  // ---------- footer: replace "Last updated" with the page's actual modified date
-  document.querySelectorAll('.last-updated').forEach(function (el) {
-    var d = new Date(document.lastModified);
-    if (!isNaN(d)) {
-      el.textContent = d.toLocaleDateString('en-US', {
+  // ---------- footer "Last updated": show the most recent CONTENT change, not the deploy time.
+  // A workflow writes /last-updated.txt (YYYY-MM-DD) from git history, excluding the
+  // housekeeping commits (.github/*, commits.json) so the date tracks real edits — any
+  // page, the resume, new About photos — and not the hourly cache / daily counter pushes.
+  // Falls back to the Jekyll-rendered site.time already in the span if the file is missing.
+  (function () {
+    var els = document.querySelectorAll('.last-updated');
+    if (!els.length) return;
+    function fmt(y, m, d) {
+      return new Date(y, m - 1, d).toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
       });
     }
-  });
+    // Reformat the Jekyll fallback (YYYY-MM-DD) so it reads nicely even offline.
+    els.forEach(function (el) {
+      var f = /^(\d{4})-(\d{2})-(\d{2})/.exec(el.textContent.trim());
+      if (f) el.textContent = fmt(+f[1], +f[2], +f[3]);
+    });
+    fetch('/last-updated.txt')
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (txt) {
+        var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(txt.trim());
+        if (!m) return;
+        var pretty = fmt(+m[1], +m[2], +m[3]);
+        els.forEach(function (el) { el.textContent = pretty; });
+      })
+      .catch(function () { /* keep the fallback */ });
+  })();
 
   // ---------- email link: copy address to clipboard with a toast
   (function () {
