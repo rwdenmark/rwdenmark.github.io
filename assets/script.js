@@ -80,9 +80,28 @@
 
   // ---------- home page only: ping the daily hit counter
   // Fire and forget. The workflow at .github/workflows/daily-total.yml reads from this counter.
+  //
+  // Owner opt-out so my own visits don't inflate the count. Visiting the site with
+  // ?nocount=1 once stores a flag in THIS browser's localStorage and suppresses the
+  // counter from then on; ?nocount=0 clears it. Invisible to every other visitor —
+  // no UI, no prompt — their visits always count.
   var path = window.location.pathname;
   var isHome = path === '/' || path.endsWith('/index.html');
-  if (isHome) {
+
+  var ownerExcluded = false;
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.has('nocount')) {
+      if (params.get('nocount') === '0') {
+        localStorage.removeItem('rwd_nocount');
+      } else {
+        localStorage.setItem('rwd_nocount', '1');
+      }
+    }
+    ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
+  } catch (e) { /* storage blocked (e.g. private mode): just count normally */ }
+
+  if (isHome && !ownerExcluded) {
     fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
   }
 
