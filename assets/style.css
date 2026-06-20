@@ -142,8 +142,29 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
-/* Recent Activity heading (Projects page): equal gap above and below */
-#recent-commits .section-title { margin-top: 12px; margin-bottom: 12px; }
+
+/* horizontal section dividers (Home, Projects, About) */
+body[data-page="home"] .section-title:not(:first-child) {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+body[data-page="projects"] .section-title:not(:first-child) {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+#recent-commits .section-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+body[data-page="about"] .gallery-tabs {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
 
 /* testimonial + reference cards */
 .testimonial-card, .reference-card {
@@ -192,7 +213,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   background: var(--card-bg);
   border: 2px solid var(--border);
   border-radius: 8px;
-  padding: 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -282,7 +303,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   border-radius: 12px;
 }
 .script-info p { margin: 5px 0 0; font-size: 0.9rem; color: var(--muted); }
-.script-actions { flex: 0 0 auto; }
+.script-actions { flex: 0 0 auto; align-self: center; }
 .script-actions a {
   color: var(--accent);
   text-decoration: none;
