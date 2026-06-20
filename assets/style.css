@@ -144,24 +144,11 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-title:not(:first-child) { margin-top: 32px; }
 
 /* horizontal section dividers (Home, Projects, About) */
-body[data-page="home"] .section-title:not(:first-child) {
-  margin-top: 36px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-body[data-page="projects"] .section-title:not(:first-child) {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-#recent-commits .section-title {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-}
+body[data-page="home"] .section-title:not(:first-child),
+body[data-page="projects"] .section-title:not(:first-child),
+#recent-commits .section-title,
 body[data-page="about"] .gallery-tabs {
-  margin-top: 36px;
+  margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
 }
@@ -277,7 +264,7 @@ body[data-page="about"] .gallery-tabs {
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 12px 18px;
-  padding: 15px 18px;
+  padding: 11px 18px;
   background: var(--card-bg);
   border: 2px solid var(--border);
   border-left: 4px solid var(--accent);
@@ -524,7 +511,7 @@ body[data-page="about"] .gallery-tabs {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  padding: 12px 20px;
+  padding: 8px 20px;
   border-bottom: 1px solid var(--border);
   font-size: 0.95rem;
 }
