@@ -75,7 +75,7 @@ header .container {
 .links {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
-  margin-top: 16px;
+  margin-top: 20px;
   font-size: 0.95rem;
 }
 .links-group { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -139,14 +139,18 @@ footer a { color: var(--accent); text-decoration: none; transition: color 0.15s 
 footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 /* ---------- home: about + project cards ---------- */
-.section-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; }
+.section-title { font-size: 1.5rem; font-weight: 700; line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
 
 /* horizontal section dividers (Home, Projects, About) */
 body[data-page="home"] .section-title:not(:first-child),
 body[data-page="projects"] .section-title:not(:first-child),
-#recent-commits .section-title,
+#recent-commits .section-title {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
 body[data-page="about"] .gallery-tabs {
   margin-top: 24px;
   padding-top: 24px;
@@ -210,7 +214,7 @@ body[data-page="about"] .gallery-tabs {
   transform: translateY(-2px);
   border-color: var(--accent);
 }
-.project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+.project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; text-align: center; }
 .project-thumb {
   aspect-ratio: 3 / 2;
   width: 100%;
@@ -221,7 +225,7 @@ body[data-page="about"] .gallery-tabs {
   display: block;
   background: var(--canvas);
 }
-.project-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
 .project-stack span {
   font-size: 0.78rem;
   color: var(--muted);
@@ -361,7 +365,7 @@ body[data-page="about"] .gallery-tabs {
   border: 2px solid var(--border);
   border-left: 4px solid var(--accent);
   border-radius: 8px;
-  padding: 20px;
+  padding: 14px 20px;
   transition: transform 200ms ease, border-color 200ms ease;
 }
 .cert-feature:hover {
