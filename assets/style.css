@@ -143,7 +143,7 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
 /* Recent Activity heading (Projects page): equal gap above and below */
-#recent-commits .section-title { margin-top: 16px; margin-bottom: 16px; }
+#recent-commits .section-title { margin-top: 12px; margin-bottom: 12px; }
 
 /* testimonial + reference cards */
 .testimonial-card, .reference-card {
@@ -181,7 +181,13 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
 .reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 
-.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+/* 3 per row when the card count is divisible by 3, otherwise 2 per row */
+.projects:has(> .project-card:last-child:nth-child(3n)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 640px) {
+  .projects,
+  .projects:has(> .project-card:last-child:nth-child(3n)) { grid-template-columns: 1fr; }
+}
 .project-card {
   background: var(--card-bg);
   border: 2px solid var(--border);
@@ -242,8 +248,8 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   text-decoration: none;
 }
 
-/* ---------- scripts & utilities (compact list) ---------- */
-.scripts-list { background: var(--card-bg); border: 2px solid var(--border); border-radius: 8px; }
+/* ---------- utilities (cards matching the cert-card style) ---------- */
+.scripts-list { display: flex; flex-direction: column; gap: 10px; }
 .script-row {
   display: flex;
   justify-content: space-between;
@@ -251,9 +257,18 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   flex-wrap: wrap;
   gap: 12px 18px;
   padding: 15px 18px;
-  border-bottom: 1px solid var(--border);
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  transition: transform 200ms ease, border-color 200ms ease;
 }
-.script-row:last-child { border-bottom: none; }
+.script-row:hover {
+  transform: translateY(-2px);
+  border-top-color: var(--accent-hover);
+  border-right-color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
 .script-info { flex: 1 1 320px; min-width: 0; }
 .script-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .script-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
