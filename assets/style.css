@@ -305,8 +305,10 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   border-right-color: var(--accent-hover);
   border-bottom-color: var(--accent-hover);
 }
-.cert-logo { width: 36px; height: 36px; flex-shrink: 0; border-radius: 7px; display: block; }
-.cert-card h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+.cert-logo { width: 30px; height: 30px; flex-shrink: 0; border-radius: 6px; display: block; }
+.cert-card h3 { font-size: 0.95rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+.cert-card .cert-meta { font-size: 0.85rem; }
+.cert-card .cert-link { font-size: 0.85rem; padding: 5px 12px; }
 .cert-meta { margin: 0 0 0 auto; font-size: 0.9rem; color: var(--muted); }
 .cert-link {
   display: inline-flex; align-items: center; gap: 6px;
@@ -325,6 +327,31 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   color: var(--accent-hover);
   text-decoration: none;
 }
+
+/* ---------- featured credentials (larger boxes above the cert list) ---------- */
+.cert-featured { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 10px; }
+.cert-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+.cert-feature:hover {
+  transform: translateY(-2px);
+  border-top-color: var(--accent-hover);
+  border-right-color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+.cert-feature-head { display: flex; align-items: center; gap: 14px; }
+.cert-logo-lg { width: 50px; height: 50px; flex-shrink: 0; border-radius: 9px; display: block; }
+.cert-feature h3 { font-size: 1.2rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+.cert-feature .cert-meta { margin: 0; }
+.cert-feature .cert-link { align-self: flex-start; margin-top: 6px; }
 
 /* ---------- resume ---------- */
 .section-header {
