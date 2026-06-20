@@ -214,7 +214,7 @@ body[data-page="about"] .gallery-tabs {
   transform: translateY(-2px);
   border-color: var(--accent);
 }
-.project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; text-align: center; }
+.project-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .project-thumb {
   aspect-ratio: 3 / 2;
   width: 100%;
@@ -225,7 +225,7 @@ body[data-page="about"] .gallery-tabs {
   display: block;
   background: var(--canvas);
 }
-.project-stack { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 4px; }
 .project-stack span {
   font-size: 0.78rem;
   color: var(--muted);
