@@ -1,5 +1,17 @@
 [
   {
+    "repo": "oci-grab-arm",
+    "message": "Updating README",
+    "date": "2026-06-20T21:32:14Z",
+    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/d98c100f2967f660b2c124a72a25ec0714682a6f"
+  },
+  {
+    "repo": "oci-grab-arm",
+    "message": "OCI Always Free A1 capacity-grab script",
+    "date": "2026-06-20T20:41:08Z",
+    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/b30d29dad911097e443642d321afc7f5f561cef2"
+  },
+  {
     "repo": "x12-parser",
     "message": "Switch Render deploy from native Java to Docker",
     "date": "2026-06-03T05:02:03Z",
@@ -16,17 +28,5 @@
     "message": "Adding splice tests",
     "date": "2026-05-31T18:41:27Z",
     "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a195b60718c1f078dc76ee5f5d471e4b7fa22acf"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Restore V1 comment to fix Flyway checksum",
-    "date": "2026-05-30T08:38:03Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/eeff825711a9afcb85716771d661dc004fba9b5a"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Regenerate lockfile for React 18 / Vite 5 revert",
-    "date": "2026-05-30T08:33:53Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/c0a52f7f60d2ae528143150ad9e87756630df9b3"
   }
 ]
