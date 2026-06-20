@@ -242,6 +242,49 @@ footer a:hover { color: var(--accent-hover); text-decoration: underline; }
   text-decoration: none;
 }
 
+/* ---------- scripts & utilities (compact list) ---------- */
+.scripts-list { background: var(--card-bg); border: 2px solid var(--border); border-radius: 8px; }
+.script-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.script-row:last-child { border-bottom: none; }
+.script-info { flex: 1 1 320px; min-width: 0; }
+.script-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.script-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+.script-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+.script-stack span {
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  padding: 1px 8px;
+  border-radius: 12px;
+}
+.script-info p { margin: 5px 0 0; font-size: 0.9rem; color: var(--muted); }
+.script-actions { flex: 0 0 auto; }
+.script-actions a {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.script-actions a:hover {
+  border-color: var(--accent);
+  background: rgba(47, 129, 247, 0.08);
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
 /* ---------- certifications (homepage) ---------- */
 .certs { display: flex; flex-direction: column; gap: 10px; }
 .cert-card {
