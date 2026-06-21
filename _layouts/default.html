@@ -47,7 +47,7 @@
   <div class="bg-circuit" aria-hidden="true">
     <svg class="bg-half bg-half-left" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <pattern id="circuit-pattern" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
+        <pattern id="circuit-static" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
           <g stroke="#1f6feb" stroke-width="1" fill="none" opacity="0.4">
             <path d="M0,40 H70 L90,60 H150 L170,40 H280"/>
             <path d="M0,20 H50 L70,40"/>
@@ -93,6 +93,16 @@
           <g fill="#58a6ff" opacity="0.7">
             <circle cx="209" cy="232" r="1.6"/><circle cx="209" cy="240" r="1.6"/><circle cx="209" cy="248" r="1.6"/>
           </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#circuit-static)"/>
+    </svg>
+    <svg class="bg-half bg-half-right" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="url(#circuit-static)"/>
+    </svg>
+    <svg class="bg-half bg-half-left bg-pulse" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="circuit-pulse" x="0" y="0" width="280" height="280" patternUnits="userSpaceOnUse">
           <g stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round">
             <path d="M0,40 H70 L90,60 H150 L170,40 H280" stroke-dasharray="18 278.57"><animate attributeName="stroke-dashoffset" from="0" to="-296.57" dur="5s" repeatCount="indefinite"/></path>
             <path d="M0,100 H110 L130,80 H190 L210,100 H280" stroke-dasharray="18 278.57"><animate attributeName="stroke-dashoffset" from="0" to="-296.57" dur="6.5s" repeatCount="indefinite"/></path>
@@ -100,10 +110,10 @@
           </g>
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill="url(#circuit-pattern)"/>
+      <rect width="100%" height="100%" fill="url(#circuit-pulse)"/>
     </svg>
-    <svg class="bg-half bg-half-right" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="url(#circuit-pattern)"/>
+    <svg class="bg-half bg-half-right bg-pulse" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="url(#circuit-pulse)"/>
     </svg>
   </div>
   <header>

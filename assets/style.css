@@ -48,9 +48,11 @@ body {
 .bg-half {
   position: absolute; top: 0; height: 100%; width: 50%;
   display: block; overflow: hidden;
+  clip-path: inset(0 485px 0 0);
 }
 .bg-half-left { left: 0; }
 .bg-half-right { left: 50%; transform: scaleX(-1); }
+@media (prefers-reduced-motion: reduce) { .bg-pulse { display: none; } }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
