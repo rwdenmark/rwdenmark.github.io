@@ -45,6 +45,12 @@ body {
   border-right: 2px solid var(--border);
   z-index: 0; pointer-events: none; user-select: none;
 }
+.bg-half {
+  position: absolute; top: 0; height: 100%; width: 50%;
+  display: block; overflow: hidden;
+}
+.bg-half-left { left: 0; }
+.bg-half-right { left: 50%; transform: scaleX(-1); }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
