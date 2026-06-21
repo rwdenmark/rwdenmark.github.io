@@ -60,24 +60,24 @@ body {
   from { stroke-dashoffset: -889.71; }
   to   { stroke-dashoffset: -2075.99; }
 }
-.bg-pulse use { animation-name: pulse-dash; animation-iteration-count: infinite; }
-.bg-pulse .pa { animation-duration: 20s;       animation-timing-function: steps(600); } /* top, 100% speed, 30 steps/s */
-.bg-pulse .pb { animation-duration: 28.56667s; animation-timing-function: steps(857); } /* middle, ~70% speed, 30 steps/s */
-.bg-pulse .pc { animation-duration: 23.53333s; animation-timing-function: steps(706); } /* bottom, ~85% speed, 30 steps/s */
+/* Each line runs two animations: the looping dash, plus a one-time fade-in (line-in). The
+   line stays at opacity 0 until its dash first reaches the outer edge, then reveals. Its delay
+   (the second animation-delay value, set per line) equals that arrival time, so no line ever
+   appears mid-strip near the content; each slides in from the outer edge, then flows inward. */
+@keyframes line-in { from { opacity: 0; } to { opacity: 1; } }
+.bg-pulse use {
+  opacity: 0;
+  animation-name: pulse-dash, line-in;
+  animation-iteration-count: infinite, 1;
+  animation-fill-mode: none, forwards;
+}
+.bg-pulse .pa { animation-duration: 20s, 0.5s;       animation-timing-function: steps(600), ease-out; } /* top, 100% speed */
+.bg-pulse .pb { animation-duration: 28.56667s, 0.5s; animation-timing-function: steps(857), ease-out; } /* middle, ~70% speed */
+.bg-pulse .pc { animation-duration: 23.53333s, 0.5s; animation-timing-function: steps(706), ease-out; } /* bottom, ~85% speed */
 /* Promote the moving traces to their own GPU layer so a dash repaint only touches
    that thin layer instead of re-rasterizing the static circuit pattern behind it. */
 .bg-half-left.bg-pulse  { transform: translateZ(0); }
 .bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
-/* Confine the animated lines to the outer part of each side strip so they never appear
-   next to the centered content, even on very wide viewports (zoomed out / large monitors).
-   The fixed line start positions sit beyond ~700px, so they stay off-screen at any width and
-   the lines always slide in from the outer edge. The static circuit keeps its full width. */
-.bg-half.bg-pulse { width: min(calc(50% - 485px), 700px); }
-/* Hold the whole pulse layer invisible for ~1.7s on each page load, then fade it in, so the
-   "lines appear after ~2s" timing is identical at every window width. The off-screen lead-in
-   by itself is width-dependent (a wide viewport reveals the start area). Runs once per load. */
-@keyframes pulse-reveal { 0%, 74% { opacity: 0; } 100% { opacity: 1; } }
-.bg-pulse { animation: pulse-reveal 2.3s linear both; }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
