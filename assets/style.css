@@ -53,6 +53,17 @@ body {
 .bg-half-left { left: 0; }
 .bg-half-right { left: 50%; transform: scaleX(-1); }
 @media (prefers-reduced-motion: reduce) { .bg-pulse { display: none; } }
+/* GPU-composited pulse: translate the track one full pattern tile (1400px) and loop.
+   Replaces SMIL stroke-dashoffset animation, which repainted the whole fill on the main
+   thread every frame. will-change promotes the track to its own compositor layer. */
+.pulse-track {
+  will-change: transform;
+  animation: pulse-drift 25s linear infinite;
+}
+@keyframes pulse-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(1400px); }
+}
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
