@@ -1,0 +1,48 @@
+- id: jax
+  dir: jax
+  hidden: true
+  items:
+    - { file: jax-01.jpg, alt: "Jax with Ryan in the yard" }
+    - { file: jax-02.jpg, alt: "Jax as a puppy on his back" }
+    - { file: jax-03.jpg, alt: "Jax sitting on a blanket" }
+    - { file: jax-04.jpg, alt: "Jax sniffing behind furniture" }
+    - { file: jax-05.jpg, alt: "Jax with toys" }
+    - { file: jax-06.jpg, alt: "Jax sitting with leash on" }
+    - { file: jax-07.jpg, alt: "Jax with a frisbee on his face outside" }
+    - { file: jax-08.jpg, alt: "Jax and the cat on a dog bed" }
+    - { file: jax-09.jpg, alt: "Jax upside down" }
+    - { file: jax-10.jpg, alt: "Jax smiling indoors" }
+    - { file: jax-11.jpg, alt: "Jax with Ryan in the car" }
+    - { file: jax-12.jpg, alt: "Jax in a birthday bandana" }
+- id: boundary-waters
+  dir: boundary-waters
+  hidden: false
+  items:
+    - { file: bw-01.jpg, alt: "Boundary Waters trip photo 1" }
+    - { file: bw-02.jpg, alt: "Boundary Waters trip photo 2" }
+    - { file: bw-03.jpg, alt: "Boundary Waters trip photo 3" }
+    - { file: bw-04.jpg, alt: "Boundary Waters trip photo 4" }
+    - { file: bw-05.jpg, alt: "Boundary Waters trip photo 5" }
+    - { file: bw-06.jpg, alt: "Boundary Waters trip photo 6" }
+    - { file: bw-07.jpg, alt: "Boundary Waters trip photo 7" }
+    - { file: bw-08.jpg, alt: "Boundary Waters trip photo 8" }
+    - { file: bw-09.jpg, alt: "Boundary Waters trip photo 9" }
+    - { file: bw-10.jpg, alt: "Boundary Waters trip photo 10" }
+    - { file: bw-11.jpg, alt: "Boundary Waters trip photo 11" }
+    - { file: bw-12.jpg, alt: "Boundary Waters trip photo 12" }
+- id: cats
+  dir: cats
+  hidden: true
+  items:
+    - { file: cat-01.jpg, alt: "Cat photo 1" }
+    - { file: cat-02.jpg, alt: "Cat photo 2" }
+    - { file: cat-03.jpg, alt: "Cat photo 3" }
+    - { file: cat-04.jpg, alt: "Cat photo 4" }
+    - { file: cat-05.jpg, alt: "Cat photo 5" }
+    - { file: cat-06.jpg, alt: "Cat photo 6" }
+    - { file: cat-07.jpg, alt: "Cat photo 7" }
+    - { file: cat-08.jpg, alt: "Cat photo 8" }
+    - { file: cat-09.jpg, alt: "Cat photo 9" }
+    - { file: cat-10.jpg, alt: "Cat photo 10" }
+    - { file: cat-11.jpg, alt: "Cat photo 11" }
+    - { file: cat-12.jpg, alt: "Cat photo 12" }

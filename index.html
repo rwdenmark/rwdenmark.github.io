@@ -32,38 +32,26 @@ og_description: Backend software engineer. 7+ years on cross-functional teams. J
 
 <h2 class="section-title">Continuous Learning</h2>
 <div class="cert-featured">
+  {% for c in site.data.certs.featured %}
   <article class="cert-feature">
     <div class="cert-feature-head">
       <img class="cert-logo-lg" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="50" height="50" />
-      <h3>Claude Code 101</h3>
+      <h3>{{ c.title }}</h3>
     </div>
-    <p class="cert-meta">Anthropic Education &middot; Issued 2026</p>
-    <a class="cert-link" href="https://verify.skilljar.com/c/v9tsqkyjp7iv" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
+    <p class="cert-meta">{{ c.meta }}</p>
+    <a class="cert-link" href="{{ c.url }}" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
   </article>
-  <article class="cert-feature">
-    <div class="cert-feature-head">
-      <img class="cert-logo-lg" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="50" height="50" />
-      <h3>Claude Code in Action</h3>
-    </div>
-    <p class="cert-meta">Anthropic Education &middot; Issued 2026</p>
-    <a class="cert-link" href="https://verify.skilljar.com/c/ygxskxtqsxp3" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
-  </article>
+  {% endfor %}
 </div>
 <div class="certs">
+  {% for c in site.data.certs.list %}
   <article class="cert-card">
     <img class="cert-logo" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="30" height="30" />
     <div class="cert-body">
-      <h3>Claude 101</h3>
-      <p class="cert-meta">Anthropic Education &middot; Issued 2026</p>
+      <h3>{{ c.title }}</h3>
+      <p class="cert-meta">{{ c.meta }}</p>
     </div>
-    <a class="cert-link" href="https://verify.skilljar.com/c/tes7i72fth3j" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
+    <a class="cert-link" href="{{ c.url }}" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
   </article>
-  <article class="cert-card">
-    <img class="cert-logo" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="30" height="30" />
-    <div class="cert-body">
-      <h3>Introduction to Claude Cowork</h3>
-      <p class="cert-meta">Anthropic Education &middot; Issued 2026</p>
-    </div>
-    <a class="cert-link" href="https://verify.skilljar.com/c/5e2uxvj9iomi" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
-  </article>
+  {% endfor %}
 </div>

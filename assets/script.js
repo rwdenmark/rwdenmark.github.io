@@ -1,11 +1,6 @@
 (function () {
   'use strict';
 
-  // ---------- footer "Last updated": show the most recent CONTENT change, not the deploy time.
-  // A workflow writes /last-updated.txt (YYYY-MM-DD) from git history, excluding the
-  // housekeeping commits (.github/*, commits.json) so the date tracks real edits (any
-  // page, the resume, new About photos) and not the hourly cache or daily counter pushes.
-  // Falls back to the Jekyll-rendered site.time already in the span if the file is missing.
   (function () {
     var els = document.querySelectorAll('.last-updated');
     if (!els.length) return;
@@ -14,7 +9,6 @@
         year: 'numeric', month: 'long', day: 'numeric'
       });
     }
-    // Reformat the Jekyll fallback (YYYY-MM-DD) so it reads nicely even offline.
     els.forEach(function (el) {
       var f = /^(\d{4})-(\d{2})-(\d{2})/.exec(el.textContent.trim());
       if (f) el.textContent = fmt(+f[1], +f[2], +f[3]);
@@ -27,10 +21,9 @@
         var pretty = fmt(+m[1], +m[2], +m[3]);
         els.forEach(function (el) { el.textContent = pretty; });
       })
-      .catch(function () { /* keep the fallback */ });
+      .catch(function () {});
   })();
 
-  // ---------- email link: copy address to clipboard with a toast
   (function () {
     var link = document.getElementById('email-link');
     var toast = document.getElementById('copy-toast');
@@ -74,8 +67,6 @@
     });
   })();
 
-  // ---------- about page: photo gallery tabs (Jax / Boundary Waters)
-  // Swaps which gallery is visible. Only the images change; nothing else on the page moves.
   (function () {
     var tabs = document.querySelectorAll('.gallery-tab');
     if (!tabs.length) return;
@@ -97,13 +88,6 @@
     });
   })();
 
-  // ---------- home page only: ping the daily hit counter
-  // Fire and forget. The workflow at .github/workflows/daily-total.yml reads from this counter.
-  //
-  // Owner opt-out so my own visits don't inflate the count. Visiting the site with
-  // ?nocount=1 once stores a flag in THIS browser's localStorage and suppresses the
-  // counter from then on; ?nocount=0 clears it. Invisible to every other visitor:
-  // no UI, no prompt, their visits always count.
   var path = window.location.pathname;
   var isHome = path === '/' || path.endsWith('/index.html');
 
@@ -118,16 +102,12 @@
       }
     }
     ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
-  } catch (e) { /* storage blocked (e.g. private mode): just count normally */ }
+  } catch (e) {}
 
   if (isHome && !ownerExcluded) {
     fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
   }
 
-  // ---------- recent commits feed (renders wherever #recent-commits exists; the Projects page)
-  // Reads a static commits.json generated ~hourly by .github/workflows/recent-commits.yml.
-  // Server-side generation avoids the unauthenticated GitHub API rate limit (60/hour per IP)
-  // that used to silently blank this section. No-ops if the file is missing or empty.
   (function () {
     var mount = document.getElementById('recent-commits');
     if (!mount) return;
@@ -164,15 +144,9 @@
         html += '</ul>';
         mount.innerHTML = html;
       })
-      .catch(function () { /* silently skip if the cache file is missing or unreadable */ });
+      .catch(function () {});
   })();
 
-  // ---------- pulse background: fill the visible height with animated wire tiles.
-  // The de-patterned pulse uses fixed 280px tiles; a tall (zoomed-out) viewport would run
-  // out of rows and leave the lower area empty. This builds just enough tiles to cover the
-  // height and adds more on resize/zoom. Each tile holds 3 lines with spaced random starts
-  // and a 2-16s reveal; the first tile pins the 2.0s and 16.0s endpoints. Left/right stay
-  // mirror-symmetric (same delays; the right strip is flipped in CSS).
   (function () {
     var svgs = document.querySelectorAll('.bg-pulse');
     if (!svgs.length) return;

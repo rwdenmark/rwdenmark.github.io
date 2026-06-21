@@ -7,7 +7,7 @@
   <meta name="description" content="{{ page.description }}" />
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}" />
   <link rel="alternate icon" href="{{ '/favicon.ico' | relative_url }}" />
-  <link rel="preconnect" href="https://api.counterapi.dev" crossorigin />
+  {% if page.page_id == 'home' %}<link rel="preconnect" href="https://api.counterapi.dev" crossorigin />{% endif %}
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}" />
   <script src="{{ '/assets/script.js' | relative_url }}" defer></script>
   <meta property="og:type" content="website" />
@@ -106,72 +106,10 @@
         <path id="wire-b" d="M0,100 H110 L130,80 H190 L210,100 H390 L410,80 H470 L490,100 H670 L690,80 H750 L770,100 H950 L970,80 H1030 L1050,100 H1160" stroke-dasharray="18 1208.28"/>
         <path id="wire-c" d="M0,210 H90 L110,230 H170 L190,210 H370 L390,230 H450 L470,210 H650 L670,230 H730 L750,210 H930 L950,230 H1010 L1030,210 H1160" stroke-dasharray="18 1208.28"/>
       </defs>
-      <g stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round">
-        <g transform="translate(0,0)">
-          <use class="pa" style="animation-delay:-3.2s, 2.0s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-28.4s, 7.6s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-16.73333s, 12.91s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,280)">
-          <use class="pa" style="animation-delay:-0.23333s, 4.97s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-3.13333s, 4.27s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-17.4s, 12.24s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,560)">
-          <use class="pa" style="animation-delay:-17.86667s, 7.32s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-20.36667s, 15.61s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-18.83333s, 10.81s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,840)">
-          <use class="pa" style="animation-delay:-19.4s, 5.78s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-2.06667s, 5.36s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-16.53333s, 13.11s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,1120)">
-          <use class="pa" style="animation-delay:-17.5s, 7.71s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-4.43333s, 2.99s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-23.4s, 6.25s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,1400)">
-          <use class="pa" style="animation-delay:-15.93333s, 9.26s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-20s, 16.0s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-3.13333s, 2.97s" href="#wire-c"/>
-        </g>
-      </g>
+      <g stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round"></g>
     </svg>
     <svg class="bg-half bg-half-right bg-pulse" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round">
-        <g transform="translate(0,0)">
-          <use class="pa" style="animation-delay:-3.2s, 2.0s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-28.4s, 7.6s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-16.73333s, 12.91s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,280)">
-          <use class="pa" style="animation-delay:-0.23333s, 4.97s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-3.13333s, 4.27s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-17.4s, 12.24s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,560)">
-          <use class="pa" style="animation-delay:-17.86667s, 7.32s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-20.36667s, 15.61s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-18.83333s, 10.81s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,840)">
-          <use class="pa" style="animation-delay:-19.4s, 5.78s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-2.06667s, 5.36s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-16.53333s, 13.11s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,1120)">
-          <use class="pa" style="animation-delay:-17.5s, 7.71s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-4.43333s, 2.99s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-23.4s, 6.25s" href="#wire-c"/>
-        </g>
-        <g transform="translate(0,1400)">
-          <use class="pa" style="animation-delay:-15.93333s, 9.26s" href="#wire-a"/>
-          <use class="pb" style="animation-delay:-20s, 16.0s" href="#wire-b"/>
-          <use class="pc" style="animation-delay:-3.13333s, 2.97s" href="#wire-c"/>
-        </g>
-      </g>
+      <g stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round"></g>
     </svg>
   </div>
   <header>

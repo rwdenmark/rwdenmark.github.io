@@ -1,4 +1,3 @@
-/* ---------- design tokens ---------- */
 :root {
   --canvas: #0d1117;
   --header-bg: #010409;
@@ -10,12 +9,10 @@
   --accent-hover: #58a6ff;
 }
 
-/* ---------- base ---------- */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* keyboard focus ring: visible only on tab navigation, not mouse clicks */
 :focus { outline: none; }
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -35,12 +32,10 @@ body {
   position: relative;
 }
 
-/* ---------- circuit background ---------- */
 .bg-circuit {
   position: fixed; top: 0;
   left: 50%; transform: translateX(-50%);
   width: min(100vw, 3280px); height: 100vh;
-  box-sizing: border-box;
   border-left: 2px solid var(--border);
   border-right: 2px solid var(--border);
   z-index: 0; pointer-events: none; user-select: none;
@@ -52,18 +47,10 @@ body {
 .bg-half-left { left: 0; }
 .bg-half-right { right: 0; transform: scaleX(-1); }
 @media (prefers-reduced-motion: reduce) { .bg-pulse { display: none; } }
-/* Pulse traces animate the dash offset in CSS instead of SMIL, throttled to ~30 updates
-   per second with steps(). The bright dashes still travel and bend along the wires, but
-   the browser only repaints at each step instead of on every display refresh, which cuts
-   CPU while the tab is visible. Step counts = duration_seconds * 30. */
 @keyframes pulse-dash {
   from { stroke-dashoffset: -889.71; }
   to   { stroke-dashoffset: -2115.99; }
 }
-/* Each line runs two animations: the looping dash, plus a one-time fade-in (line-in). The
-   line stays at opacity 0 until its dash first reaches the outer edge, then reveals. Its delay
-   (the second animation-delay value, set per line) equals that arrival time, so no line ever
-   appears mid-strip near the content; each slides in from the outer edge, then flows inward. */
 @keyframes line-in { from { opacity: 0; } to { opacity: 1; } }
 .bg-pulse use {
   opacity: 0;
@@ -71,11 +58,9 @@ body {
   animation-iteration-count: infinite, 1;
   animation-fill-mode: none, forwards;
 }
-.bg-pulse .pa { animation-duration: 20s, 0.2s;       animation-timing-function: steps(600), ease-out; } /* top, 100% speed */
-.bg-pulse .pb { animation-duration: 28.56667s, 0.2s; animation-timing-function: steps(857), ease-out; } /* middle, ~70% speed */
-.bg-pulse .pc { animation-duration: 23.53333s, 0.2s; animation-timing-function: steps(706), ease-out; } /* bottom, ~85% speed */
-/* Promote the moving traces to their own GPU layer so a dash repaint only touches
-   that thin layer instead of re-rasterizing the static circuit pattern behind it. */
+.bg-pulse .pa { animation-duration: 20s, 0.2s;       animation-timing-function: steps(600), ease-out; }
+.bg-pulse .pb { animation-duration: 28.56667s, 0.2s; animation-timing-function: steps(857), ease-out; }
+.bg-pulse .pc { animation-duration: 23.53333s, 0.2s; animation-timing-function: steps(706), ease-out; }
 .bg-half-left.bg-pulse  { transform: translateZ(0); }
 .bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
 .rail-bg {
@@ -100,7 +85,6 @@ body::after  { right: calc(50% - 490px); }
   .bg-circuit { display: none; }
 }
 
-/* ---------- header / footer / nav ---------- */
 header, main, footer { position: relative; z-index: 3; }
 header .container {
   background: var(--header-bg);
@@ -174,17 +158,14 @@ footer .container {
 }
 footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
 footer a:hover { color: var(--accent-hover); text-decoration: underline; }
-/* 404 page: match the site's standard inline link style */
 body[data-page="404"] main a,
 body[data-page="404"] main a:visited { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
 body[data-page="404"] main a:hover { color: var(--accent-hover); text-decoration: underline; }
 
-/* ---------- home: about + project cards ---------- */
 .section-title { font-size: 1.5rem; font-weight: 700; line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
 
-/* horizontal section dividers (Home, Projects, About) */
 body[data-page="home"] .section-title:not(:first-child),
 body[data-page="projects"] .section-title:not(:first-child),
 #recent-commits .section-title {
@@ -198,8 +179,6 @@ body[data-page="about"] .gallery-tabs {
   border-top: 1px solid var(--border);
 }
 
-/* testimonial + reference cards */
-/* shared accent-card surface + hover (testimonials, references, utilities, certs) */
 .testimonial-card, .reference-card, .script-row, .cert-card, .cert-feature {
   background: var(--card-bg);
   border: 2px solid var(--border);
@@ -228,17 +207,14 @@ body[data-page="about"] .gallery-tabs {
 .reference-card blockquote p:last-child { margin-bottom: 0; }
 .testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .testimonial-attribution strong { color: var(--text); }
-.testimonial-attribution a, .testimonial-attribution a:visited { color: var(--accent); text-decoration: none; }
-.testimonial-attribution a:hover { color: var(--accent-hover); text-decoration: underline; }
+.testimonial-attribution a, .testimonial-attribution a:visited, .reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
+.testimonial-attribution a:hover, .reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-header { margin-bottom: 12px; }
 .reference-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: var(--text); }
 .reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
 .reference-meta { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
-.reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
-.reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-/* 3 per row when the card count is divisible by 3, otherwise 2 per row */
 .projects:has(> .project-card:last-child:nth-child(3n)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 640px) {
   .projects,
@@ -255,10 +231,6 @@ body[data-page="about"] .gallery-tabs {
   height: 100%;
   transition: transform 200ms ease, border-color 200ms ease;
 }
-/* Align the inner rows (thumb / title / tag stack / description / footer) across every
-   card in a row via subgrid, so the descriptions start on the same line even though each
-   card has a different number of tag pills. The 5 spanned rows map to the card's 5 direct
-   children. Where subgrid is unsupported, the flex column above still bottom-pins footers. */
 @supports (grid-template-rows: subgrid) {
   .projects > .project-card {
     display: grid;
@@ -281,8 +253,6 @@ body[data-page="about"] .gallery-tabs {
   display: block;
   background: var(--canvas);
 }
-/* sit at the top of the (possibly taller) subgrid row at natural height, rather than
-   stretching the pills to fill it; any extra space stays empty below the tags. */
 .project-stack { display: flex; flex-wrap: wrap; gap: 4px; align-self: start; align-items: flex-start; align-content: flex-start; }
 .project-stack span {
   font-size: 0.78rem;
@@ -293,9 +263,6 @@ body[data-page="about"] .gallery-tabs {
   border-radius: 12px;
 }
 .project-card p { margin: 0; font-size: 0.95rem; }
-/* footer: note + actions, always pinned to the bottom of the (equal-height) card so
-   the "Live demo may take a minute" note and the buttons line up across every card,
-   regardless of how long each description is. */
 .project-footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 .project-note {
   font-size: 0.85rem;
@@ -304,7 +271,6 @@ body[data-page="about"] .gallery-tabs {
   font-style: italic;
 }
 .project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-/* shared link-button surface + hover (project, utility, cert, resume actions) */
 .project-actions a, .script-actions a, .cert-link, .download-pdf {
   color: var(--accent);
   text-decoration: none;
@@ -321,7 +287,6 @@ body[data-page="about"] .gallery-tabs {
 }
 .project-actions a { padding: 6px 14px; }
 
-/* ---------- utilities (cards matching the cert-card style) ---------- */
 .scripts-list { display: flex; flex-direction: column; gap: 10px; }
 .script-row {
   display: flex;
@@ -332,8 +297,6 @@ body[data-page="about"] .gallery-tabs {
   padding: 11px 18px;
 }
 .script-info { flex: 1 1 320px; min-width: 0; }
-/* title on its own line, tag stack below it, on every script row (so the tags never
-   sit inline on one card and wrap on another). */
 .script-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .script-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .script-stack { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -349,7 +312,6 @@ body[data-page="about"] .gallery-tabs {
 .script-actions { flex: 0 0 auto; align-self: center; }
 .script-actions a { padding: 6px 14px; white-space: nowrap; }
 
-/* ---------- certifications (homepage) ---------- */
 .certs { display: flex; flex-direction: column; gap: 10px; }
 .cert-card {
   display: flex;
@@ -358,9 +320,6 @@ body[data-page="about"] .gallery-tabs {
   padding: 8px 18px;
 }
 .cert-logo { width: 30px; height: 30px; flex-shrink: 0; border-radius: 6px; display: block; }
-/* logo | (title + meta) grows to fill | link. Grouping title+meta in .cert-body makes
-   every cert card lay out identically; the link sits at the right and, when the card is
-   too narrow, wraps to its own line the same way on every card. */
 .cert-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .cert-card h3 { font-size: 0.95rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .cert-card .cert-meta { font-size: 0.85rem; }
@@ -372,7 +331,6 @@ body[data-page="about"] .gallery-tabs {
   white-space: nowrap;
 }
 
-/* ---------- featured credentials (larger boxes above the cert list) ---------- */
 .cert-featured { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 10px; }
 .cert-feature {
   display: flex;
@@ -386,7 +344,6 @@ body[data-page="about"] .gallery-tabs {
 .cert-feature .cert-meta { margin: 0; }
 .cert-feature .cert-link { align-self: flex-start; margin-top: auto; }
 
-/* ---------- resume ---------- */
 .section-header {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
@@ -432,33 +389,22 @@ body[data-page="about"] .gallery-tabs {
 .skill-value { font-size: 0.95rem; }
 .job { margin-top: 24px; }
 .job:first-of-type { margin-top: 0; }
-.job-header {
+.job-header, .role-header, .education-row {
   display: flex; justify-content: space-between; align-items: baseline;
   flex-wrap: wrap; gap: 8px;
 }
 .job-company { font-weight: 700; font-size: 1.05rem; margin: 0; }
-.job-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 .job-subtitle { color: var(--muted); font-size: 0.95rem; margin: 0 0 4px; font-style: italic; }
 .role { margin-top: 14px; }
 .role:first-child { margin-top: 8px; }
-.role-header {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 8px;
-}
 .role-title { font-weight: 600; font-size: 0.98rem; margin: 0; color: var(--text); }
-.role-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.role-dates, .education-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 .role ul { margin: 6px 0 0; padding-left: 20px; }
 .role li { margin-bottom: 4px; font-size: 0.95rem; }
-.education-row {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 8px;
-}
 .education-degree { margin: 0; font-size: 0.98rem; }
-.education-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 
-/* ---------- photo galleries (About page) ---------- */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-.gallery[hidden] { display: none; }  /* honor the hidden attr; .gallery display:grid would otherwise override it */
+.gallery[hidden] { display: none; }
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -473,7 +419,6 @@ body[data-page="about"] .gallery-tabs {
 }
 .card:hover img { transform: scale(1.03); }
 
-/* about page: photo gallery tabs (Boundary Waters / Jax / Cats) */
 .gallery-tabs { display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; margin: 32px 0 16px; }
 .gallery-tab {
   font-family: inherit;
@@ -493,7 +438,6 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tab.active:hover { color: var(--text); cursor: default; }
 .gallery-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-/* ---------- recent commits feed (homepage) ---------- */
 .commits-list {
   list-style: none;
   padding: 0;
@@ -538,7 +482,6 @@ body[data-page="about"] .gallery-tabs {
   .commit-msg { flex-basis: 100%; white-space: normal; }
 }
 
-/* ---------- copy-to-clipboard toast ---------- */
 .copy-toast {
   position: fixed;
   bottom: 24px;
@@ -563,7 +506,6 @@ body[data-page="about"] .gallery-tabs {
   transform: translateY(0);
 }
 
-/* ---------- responsive ---------- */
 @media (max-width: 1044px) {
   header .container { background: transparent; border: none; padding: 0 32px; }
   header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
@@ -590,7 +532,6 @@ body[data-page="about"] .gallery-tabs {
   .copy-toast { transition: opacity 0.01ms; transform: none; }
 }
 
-/* ---------- print: clean black-on-white for the resume ---------- */
 @media print {
   :root {
     --canvas: #ffffff;
