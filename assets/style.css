@@ -220,7 +220,19 @@ body[data-page="about"] .gallery-tabs {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  height: 100%;
   transition: transform 200ms ease, border-color 200ms ease;
+}
+/* Align the inner rows (thumb / title / tag stack / description / footer) across every
+   card in a row via subgrid, so the descriptions start on the same line even though each
+   card has a different number of tag pills. The 5 spanned rows map to the card's 5 direct
+   children. Where subgrid is unsupported, the flex column above still bottom-pins footers. */
+@supports (grid-template-rows: subgrid) {
+  .projects > .project-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+  }
 }
 .project-card:hover {
   transform: translateY(-2px);
@@ -237,7 +249,9 @@ body[data-page="about"] .gallery-tabs {
   display: block;
   background: var(--canvas);
 }
-.project-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+/* sit at the top of the (possibly taller) subgrid row at natural height, rather than
+   stretching the pills to fill it; any extra space stays empty below the tags. */
+.project-stack { display: flex; flex-wrap: wrap; gap: 4px; align-self: start; align-items: flex-start; align-content: flex-start; }
 .project-stack span {
   font-size: 0.78rem;
   color: var(--muted);
@@ -247,15 +261,17 @@ body[data-page="about"] .gallery-tabs {
   border-radius: 12px;
 }
 .project-card p { margin: 0; font-size: 0.95rem; }
+/* footer: note + actions, always pinned to the bottom of the (equal-height) card so
+   the "Live demo may take a minute" note and the buttons line up across every card,
+   regardless of how long each description is. */
+.project-footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 .project-note {
   font-size: 0.85rem;
   color: var(--muted);
   margin: 0;
   font-style: italic;
-  margin-top: auto;
 }
-.project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 8px; }
-.project-note + .project-actions { margin-top: 0; padding-top: 0; }
+.project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .project-actions a {
   color: var(--accent);
   text-decoration: none;
@@ -294,7 +310,9 @@ body[data-page="about"] .gallery-tabs {
   border-bottom-color: var(--accent-hover);
 }
 .script-info { flex: 1 1 320px; min-width: 0; }
-.script-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+/* title on its own line, tag stack below it, on every script row (so the tags never
+   sit inline on one card and wrap on another). */
+.script-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .script-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .script-stack { display: flex; flex-wrap: wrap; gap: 4px; }
 .script-stack span {
@@ -345,10 +363,14 @@ body[data-page="about"] .gallery-tabs {
   border-bottom-color: var(--accent-hover);
 }
 .cert-logo { width: 30px; height: 30px; flex-shrink: 0; border-radius: 6px; display: block; }
+/* logo | (title + meta) grows to fill | link. Grouping title+meta in .cert-body makes
+   every cert card lay out identically; the link sits at the right and, when the card is
+   too narrow, wraps to its own line the same way on every card. */
+.cert-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .cert-card h3 { font-size: 0.95rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .cert-card .cert-meta { font-size: 0.85rem; }
 .cert-card .cert-link { font-size: 0.85rem; padding: 5px 12px; }
-.cert-meta { margin: 0 0 0 auto; font-size: 0.9rem; color: var(--muted); }
+.cert-meta { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .cert-link {
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--accent);
@@ -390,7 +412,7 @@ body[data-page="about"] .gallery-tabs {
 .cert-logo-lg { width: 50px; height: 50px; flex-shrink: 0; border-radius: 9px; display: block; }
 .cert-feature h3 { font-size: 1.2rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .cert-feature .cert-meta { margin: 0; }
-.cert-feature .cert-link { align-self: flex-start; margin-top: 6px; }
+.cert-feature .cert-link { align-self: flex-start; margin-top: auto; }
 
 /* ---------- resume ---------- */
 .section-header {
