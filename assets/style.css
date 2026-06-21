@@ -37,8 +37,12 @@ body {
 
 /* ---------- circuit background ---------- */
 .bg-circuit {
-  position: fixed; top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  position: fixed; top: 0;
+  left: 50%; transform: translateX(-50%);
+  width: min(100vw, 3840px); height: 100vh;
+  box-sizing: border-box;
+  border-left: 2px solid var(--border);
+  border-right: 2px solid var(--border);
   z-index: 0; pointer-events: none; user-select: none;
 }
 .rail-bg {
