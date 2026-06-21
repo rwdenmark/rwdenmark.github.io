@@ -68,6 +68,11 @@ body {
    that thin layer instead of re-rasterizing the static circuit pattern behind it. */
 .bg-half-left.bg-pulse  { transform: translateZ(0); }
 .bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
+/* Hold the whole pulse layer invisible for ~1.7s on each page load, then fade it in, so the
+   "lines appear after ~2s" timing is identical at every window width. The off-screen lead-in
+   by itself is width-dependent (a wide viewport reveals the start area). Runs once per load. */
+@keyframes pulse-reveal { 0%, 74% { opacity: 0; } 100% { opacity: 1; } }
+.bg-pulse { animation: pulse-reveal 2.3s linear both; }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
@@ -164,6 +169,10 @@ footer .container {
 }
 footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
 footer a:hover { color: var(--accent-hover); text-decoration: underline; }
+/* 404 page: match the site's standard inline link style */
+body[data-page="404"] main a,
+body[data-page="404"] main a:visited { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+body[data-page="404"] main a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 /* ---------- home: about + project cards ---------- */
 .section-title { font-size: 1.5rem; font-weight: 700; line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em; }
