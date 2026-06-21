@@ -78,6 +78,11 @@ body {
    that thin layer instead of re-rasterizing the static circuit pattern behind it. */
 .bg-half-left.bg-pulse  { transform: translateZ(0); }
 .bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
+/* Clip the animated layer at the wire's wrap point (1120px = where each dash cycles back to
+   the outer edge). On very wide viewports this makes a line despawn exactly where the next one
+   spawns, so the edge cadence stays in sync. On normal widths (strip < 1120) it has no effect
+   and lines still reach the content. The static circuit keeps its full width. */
+.bg-half.bg-pulse { width: min(calc(50% - 485px), 1120px); }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
