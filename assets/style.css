@@ -52,6 +52,18 @@ body {
 .bg-half-left { left: 0; }
 .bg-half-right { right: 0; transform: scaleX(-1); }
 @media (prefers-reduced-motion: reduce) { .bg-pulse { display: none; } }
+/* Pulse traces animate the dash offset in CSS instead of SMIL, throttled to ~30 updates
+   per second with steps(). The bright dashes still travel and bend along the wires, but
+   the browser only repaints at each step instead of on every display refresh, which cuts
+   CPU while the tab is visible. Step counts = duration_seconds * 30. */
+@keyframes pulse-dash {
+  from { stroke-dashoffset: -889.71; }
+  to   { stroke-dashoffset: -2075.99; }
+}
+.bg-pulse path { animation-name: pulse-dash; animation-iteration-count: infinite; }
+.bg-pulse .pa { animation-duration: 20s;    animation-timing-function: steps(600); }
+.bg-pulse .pb { animation-duration: 40s;    animation-timing-function: steps(1200); }
+.bg-pulse .pc { animation-duration: 26.67s; animation-timing-function: steps(800); }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
