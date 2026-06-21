@@ -61,9 +61,9 @@ body {
   to   { stroke-dashoffset: -2075.99; }
 }
 .bg-pulse path { animation-name: pulse-dash; animation-iteration-count: infinite; }
-.bg-pulse .pa { animation-duration: 20s;    animation-timing-function: steps(600); } /* top, 100% speed */
-.bg-pulse .pb { animation-duration: 28.57s; animation-timing-function: steps(857); } /* middle, 70% speed */
-.bg-pulse .pc { animation-duration: 23.53s; animation-timing-function: steps(706); } /* bottom, 85% speed */
+.bg-pulse .pa { animation-duration: 20s;    animation-timing-function: steps(400); } /* top, 100% speed, 20 steps/s */
+.bg-pulse .pb { animation-duration: 28.55s; animation-timing-function: steps(571); } /* middle, ~70% speed, 20 steps/s */
+.bg-pulse .pc { animation-duration: 23.55s; animation-timing-function: steps(471); } /* bottom, ~85% speed, 20 steps/s */
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
