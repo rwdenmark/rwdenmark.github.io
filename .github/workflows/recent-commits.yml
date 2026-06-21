@@ -14,7 +14,7 @@ on:
 # Shared push lock with the daily-hits workflow: both push to main and can fire on
 # the same top-of-hour minute (05:00 / 06:00 UTC). A single shared group serializes
 # them so they never push at once. cancel-in-progress is false so neither job ever
-# cancels the other mid-run — a queued run waits and then runs. This also keeps a
+# cancels the other mid-run; a queued run waits and then runs. This also keeps a
 # delayed copy of THIS hourly job from overlapping the next one (it queues instead).
 # The rebase-retry on the push step remains the correctness backstop.
 concurrency:
@@ -66,7 +66,7 @@ jobs:
 
       - name: Compute last content-update date
         run: |
-          # Date of the most recent commit that changed real content — anything except
+          # Date of the most recent commit that changed real content, anything except
           # the bot-maintained housekeeping files (.github/*, commits.json) and this file
           # itself. So the footer reflects content edits (any page, the resume PDF, new
           # About photos), not the hourly cache pushes or the daily counter commits.

@@ -4,9 +4,9 @@ Personal portfolio site for Ryan Denmark. Live at <https://rwdenmark.github.io/>
 
 ## Stack
 
-Jekyll (built-in to GitHub Pages, no extra config required). Plain HTML, CSS, and vanilla JS — no Node, no local build step.
+Jekyll (built-in to GitHub Pages, no extra config required). Plain HTML, CSS, and vanilla JS. No Node, no local build step.
 
-Layout and shared chrome (header, footer, animated circuit background, copy-to-clipboard toast) live in `_layouts/default.html`. Styles in `assets/style.css`. Client-side JS in `assets/script.js`. Each page (`index.html`, `resume.html`, `about.html`) is just front matter plus page-specific content.
+Layout and shared chrome (header, footer, animated circuit background, copy-to-clipboard toast) live in `_layouts/default.html`. Styles in `assets/style.css`. Client-side JS in `assets/script.js`. Each page (`index.html`, `projects.html`, `about.html`, `references.html`, `resume.html`) is just front matter plus page-specific content.
 
 ## Layout
 
@@ -15,16 +15,17 @@ _config.yml                 Jekyll config
 _layouts/default.html       Shared page chrome
 assets/style.css            All CSS
 assets/script.js            All client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed)
-index.html                  Home: about + project cards
+index.html                  Home: intro, testimonials, certifications
+projects.html               Projects, utilities, recent-activity feed
+about.html                  About + photo galleries (Boundary Waters, Jax, Cats)
+references.html             Full LinkedIn recommendations
 resume.html                 Resume page (mirrors Resume_Ryan_Denmark.pdf)
-about.html                  About + photo galleries (Jax, Boundary Waters, Cats)
+404.html                    Not-found page
 .github/workflows/          Daily hit-count email + hourly recent-commits cache
 favicon.svg, favicon.ico    Favicons
 og-image.png                Open Graph preview image
 projects/                   Project card thumbnails
-jax/                        Photos for the gallery
-boundary-waters/            Photos for the gallery
-cats/                       Photos for the gallery
+jax/, boundary-waters/, cats/   Photos for the About galleries
 commits.json                Cached recent-commits feed (generated hourly by the workflow)
 ```
 

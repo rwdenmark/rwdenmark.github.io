@@ -15,7 +15,7 @@
 html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* keyboard focus ring — visible only on tab navigation, not mouse clicks */
+/* keyboard focus ring: visible only on tab navigation, not mouse clicks */
 :focus { outline: none; }
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -60,7 +60,7 @@ body {
   from { stroke-dashoffset: -889.71; }
   to   { stroke-dashoffset: -2075.99; }
 }
-.bg-pulse path { animation-name: pulse-dash; animation-iteration-count: infinite; }
+.bg-pulse use { animation-name: pulse-dash; animation-iteration-count: infinite; }
 .bg-pulse .pa { animation-duration: 20s;       animation-timing-function: steps(600); } /* top, 100% speed, 30 steps/s */
 .bg-pulse .pb { animation-duration: 28.56667s; animation-timing-function: steps(857); } /* middle, ~70% speed, 30 steps/s */
 .bg-pulse .pc { animation-duration: 23.53333s; animation-timing-function: steps(706); } /* bottom, ~85% speed, 30 steps/s */
@@ -185,20 +185,23 @@ body[data-page="about"] .gallery-tabs {
 }
 
 /* testimonial + reference cards */
-.testimonial-card, .reference-card {
+/* shared accent-card surface + hover (testimonials, references, utilities, certs) */
+.testimonial-card, .reference-card, .script-row, .cert-card, .cert-feature {
   background: var(--card-bg);
   border: 2px solid var(--border);
   border-left: 4px solid var(--accent);
   border-radius: 8px;
-  padding: 20px 24px;
-  margin-bottom: 16px;
   transition: transform 200ms ease, border-color 200ms ease;
 }
-.testimonial-card:hover, .reference-card:hover {
+.testimonial-card:hover, .reference-card:hover, .script-row:hover, .cert-card:hover, .cert-feature:hover {
   transform: translateY(-2px);
   border-top-color: var(--accent-hover);
   border-right-color: var(--accent-hover);
   border-bottom-color: var(--accent-hover);
+}
+.testimonial-card, .reference-card {
+  padding: 20px 24px;
+  margin-bottom: 16px;
 }
 .testimonial-card blockquote, .reference-card blockquote {
   margin: 0 0 12px;
@@ -287,21 +290,22 @@ body[data-page="about"] .gallery-tabs {
   font-style: italic;
 }
 .project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-.project-actions a {
+/* shared link-button surface + hover (project, utility, cert, resume actions) */
+.project-actions a, .script-actions a, .cert-link, .download-pdf {
   color: var(--accent);
   text-decoration: none;
-  padding: 6px 14px;
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.9rem;
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
-.project-actions a:hover {
+.project-actions a:hover, .script-actions a:hover, .cert-link:hover, .download-pdf:hover {
   border-color: var(--accent);
   background: rgba(47, 129, 247, 0.08);
   color: var(--accent-hover);
   text-decoration: none;
 }
+.project-actions a { padding: 6px 14px; }
 
 /* ---------- utilities (cards matching the cert-card style) ---------- */
 .scripts-list { display: flex; flex-direction: column; gap: 10px; }
@@ -312,17 +316,6 @@ body[data-page="about"] .gallery-tabs {
   flex-wrap: wrap;
   gap: 12px 18px;
   padding: 11px 18px;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
-  transition: transform 200ms ease, border-color 200ms ease;
-}
-.script-row:hover {
-  transform: translateY(-2px);
-  border-top-color: var(--accent-hover);
-  border-right-color: var(--accent-hover);
-  border-bottom-color: var(--accent-hover);
 }
 .script-info { flex: 1 1 320px; min-width: 0; }
 /* title on its own line, tag stack below it, on every script row (so the tags never
@@ -340,22 +333,7 @@ body[data-page="about"] .gallery-tabs {
 }
 .script-info p { margin: 5px 0 0; font-size: 0.9rem; color: var(--muted); }
 .script-actions { flex: 0 0 auto; align-self: center; }
-.script-actions a {
-  color: var(--accent);
-  text-decoration: none;
-  padding: 6px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-.script-actions a:hover {
-  border-color: var(--accent);
-  background: rgba(47, 129, 247, 0.08);
-  color: var(--accent-hover);
-  text-decoration: none;
-}
+.script-actions a { padding: 6px 14px; white-space: nowrap; }
 
 /* ---------- certifications (homepage) ---------- */
 .certs { display: flex; flex-direction: column; gap: 10px; }
@@ -363,18 +341,7 @@ body[data-page="about"] .gallery-tabs {
   display: flex;
   align-items: center;
   gap: 6px 14px;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
   padding: 8px 18px;
-  transition: transform 200ms ease, border-color 200ms ease;
-}
-.cert-card:hover {
-  transform: translateY(-2px);
-  border-top-color: var(--accent-hover);
-  border-right-color: var(--accent-hover);
-  border-bottom-color: var(--accent-hover);
 }
 .cert-logo { width: 30px; height: 30px; flex-shrink: 0; border-radius: 6px; display: block; }
 /* logo | (title + meta) grows to fill | link. Grouping title+meta in .cert-body makes
@@ -387,20 +354,8 @@ body[data-page="about"] .gallery-tabs {
 .cert-meta { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .cert-link {
   display: inline-flex; align-items: center; gap: 6px;
-  color: var(--accent);
-  text-decoration: none;
   padding: 6px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
   white-space: nowrap;
-  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-.cert-link:hover {
-  border-color: var(--accent);
-  background: rgba(47, 129, 247, 0.08);
-  color: var(--accent-hover);
-  text-decoration: none;
 }
 
 /* ---------- featured credentials (larger boxes above the cert list) ---------- */
@@ -409,18 +364,7 @@ body[data-page="about"] .gallery-tabs {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
   padding: 14px 20px;
-  transition: transform 200ms ease, border-color 200ms ease;
-}
-.cert-feature:hover {
-  transform: translateY(-2px);
-  border-top-color: var(--accent-hover);
-  border-right-color: var(--accent-hover);
-  border-bottom-color: var(--accent-hover);
 }
 .cert-feature-head { display: flex; align-items: center; gap: 14px; }
 .cert-logo-lg { width: 50px; height: 50px; flex-shrink: 0; border-radius: 9px; display: block; }
@@ -445,20 +389,8 @@ body[data-page="about"] .gallery-tabs {
 }
 .download-pdf {
   display: inline-flex; align-items: center; gap: 8px;
-  color: var(--accent);
-  text-decoration: none;
   padding: 8px 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
   white-space: nowrap;
-  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-.download-pdf:hover {
-  border-color: var(--accent);
-  background: rgba(47, 129, 247, 0.08);
-  color: var(--accent-hover);
-  text-decoration: none;
 }
 .download-pdf svg { width: 14px; height: 14px; }
 .resume-section-title {
@@ -510,9 +442,7 @@ body[data-page="about"] .gallery-tabs {
 .education-degree { margin: 0; font-size: 0.98rem; }
 .education-dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 
-/* ---------- jax gallery ---------- */
-.page-title { font-size: 1.75rem; font-weight: 700; line-height: 1; margin: 0 0 8px; letter-spacing: -0.01em; }
-.page-subtitle { color: var(--muted); margin: 0 0 32px; }
+/* ---------- photo galleries (About page) ---------- */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
 .gallery[hidden] { display: none; }  /* honor the hidden attr; .gallery display:grid would otherwise override it */
 .card {
@@ -529,7 +459,7 @@ body[data-page="about"] .gallery-tabs {
 }
 .card:hover img { transform: scale(1.03); }
 
-/* about page: photo gallery tabs (Jax / Boundary Waters) */
+/* about page: photo gallery tabs (Boundary Waters / Jax / Cats) */
 .gallery-tabs { display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; margin: 32px 0 16px; }
 .gallery-tab {
   font-family: inherit;
@@ -572,110 +502,4 @@ body[data-page="about"] .gallery-tabs {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  flex-shrink: 0;
-}
-.commit-repo:hover { color: var(--accent-hover); text-decoration: underline; }
-.commit-msg {
-  color: var(--text);
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.commit-time {
-  color: var(--muted);
-  font-size: 0.85rem;
-  flex-shrink: 0;
-  font-variant-numeric: tabular-nums;
-}
-@media (max-width: 520px) {
-  .commit-item { flex-wrap: wrap; gap: 6px 12px; }
-  .commit-msg { flex-basis: 100%; white-space: normal; }
-}
-
-/* ---------- copy-to-clipboard toast ---------- */
-.copy-toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  color: var(--text);
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  z-index: 100;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  pointer-events: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  max-width: calc(100vw - 48px);
-}
-.copy-toast.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ---------- responsive ---------- */
-@media (max-width: 1044px) {
-  header .container { background: transparent; border: none; padding: 0 32px; }
-  header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
-  footer { background: var(--header-bg); border-top: 2px solid var(--border); }
-  footer .container { background: transparent; border: none; }
-}
-@media (max-width: 640px) {
-  .skill-row { grid-template-columns: 1fr; gap: 4px; }
-}
-@media (max-width: 520px) {
-  header .container { padding: 20px 20px; }
-  main { padding: 20px 0; }
-  .container { padding: 0 20px; }
-  h1 { font-size: 1.875rem; }
-  .gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  html { scroll-behavior: auto; }
-  .copy-toast { transition: opacity 0.01ms; transform: none; }
-}
-
-/* ---------- print: clean black-on-white for the resume ---------- */
-@media print {
-  :root {
-    --canvas: #ffffff;
-    --header-bg: #ffffff;
-    --card-bg: #ffffff;
-    --border: #cccccc;
-    --text: #000000;
-    --muted: #555555;
-    --accent: #000000;
-    --accent-hover: #000000;
-  }
-  body { background: #ffffff; color: #000000; }
-  .bg-circuit, .rail-bg, body::before, body::after { display: none !important; }
-  header .container, footer .container {
-    background: #ffffff; border: none; padding: 0;
-  }
-  .links, .download-pdf, .copy-toast { display: none !important; }
-  header { border-bottom: 1px solid #cccccc; padding: 0 0 8px; margin-bottom: 16px; }
-  footer { display: none; }
-  h1 { font-size: 1.5rem; }
-  .resume-section-title {
-    border-bottom: 1px solid #000000;
-    page-break-after: avoid;
-    margin-top: 16px;
-  }
-  .job, .role, .skill-row {
-    page-break-inside: avoid;
-  }
-  a { color: #000000; text-decoration: none; }
-  .role ul { padding-left: 16px; }
-  .role li { font-size: 0.9rem; margin-bottom: 2px; }
-}
+  flex-s

@@ -3,8 +3,8 @@
 
   // ---------- footer "Last updated": show the most recent CONTENT change, not the deploy time.
   // A workflow writes /last-updated.txt (YYYY-MM-DD) from git history, excluding the
-  // housekeeping commits (.github/*, commits.json) so the date tracks real edits — any
-  // page, the resume, new About photos — and not the hourly cache / daily counter pushes.
+  // housekeeping commits (.github/*, commits.json) so the date tracks real edits (any
+  // page, the resume, new About photos) and not the hourly cache or daily counter pushes.
   // Falls back to the Jekyll-rendered site.time already in the span if the file is missing.
   (function () {
     var els = document.querySelectorAll('.last-updated');
@@ -102,8 +102,8 @@
   //
   // Owner opt-out so my own visits don't inflate the count. Visiting the site with
   // ?nocount=1 once stores a flag in THIS browser's localStorage and suppresses the
-  // counter from then on; ?nocount=0 clears it. Invisible to every other visitor —
-  // no UI, no prompt — their visits always count.
+  // counter from then on; ?nocount=0 clears it. Invisible to every other visitor:
+  // no UI, no prompt, their visits always count.
   var path = window.location.pathname;
   var isHome = path === '/' || path.endsWith('/index.html');
 

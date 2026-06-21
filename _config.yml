@@ -12,5 +12,3 @@ exclude:
 plugins:
   - jekyll-sitemap
 
-# Disable Jekyll's default markdown processing on .html files (they're already HTML)
-markdown: kramdown
