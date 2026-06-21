@@ -502,4 +502,110 @@ body[data-page="about"] .gallery-tabs {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  flex-s
+  flex-shrink: 0;
+}
+.commit-repo:hover { color: var(--accent-hover); text-decoration: underline; }
+.commit-msg {
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.commit-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 520px) {
+  .commit-item { flex-wrap: wrap; gap: 6px 12px; }
+  .commit-msg { flex-basis: 100%; white-space: normal; }
+}
+
+/* ---------- copy-to-clipboard toast ---------- */
+.copy-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  max-width: calc(100vw - 48px);
+}
+.copy-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1044px) {
+  header .container { background: transparent; border: none; padding: 0 32px; }
+  header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
+  footer { background: var(--header-bg); border-top: 2px solid var(--border); }
+  footer .container { background: transparent; border: none; }
+}
+@media (max-width: 640px) {
+  .skill-row { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 520px) {
+  header .container { padding: 20px 20px; }
+  main { padding: 20px 0; }
+  .container { padding: 0 20px; }
+  h1 { font-size: 1.875rem; }
+  .gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .copy-toast { transition: opacity 0.01ms; transform: none; }
+}
+
+/* ---------- print: clean black-on-white for the resume ---------- */
+@media print {
+  :root {
+    --canvas: #ffffff;
+    --header-bg: #ffffff;
+    --card-bg: #ffffff;
+    --border: #cccccc;
+    --text: #000000;
+    --muted: #555555;
+    --accent: #000000;
+    --accent-hover: #000000;
+  }
+  body { background: #ffffff; color: #000000; }
+  .bg-circuit, .rail-bg, body::before, body::after { display: none !important; }
+  header .container, footer .container {
+    background: #ffffff; border: none; padding: 0;
+  }
+  .links, .download-pdf, .copy-toast { display: none !important; }
+  header { border-bottom: 1px solid #cccccc; padding: 0 0 8px; margin-bottom: 16px; }
+  footer { display: none; }
+  h1 { font-size: 1.5rem; }
+  .resume-section-title {
+    border-bottom: 1px solid #000000;
+    page-break-after: avoid;
+    margin-top: 16px;
+  }
+  .job, .role, .skill-row {
+    page-break-inside: avoid;
+  }
+  a { color: #000000; text-decoration: none; }
+  .role ul { padding-left: 16px; }
+  .role li { font-size: 0.9rem; margin-bottom: 2px; }
+}
