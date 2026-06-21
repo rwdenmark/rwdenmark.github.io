@@ -61,9 +61,13 @@ body {
   to   { stroke-dashoffset: -2075.99; }
 }
 .bg-pulse path { animation-name: pulse-dash; animation-iteration-count: infinite; }
-.bg-pulse .pa { animation-duration: 20s;    animation-timing-function: steps(400); } /* top, 100% speed, 20 steps/s */
-.bg-pulse .pb { animation-duration: 28.55s; animation-timing-function: steps(571); } /* middle, ~70% speed, 20 steps/s */
-.bg-pulse .pc { animation-duration: 23.55s; animation-timing-function: steps(471); } /* bottom, ~85% speed, 20 steps/s */
+.bg-pulse .pa { animation-duration: 20s;       animation-timing-function: steps(600); } /* top, 100% speed, 30 steps/s */
+.bg-pulse .pb { animation-duration: 28.56667s; animation-timing-function: steps(857); } /* middle, ~70% speed, 30 steps/s */
+.bg-pulse .pc { animation-duration: 23.53333s; animation-timing-function: steps(706); } /* bottom, ~85% speed, 30 steps/s */
+/* Promote the moving traces to their own GPU layer so a dash repaint only touches
+   that thin layer instead of re-rasterizing the static circuit pattern behind it. */
+.bg-half-left.bg-pulse  { transform: translateZ(0); }
+.bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
