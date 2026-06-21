@@ -1,6 +1,12 @@
 [
   {
     "repo": "oci-grab-arm",
+    "message": "Fixing readme and gitignore",
+    "date": "2026-06-20T22:08:00Z",
+    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/ab123b5481ca7026d8e0aac7a2a5ce4eb5da3598"
+  },
+  {
+    "repo": "oci-grab-arm",
     "message": "Updating README",
     "date": "2026-06-20T21:32:14Z",
     "url": "https://github.com/rwdenmark/oci-grab-arm/commit/d98c100f2967f660b2c124a72a25ec0714682a6f"
@@ -22,11 +28,5 @@
     "message": "Initial commit: Spring Boot X12 837 to JSON parser",
     "date": "2026-06-03T04:54:40Z",
     "url": "https://github.com/rwdenmark/x12-parser/commit/99073e86b8b49328e983a141a66513b0befb5d64"
-  },
-  {
-    "repo": "spring-boot-starter",
-    "message": "Adding splice tests",
-    "date": "2026-05-31T18:41:27Z",
-    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a195b60718c1f078dc76ee5f5d471e4b7fa22acf"
   }
 ]
