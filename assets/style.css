@@ -347,7 +347,6 @@ body[data-page="about"] .gallery-tabs {
 .cert-card {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 6px 14px;
   background: var(--card-bg);
   border: 2px solid var(--border);
