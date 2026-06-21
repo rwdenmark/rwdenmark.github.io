@@ -70,12 +70,12 @@ header .container {
   border-left: 2px solid var(--border);
   border-right: 2px solid var(--border);
   border-bottom: 2px solid var(--border);
-  padding: 12px 32px 20px;
+  padding: 14px 32px 16px;
 }
 .links {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
-  margin-top: 20px;
+  margin-top: 22px;
   font-size: 0.95rem;
 }
 .links-group { display: flex; flex-wrap: wrap; gap: 20px; }
