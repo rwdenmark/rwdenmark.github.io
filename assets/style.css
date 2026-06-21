@@ -58,7 +58,7 @@ body {
    CPU while the tab is visible. Step counts = duration_seconds * 30. */
 @keyframes pulse-dash {
   from { stroke-dashoffset: -889.71; }
-  to   { stroke-dashoffset: -2075.99; }
+  to   { stroke-dashoffset: -2115.99; }
 }
 /* Each line runs two animations: the looping dash, plus a one-time fade-in (line-in). The
    line stays at opacity 0 until its dash first reaches the outer edge, then reveals. Its delay
@@ -78,11 +78,6 @@ body {
    that thin layer instead of re-rasterizing the static circuit pattern behind it. */
 .bg-half-left.bg-pulse  { transform: translateZ(0); }
 .bg-half-right.bg-pulse { transform: scaleX(-1) translateZ(0); }
-/* Clip the animated layer at the wire's wrap point (1120px = where each dash cycles back to
-   the outer edge). On very wide viewports this makes a line despawn exactly where the next one
-   spawns, so the edge cadence stays in sync. On normal widths (strip < 1120) it has no effect
-   and lines still reach the content. The static circuit keeps its full width. */
-.bg-half.bg-pulse { width: min(calc(50% - 485px), 1120px); }
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
