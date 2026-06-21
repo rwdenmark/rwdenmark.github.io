@@ -166,4 +166,78 @@
       })
       .catch(function () { /* silently skip if the cache file is missing or unreadable */ });
   })();
+
+  // ---------- pulse background: fill the visible height with animated wire tiles.
+  // The de-patterned pulse uses fixed 280px tiles; a tall (zoomed-out) viewport would run
+  // out of rows and leave the lower area empty. This builds just enough tiles to cover the
+  // height and adds more on resize/zoom. Each tile holds 3 lines with spaced random starts
+  // and a 2-16s reveal; the first tile pins the 2.0s and 16.0s endpoints. Left/right stay
+  // mirror-symmetric (same delays; the right strip is flipped in CSS).
+  (function () {
+    var svgs = document.querySelectorAll('.bg-pulse');
+    if (!svgs.length) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var TILE = 280, MAXT = 30, L = 1226.28, START_S = 889.71, DASH = 18, STEP = 1 / 30;
+    var S_MIN = 521.45, S_MAX = 1085.652;
+    var DUR = { pa: 20, pb: 857 / 30, pc: 706 / 30 };
+    var V = [[0,40],[70,40],[90,60],[150,60],[170,40],[350,40],[370,60],[430,60],[450,40],
+             [630,40],[650,60],[710,60],[730,40],[910,40],[930,60],[990,60],[1010,40],[1120,40]];
+    var seg = [], acc = 0, i;
+    for (i = 1; i < V.length; i++) {
+      var d = Math.hypot(V[i][0] - V[i-1][0], V[i][1] - V[i-1][1]);
+      seg.push([acc, acc + d, V[i-1][0], V[i][0]]); acc += d;
+    }
+    function sx(v) {
+      for (var j = 0; j < seg.length; j++) {
+        var g = seg[j];
+        if (v >= g[0] && v <= g[1]) return g[2] + (g[3] - g[2]) * ((v - g[0]) / (g[1] - g[0]));
+      }
+      return 1120;
+    }
+    function rnd() { return S_MIN + Math.random() * (S_MAX - S_MIN); }
+    function delay(c, s) {
+      var frac = (((s - START_S) / L) % 1 + 1) % 1, m = Math.round((frac * DUR[c]) / STEP);
+      var ph = m === 0 ? '0s' : '-' + (+(m * STEP).toFixed(5)) + 's';
+      return ph + ', ' + (+(DUR[c] * (L - DASH - s) / L).toFixed(2)) + 's';
+    }
+    function band(first) {
+      var a, b, c, xs;
+      for (var k = 0; k < 3000; k++) {
+        a = first ? S_MAX : rnd(); b = first ? S_MIN : rnd(); c = rnd();
+        xs = [sx(a), sx(b), sx(c)];
+        if (Math.min(Math.abs(xs[0]-xs[1]), Math.abs(xs[0]-xs[2]), Math.abs(xs[1]-xs[2])) >= 100) break;
+      }
+      return { pa: delay('pa', a), pb: delay('pb', b), pc: delay('pc', c) };
+    }
+    var bands = [], rows = ['pa', 'pb', 'pc'];
+    function fill() {
+      var need = Math.min(MAXT, Math.ceil(window.innerHeight / TILE) + 1);
+      while (bands.length < need) bands.push(band(bands.length === 0));
+      for (var n = 0; n < svgs.length; n++) {
+        var grp = svgs[n].querySelector('g');
+        if (!grp) continue;
+        var cur = grp.children.length;
+        while (cur < need) {
+          var tg = document.createElementNS(NS, 'g');
+          tg.setAttribute('transform', 'translate(0,' + (cur * TILE) + ')');
+          for (var r = 0; r < 3; r++) {
+            var u = document.createElementNS(NS, 'use');
+            u.setAttribute('class', rows[r]);
+            u.setAttribute('style', 'animation-delay:' + bands[cur][rows[r]]);
+            u.setAttribute('href', '#wire-' + rows[r][1]);
+            tg.appendChild(u);
+          }
+          grp.appendChild(tg); cur++;
+        }
+        while (cur > need) { grp.removeChild(grp.lastChild); cur--; }
+      }
+    }
+    for (var z = 0; z < svgs.length; z++) {
+      var sg = svgs[z].querySelector('g');
+      if (sg) sg.textContent = '';
+    }
+    fill();
+    var tm;
+    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(fill, 200); });
+  })();
 })();
