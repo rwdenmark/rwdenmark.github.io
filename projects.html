@@ -11,7 +11,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
-    <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}" loading="lazy" />
+    <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}" loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"{% if forloop.index <= 3 %} fetchpriority="high"{% endif %} decoding="async" />
     <h3>{{ p.title }}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
