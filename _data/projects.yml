@@ -18,14 +18,14 @@
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
-- title: X12 Parser
-  thumb: /projects/X12-Parser.webp
+- title: EDI Format Converter
+  thumb: /projects/EDI-Format-Converter.webp
   thumb_style: "object-fit: fill; padding: 12px; box-sizing: border-box; background: var(--canvas);"
   alt: "X12 Parser web UI showing a raw 837 claim on the left and its parsed JSON output on the right, with Load 837P, 837I, and 837D buttons in the header."
   width: 1200
   height: 579
   stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
-  description: "Parses X12 837 healthcare claim files (Professional, Institutional, Dental) into structured JSON. Detects the TR3 variant and walks the HL hierarchy to return billing, subscriber, patient, claim, and service-line data."
+  description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
   note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/x12-parser
+  github: https://github.com/rwdenmark/edi-format-converter
   demo: https://x12-parser.onrender.com/
