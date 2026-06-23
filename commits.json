@@ -1,6 +1,12 @@
 [
   {
     "repo": "edi-format-converter",
+    "message": "Fixing text runoff and allowing from equals to conversion",
+    "date": "2026-06-23T17:55:28Z",
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/130a09ceb23f7388acab1e184eb42ef667c03470"
+  },
+  {
+    "repo": "edi-format-converter",
     "message": "Updating frontend, rename to edi-format-converter",
     "date": "2026-06-23T17:35:48Z",
     "url": "https://github.com/rwdenmark/edi-format-converter/commit/4593bff117cbf48337128c2c09f062eb9253897d"
@@ -22,11 +28,5 @@
     "message": "OCI Always Free A1 capacity-grab script",
     "date": "2026-06-20T20:41:08Z",
     "url": "https://github.com/rwdenmark/oci-grab-arm/commit/b30d29dad911097e443642d321afc7f5f561cef2"
-  },
-  {
-    "repo": "edi-format-converter",
-    "message": "Switch Render deploy from native Java to Docker",
-    "date": "2026-06-03T05:02:03Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/dcb6a965d001228a76ce31ffbbead7bd7aa49a08"
   }
 ]
