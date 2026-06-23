@@ -1,32 +1,32 @@
 [
   {
     "repo": "edi-format-converter",
-    "message": "Fixing text runoff and allowing from equals to conversion",
-    "date": "2026-06-23T17:55:28Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/130a09ceb23f7388acab1e184eb42ef667c03470"
+    "message": "Adding health endpoint",
+    "date": "2026-06-23T23:56:11Z",
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/11d5ad8c8a69468c0a1444c1bb5bc8ee7b04b3a9"
+  },
+  {
+    "repo": "ranger-survivor",
+    "message": "Adding health endpoint",
+    "date": "2026-06-23T23:55:38Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/9906b0f4adf5bf72d1337c0bcc8c834796510f9b"
+  },
+  {
+    "repo": "wow-explorer",
+    "message": "Adding health endpoint",
+    "date": "2026-06-23T23:55:11Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/5fbffc40bc229d46104ea78a70f9492355a28624"
   },
   {
     "repo": "edi-format-converter",
-    "message": "Updating frontend, rename to edi-format-converter",
-    "date": "2026-06-23T17:35:48Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/4593bff117cbf48337128c2c09f062eb9253897d"
+    "message": "allow Tailscale Funnel origin in CORS config",
+    "date": "2026-06-23T23:39:12Z",
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/0d9c5c76dc92b93801d1fab2d0203926e434671a"
   },
   {
-    "repo": "oci-grab-arm",
-    "message": "Fixing readme and gitignore",
-    "date": "2026-06-20T22:08:00Z",
-    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/ab123b5481ca7026d8e0aac7a2a5ce4eb5da3598"
-  },
-  {
-    "repo": "oci-grab-arm",
-    "message": "Updating README",
-    "date": "2026-06-20T21:32:14Z",
-    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/d98c100f2967f660b2c124a72a25ec0714682a6f"
-  },
-  {
-    "repo": "oci-grab-arm",
-    "message": "OCI Always Free A1 capacity-grab script",
-    "date": "2026-06-20T20:41:08Z",
-    "url": "https://github.com/rwdenmark/oci-grab-arm/commit/b30d29dad911097e443642d321afc7f5f561cef2"
+    "repo": "wow-explorer",
+    "message": "Set Vite base to relative and make the api.ts calls relative",
+    "date": "2026-06-23T23:21:07Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/82f27d2fec6e7b03eef04f1d1ade6fb9de9655fc"
   }
 ]
