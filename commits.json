@@ -1,5 +1,11 @@
 [
   {
+    "repo": "edi-format-converter",
+    "message": "Updating frontend, rename to edi-format-converter",
+    "date": "2026-06-23T17:35:48Z",
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/4593bff117cbf48337128c2c09f062eb9253897d"
+  },
+  {
     "repo": "oci-grab-arm",
     "message": "Fixing readme and gitignore",
     "date": "2026-06-20T22:08:00Z",
@@ -18,15 +24,9 @@
     "url": "https://github.com/rwdenmark/oci-grab-arm/commit/b30d29dad911097e443642d321afc7f5f561cef2"
   },
   {
-    "repo": "x12-parser",
+    "repo": "edi-format-converter",
     "message": "Switch Render deploy from native Java to Docker",
     "date": "2026-06-03T05:02:03Z",
-    "url": "https://github.com/rwdenmark/x12-parser/commit/dcb6a965d001228a76ce31ffbbead7bd7aa49a08"
-  },
-  {
-    "repo": "x12-parser",
-    "message": "Initial commit: Spring Boot X12 837 to JSON parser",
-    "date": "2026-06-03T04:54:40Z",
-    "url": "https://github.com/rwdenmark/x12-parser/commit/99073e86b8b49328e983a141a66513b0befb5d64"
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/dcb6a965d001228a76ce31ffbbead7bd7aa49a08"
   }
 ]
