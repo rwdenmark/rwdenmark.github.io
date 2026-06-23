@@ -21,11 +21,11 @@
 - title: EDI Format Converter
   thumb: /projects/EDI-Format-Converter.webp
   thumb_style: "object-fit: fill; padding: 12px; box-sizing: border-box; background: var(--canvas);"
-  alt: "X12 Parser web UI showing a raw 837 claim on the left and its parsed JSON output on the right, with Load 837P, 837I, and 837D buttons in the header."
+  alt: "EDI Format Converter web UI showing a raw 837 claim on the left and its parsed JSON output on the right, with Load 837P, 837I, and 837D buttons in the header."
   width: 1200
   height: 579
   stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
   description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/edi-format-converter
-  demo: https://x12-parser.onrender.com/
+  demo: https://edi-format-converter.onrender.com
