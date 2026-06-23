@@ -8,6 +8,7 @@
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/wow-explorer
   demo: https://wow-explorer.onrender.com/
+  home: https://rdenmark.savannah-luma.ts.net/wow/
 - title: Ranger Survivor
   thumb: /projects/ranger-survivor.webp
   alt: "Top-down view of Ranger Survivor showing the player character with bow, a skeleton enemy, grass tiles, water, trees, and corner forts."
@@ -18,6 +19,7 @@
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/ranger/
 - title: EDI Format Converter
   thumb: /projects/EDI-Format-Converter.webp
   thumb_style: "object-fit: fill; padding: 12px; box-sizing: border-box; background: var(--canvas);"
@@ -29,3 +31,4 @@
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/edi-format-converter
   demo: https://edi-format-converter.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/edi/
