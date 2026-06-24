@@ -127,6 +127,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
           online = res.ok;
         } catch (_) { online = false; }
         projDots.forEach((d) => { d.style.display = online ? "inline-block" : "none"; });
+        // When the self-hosted box is up the demo loads instantly, so drop the cold-start note.
+        document.querySelectorAll(".project-note").forEach((n) => { n.style.display = online ? "none" : ""; });
       }
       refreshStatus();
       setInterval(refreshStatus, 30000);
