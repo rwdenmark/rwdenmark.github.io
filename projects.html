@@ -85,7 +85,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
       // Open the tab now, synchronously, so the browser treats it as a user action
       // (an async window.open after the fetch would be blocked as a popup).
-      const tab = window.open("about:blank", "_blank");
+      const tab = window.open("", "_blank");
+      if (tab) tab.document.write('<!doctype html><meta name="color-scheme" content="dark"><title>Connecting…</title><body style="margin:0;background:#0d1117"></body>');
       const home = link.dataset.home;
       const cloud = link.getAttribute("href"); // Render fallback from the template
       const label = link.textContent;

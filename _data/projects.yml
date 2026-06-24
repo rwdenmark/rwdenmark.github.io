@@ -32,3 +32,14 @@
   github: https://github.com/rwdenmark/edi-format-converter
   demo: https://edi-format-converter.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/edi/
+- title: Steam Analyzer
+  thumb: /projects/steam-analyzer.webp
+  alt: "Steam Analyzer dashboard for profile Zeu showing 186 games owned, 24,635.1 hours played, 56 never played, 30.1% backlog, and Play Next picks Against the Storm and Ori and the Blind Forest."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
+  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/steam-analyzer
+  demo: https://steam-analyzer.onrender.com/
+  home: https://rdenmark.savannah-luma.ts.net/steam/
