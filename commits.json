@@ -1,32 +1,32 @@
 [
   {
-    "repo": "wow-explorer",
-    "message": "Parallelize character lookup with virtual threads",
-    "date": "2026-06-24T02:46:06Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/cc1905ccb2384d2fda64900a5c99e6d3225b0747"
+    "repo": "steam-analyzer",
+    "message": "Adding health endpoint",
+    "date": "2026-06-24T09:06:11Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/c7bef2400c68a57165cd1d6a4e39a11416920f81"
   },
   {
-    "repo": "edi-format-converter",
-    "message": "Adding health endpoint",
-    "date": "2026-06-23T23:56:11Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/11d5ad8c8a69468c0a1444c1bb5bc8ee7b04b3a9"
+    "repo": "wow-explorer",
+    "message": "Adding dark color scheme",
+    "date": "2026-06-24T08:56:55Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/36bdad9275e507527a36f1889a5757485e7b1526"
+  },
+  {
+    "repo": "steam-analyzer",
+    "message": "Adding dark color scheme",
+    "date": "2026-06-24T08:56:40Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/59fe0c2280d1ec694a3f497309fd82354579e4fc"
   },
   {
     "repo": "ranger-survivor",
-    "message": "Adding health endpoint",
-    "date": "2026-06-23T23:55:38Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/9906b0f4adf5bf72d1337c0bcc8c834796510f9b"
+    "message": "Adding dark color scheme",
+    "date": "2026-06-24T08:56:23Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/ab58e0646460deeb044b5da0dfd898d9cdb54373"
   },
   {
-    "repo": "wow-explorer",
-    "message": "Adding health endpoint",
-    "date": "2026-06-23T23:55:11Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/5fbffc40bc229d46104ea78a70f9492355a28624"
-  },
-  {
-    "repo": "edi-format-converter",
-    "message": "allow Tailscale Funnel origin in CORS config",
-    "date": "2026-06-23T23:39:12Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/0d9c5c76dc92b93801d1fab2d0203926e434671a"
+    "repo": "steam-analyzer",
+    "message": "Initial commit: Steam Analyzer",
+    "date": "2026-06-24T08:05:58Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/5e9471cc2a9287f06508c067e86c4795940c3738"
   }
 ]
