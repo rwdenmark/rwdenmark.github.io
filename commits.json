@@ -1,5 +1,11 @@
 [
   {
+    "repo": "wow-explorer",
+    "message": "Parallelize character lookup with virtual threads",
+    "date": "2026-06-24T02:46:06Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/cc1905ccb2384d2fda64900a5c99e6d3225b0747"
+  },
+  {
     "repo": "edi-format-converter",
     "message": "Adding health endpoint",
     "date": "2026-06-23T23:56:11Z",
@@ -22,11 +28,5 @@
     "message": "allow Tailscale Funnel origin in CORS config",
     "date": "2026-06-23T23:39:12Z",
     "url": "https://github.com/rwdenmark/edi-format-converter/commit/0d9c5c76dc92b93801d1fab2d0203926e434671a"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Set Vite base to relative and make the api.ts calls relative",
-    "date": "2026-06-23T23:21:07Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/82f27d2fec6e7b03eef04f1d1ade6fb9de9655fc"
   }
 ]
