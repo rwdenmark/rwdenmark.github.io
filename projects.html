@@ -7,7 +7,10 @@ description: Personal projects by Ryan Denmark - Spring Boot, REST APIs, Postgre
 og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth integrations, PostgreSQL, and live demos.
 ---
 
-<h2 class="section-title">Projects</h2>
+<style>
+  .node-dot { display: none; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; vertical-align: middle; margin-left: 8px; }
+</style>
+<h2 class="section-title">Projects <span id="node-dot" title="Self-hosted node online"></span></h2>
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
@@ -107,5 +110,28 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
       if (tab) { tab.location = target; }
       else { window.location.href = target; } // popup blocked: fall back to same tab
     });
+
+    // Self-hosted node status (mainly for me). Probes the EDI app's health endpoint,
+    // which has no database, so it is safe to poll without keeping Neon awake. EDI runs
+    // on the same box as the others, so it is a reliable "is the home node up" signal.
+    const dot = document.getElementById("node-dot");
+    const ediLink = [...document.querySelectorAll("a.demo-link[data-home]")]
+      .find((l) => l.dataset.home.includes("/edi"));
+    if (dot && ediLink) {
+      const pingUrl = withSlash(ediLink.dataset.home) + HEALTH;
+      async function refreshStatus() {
+        let online = false;
+        try {
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort(), 2000);
+          const res = await fetch(pingUrl, { signal: ctrl.signal, cache: "no-store" });
+          clearTimeout(t);
+          online = res.ok;
+        } catch (_) { online = false; }
+        dot.style.display = online ? "inline-block" : "none"; // green dot only when the node is up
+      }
+      refreshStatus();
+      setInterval(refreshStatus, 30000);
+    }
   })();
 </script>
