@@ -12,7 +12,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
   {% for p in site.data.projects %}
   <article class="project-card">
     <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}" loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"{% if forloop.index <= 3 %} fetchpriority="high"{% endif %} decoding="async" />
-    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online" style="display:none;width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px 1px rgba(34,197,94,0.7);vertical-align:middle;margin-left:7px;"></span>{% endif %}</h3>
+    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online" style="display:none;width:8px;height:8px;border-radius:50%;background:#2da44e;box-shadow:0 0 6px rgba(45,164,78,0.6);vertical-align:middle;position:relative;top:-1px;margin-left:7px;"></span>{% endif %}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
       {% endfor %}
