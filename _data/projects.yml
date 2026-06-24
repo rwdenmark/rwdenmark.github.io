@@ -1,3 +1,25 @@
+- title: EDI Format Converter
+  thumb: /projects/EDI-Format-Converter.webp
+  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, and XML format toggles and 837P/837I/837D sample buttons, in a dark purple theme."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
+  description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/edi-format-converter
+  demo: https://edi-format-converter.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/edi/
+- title: Steam Analyzer
+  thumb: /projects/steam-analyzer.webp
+  alt: "Steam Analyzer dashboard for profile Zeu showing 178 games owned, 24,616.2 hours played, 52 never played, 29.2% backlog, a 10 years of service card, and Play Next picks Ori and the Blind Forest and Metro: Last Light Redux."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
+  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/steam-analyzer
+  demo: https://steam-analyzer.onrender.com/
+  home: https://rdenmark.savannah-luma.ts.net/steam/
 - title: WoW Explorer
   thumb: /projects/wow-explorer.webp
   alt: "WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render."
@@ -20,26 +42,3 @@
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/ranger/
-- title: EDI Format Converter
-  thumb: /projects/EDI-Format-Converter.webp
-  thumb_style: "object-fit: fill; padding: 12px; box-sizing: border-box; background: var(--canvas);"
-  alt: "EDI Format Converter web UI showing a raw 837 claim on the left and its parsed JSON output on the right, with Load 837P, 837I, and 837D buttons in the header."
-  width: 1200
-  height: 579
-  stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
-  description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/edi-format-converter
-  demo: https://edi-format-converter.onrender.com
-  home: https://rdenmark.savannah-luma.ts.net/edi/
-- title: Steam Analyzer
-  thumb: /projects/steam-analyzer.webp
-  alt: "Steam Analyzer dashboard for profile Zeu showing 186 games owned, 24,635.1 hours played, 56 never played, 30.1% backlog, and Play Next picks Against the Storm and Ori and the Blind Forest."
-  width: 1200
-  height: 800
-  stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
-  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/steam-analyzer
-  demo: https://steam-analyzer.onrender.com/
-  home: https://rdenmark.savannah-luma.ts.net/steam/
