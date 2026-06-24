@@ -7,12 +7,12 @@ description: Personal projects by Ryan Denmark - Spring Boot, REST APIs, Postgre
 og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth integrations, PostgreSQL, and live demos.
 ---
 
-<h2 class="section-title">Projects <span id="node-dot" title="Self-hosted node online" style="display:none;width:10px;height:10px;border-radius:50%;background:#22c55e;vertical-align:middle;margin-left:8px;"></span></h2>
+<h2 class="section-title">Projects</h2>
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
     <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}" loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"{% if forloop.index <= 3 %} fetchpriority="high"{% endif %} decoding="async" />
-    <h3>{{ p.title }}</h3>
+    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online" style="display:none;width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px 1px rgba(34,197,94,0.7);vertical-align:middle;margin-left:7px;"></span>{% endif %}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
       {% endfor %}
@@ -108,13 +108,13 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
       else { window.location.href = target; } // popup blocked: fall back to same tab
     });
 
-    // Self-hosted node status (mainly for me). Probes the EDI app's health endpoint,
-    // which has no database, so it is safe to poll without keeping Neon awake. EDI runs
-    // on the same box as the others, so it is a reliable "is the home node up" signal.
-    const dot = document.getElementById("node-dot");
+    // Per-project status dots (mainly for me). All three apps run on one box, so a single
+    // DB-free probe to EDI's health endpoint (CORS-enabled, no Neon impact) drives every
+    // dot. A green dot means the self-hosted box is up and that demo is served from home.
+    const projDots = document.querySelectorAll(".proj-dot");
     const ediLink = [...document.querySelectorAll("a.demo-link[data-home]")]
       .find((l) => l.dataset.home.includes("/edi"));
-    if (dot && ediLink) {
+    if (projDots.length && ediLink) {
       const pingUrl = withSlash(ediLink.dataset.home) + HEALTH;
       async function refreshStatus() {
         let online = false;
@@ -125,7 +125,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
           clearTimeout(t);
           online = res.ok;
         } catch (_) { online = false; }
-        dot.style.display = online ? "inline-block" : "none"; // green dot only when the node is up
+        projDots.forEach((d) => { d.style.display = online ? "inline-block" : "none"; });
       }
       refreshStatus();
       setInterval(refreshStatus, 30000);
