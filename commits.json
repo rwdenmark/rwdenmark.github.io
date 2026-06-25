@@ -1,21 +1,21 @@
 [
   {
     "repo": "ranger-survivor",
-    "message": "V2: Adding new sprites, archers, enemies, roguelike buffs, audio, expanding the map, bug fixes",
-    "date": "2026-06-25T08:56:53Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/9ca932a4ee04e5e575ecf75cff65f16c744612a0"
+    "message": "Flyway: baseline existing schema on migrate",
+    "date": "2026-06-25T09:16:11Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/1b8fa9c1e71ef35ea5705705346c5dcec20be6c5"
   },
   {
     "repo": "ranger-survivor",
-    "message": "V2: Adding new sprites, archers, enemies, roguelike buffs, audio, expanding the map, bug fixes",
-    "date": "2026-06-25T08:55:01Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/41f433a3b081b6331d1f0deeab9a06647e973703"
+    "message": "Syncing local files",
+    "date": "2026-06-25T09:10:34Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/8e4605d0bde07a8eaa6a75bef78c0cf8d6a06995"
   },
   {
     "repo": "ranger-survivor",
-    "message": "Remove unused sprite source art; stop tracking licensed assets",
-    "date": "2026-06-25T08:52:56Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/aefc4de93583a5bbf37dad44b887b5f122c627e6"
+    "message": "Fixing sprite and audio assets",
+    "date": "2026-06-25T09:09:48Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/84672374c1bce74d65060187f80df4cbfaae42e4"
   },
   {
     "repo": "edi-format-converter",
