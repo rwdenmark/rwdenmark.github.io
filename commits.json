@@ -1,5 +1,23 @@
 [
   {
+    "repo": "ranger-survivor",
+    "message": "V2: Adding new sprites, archers, enemies, roguelike buffs, audio, expanding the map, bug fixes",
+    "date": "2026-06-25T08:56:53Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/9ca932a4ee04e5e575ecf75cff65f16c744612a0"
+  },
+  {
+    "repo": "ranger-survivor",
+    "message": "V2: Adding new sprites, archers, enemies, roguelike buffs, audio, expanding the map, bug fixes",
+    "date": "2026-06-25T08:55:01Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/41f433a3b081b6331d1f0deeab9a06647e973703"
+  },
+  {
+    "repo": "ranger-survivor",
+    "message": "Remove unused sprite source art; stop tracking licensed assets",
+    "date": "2026-06-25T08:52:56Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/aefc4de93583a5bbf37dad44b887b5f122c627e6"
+  },
+  {
     "repo": "edi-format-converter",
     "message": "Pre-set --enable-native-access in Render JAVA_OPTS",
     "date": "2026-06-24T20:47:57Z",
@@ -10,23 +28,5 @@
     "message": "Updating UI look and cleaning up unused code",
     "date": "2026-06-24T20:40:06Z",
     "url": "https://github.com/rwdenmark/edi-format-converter/commit/aa507337d9c71ebea1f7a03454c33e25d3ac89d2"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Fixing UI and cleaning up unused code",
-    "date": "2026-06-24T20:15:26Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/88282922f59fd52f4d43f551bb0e451870fa8aa5"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Upgrading to V2: Adding additional fitler features and bug fixes to increase load times",
-    "date": "2026-06-24T19:13:11Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/a9efa011022410427027cf82c1bcbf03fb3aebb8"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Adding health endpoint",
-    "date": "2026-06-24T09:06:11Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/c7bef2400c68a57165cd1d6a4e39a11416920f81"
   }
 ]
