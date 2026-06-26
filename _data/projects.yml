@@ -33,11 +33,11 @@
   home: https://rdenmark.savannah-luma.ts.net/wow/
 - title: Ranger Survivor
   thumb: /projects/ranger-survivor.webp
-  alt: "Top-down view of Ranger Survivor showing the player character with bow, a skeleton enemy, grass tiles, water, trees, and corner forts."
-  width: 956
-  height: 694
+  alt: "Top-down view of Ranger Survivor: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
+  width: 1200
+  height: 800
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, A* Pathfinding]
-  description: "Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing skeletons. Spring Boot REST backend persists scores to a moderated leaderboard."
+  description: "Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing knights. Spring Boot REST backend persists scores to a moderated leaderboard."
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
