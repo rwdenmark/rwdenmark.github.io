@@ -9,6 +9,17 @@
   github: https://github.com/rwdenmark/edi-format-converter
   demo: https://edi-format-converter.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/edi/
+- title: Ranger Survivor
+  thumb: /projects/ranger-survivor.webp
+  alt: "Top-down view of Ranger Survivor: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas, Flow-field Pathfinding]
+  description: "Top-down tile-based survival shooter. Pick one of three rangers, move with WASD, aim and fire with the mouse, and survive waves of pathfinding knights while stacking roguelite upgrade cards. Spring Boot REST backend persists scores to a moderated leaderboard."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/ranger-survivor
+  demo: https://ranger-survivor.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/ranger/
 - title: Steam Analyzer
   thumb: /projects/steam-analyzer.webp
   alt: "Steam Analyzer dashboard for profile Zeu showing 178 games owned, 24,616.2 hours played, 52 never played, 29.2% backlog, a 10 years of service card, and Play Next picks Ori and the Blind Forest and Metro: Last Light Redux."
@@ -31,14 +42,3 @@
   github: https://github.com/rwdenmark/wow-explorer
   demo: https://wow-explorer.onrender.com/
   home: https://rdenmark.savannah-luma.ts.net/wow/
-- title: Ranger Survivor
-  thumb: /projects/ranger-survivor.webp
-  alt: "Top-down view of Ranger Survivor: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
-  width: 1200
-  height: 800
-  stack: [Java, Spring Boot, PostgreSQL, JavaScript, A* Pathfinding]
-  description: "Top-down tile-based survival shooter. Move with WASD, fire arrows in eight directions, and dodge A*-pathing knights. Spring Boot REST backend persists scores to a moderated leaderboard."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/ranger-survivor
-  demo: https://ranger-survivor.onrender.com
-  home: https://rdenmark.savannah-luma.ts.net/ranger/
