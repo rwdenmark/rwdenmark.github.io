@@ -14,23 +14,12 @@
   alt: "Top-down view of Ranger Survivor: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
   width: 1200
   height: 800
-  stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas, Flow-field Pathfinding]
-  description: "Top-down tile-based survival shooter. Pick one of three rangers, move with WASD, aim and fire with the mouse, and survive waves of pathfinding knights while stacking roguelite upgrade cards. Spring Boot REST backend persists scores to a moderated leaderboard."
+  stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
+  description: "Top-down tile-based survival shooter. Pick a ranger, aim with the mouse, and survive waves of knights while stacking roguelite upgrades. Spring Boot REST backend persists scores to a moderated leaderboard."
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/ranger/
-- title: Steam Analyzer
-  thumb: /projects/steam-analyzer.webp
-  alt: "Steam Analyzer dashboard for profile Zeu showing 178 games owned, 24,616.2 hours played, 52 never played, 29.2% backlog, a 10 years of service card, and Play Next picks Ori and the Blind Forest and Metro: Last Light Redux."
-  width: 1200
-  height: 800
-  stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
-  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/steam-analyzer
-  demo: https://steam-analyzer.onrender.com/
-  home: https://rdenmark.savannah-luma.ts.net/steam/
 - title: WoW Explorer
   thumb: /projects/wow-explorer.webp
   alt: "WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render."
@@ -42,3 +31,14 @@
   github: https://github.com/rwdenmark/wow-explorer
   demo: https://wow-explorer.onrender.com/
   home: https://rdenmark.savannah-luma.ts.net/wow/
+- title: Steam Analyzer
+  thumb: /projects/steam-analyzer.webp
+  alt: "Steam Analyzer dashboard for profile Zeu showing 178 games owned, 24,616.2 hours played, 52 never played, 29.2% backlog, a 10 years of service card, and Play Next picks Ori and the Blind Forest and Metro: Last Light Redux."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
+  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/steam-analyzer
+  demo: https://steam-analyzer.onrender.com/
+  home: https://rdenmark.savannah-luma.ts.net/steam/
