@@ -1,6 +1,12 @@
 [
   {
     "repo": "ranger-survivor",
+    "message": "Updating sprite assets. Optimizing.",
+    "date": "2026-06-25T23:23:12Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/a82f1a685dc98c34576edd371c9c3b8cb3142874"
+  },
+  {
+    "repo": "ranger-survivor",
     "message": "Flyway: baseline existing schema on migrate",
     "date": "2026-06-25T09:16:11Z",
     "url": "https://github.com/rwdenmark/ranger-survivor/commit/1b8fa9c1e71ef35ea5705705346c5dcec20be6c5"
@@ -10,12 +16,6 @@
     "message": "Syncing local files",
     "date": "2026-06-25T09:10:34Z",
     "url": "https://github.com/rwdenmark/ranger-survivor/commit/8e4605d0bde07a8eaa6a75bef78c0cf8d6a06995"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Fixing sprite and audio assets",
-    "date": "2026-06-25T09:09:48Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/84672374c1bce74d65060187f80df4cbfaae42e4"
   },
   {
     "repo": "edi-format-converter",
