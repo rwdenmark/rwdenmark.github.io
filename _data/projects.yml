@@ -1,6 +1,6 @@
 - title: EDI Format Converter
   thumb: /projects/EDI-Format-Converter.webp
-  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, and XML format toggles and 837P/837I/837D sample buttons, in a dark purple theme."
+  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, XML and STRING toggles and 837P/837I/837D sample buttons, in a dark purple theme."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
