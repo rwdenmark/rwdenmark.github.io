@@ -1,21 +1,21 @@
 [
   {
     "repo": "translator",
+    "message": "Add Docker and /api/health and make API path subpath-safe",
+    "date": "2026-06-27T22:19:15Z",
+    "url": "https://github.com/rwdenmark/translator/commit/c5fc678b401b0cbab2ca5ebccac4be37a120c41c"
+  },
+  {
+    "repo": "translator",
+    "message": "Add CORS-open /api/health for demo failover",
+    "date": "2026-06-27T21:59:06Z",
+    "url": "https://github.com/rwdenmark/translator/commit/798b4f1319a0a885a7236a154225f9a8c5c60a14"
+  },
+  {
+    "repo": "translator",
     "message": "Derive API path from current path so it works behind a subpath",
     "date": "2026-06-27T20:27:37Z",
     "url": "https://github.com/rwdenmark/translator/commit/d0fd3832e4a74ae1f0ce90903f488ed5d8973556"
-  },
-  {
-    "repo": "translator",
-    "message": "Use relative API path so it works behind a subpath",
-    "date": "2026-06-27T20:23:05Z",
-    "url": "https://github.com/rwdenmark/translator/commit/01a148ac4e7517f08213b0acb5d386144b8fab9b"
-  },
-  {
-    "repo": "translator",
-    "message": "Auto-detect to English translator",
-    "date": "2026-06-27T20:06:18Z",
-    "url": "https://github.com/rwdenmark/translator/commit/3038198b24db3db1a86c9e6bb7d510343e13cc2d"
   },
   {
     "repo": "edi-format-converter",
