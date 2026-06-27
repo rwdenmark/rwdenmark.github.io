@@ -215,11 +215,18 @@ body[data-page="about"] .gallery-tabs {
 .reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
 .reference-meta { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
 
-.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.projects:has(> .project-card:last-child:nth-child(3n)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Columns by card count: 3 per row by default; 2 per row only when the count is
+   even and not divisible by 3 (e.g. 4 -> 2+2). Divisible-by-3 and odd counts both
+   use 3 per row, so an odd non-multiple-of-3 (e.g. 5, 7) leaves the last row short. */
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.projects:has(> .project-card:last-child:nth-child(2n)):not(:has(> .project-card:last-child:nth-child(3n))) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 @media (max-width: 640px) {
   .projects,
-  .projects:has(> .project-card:last-child:nth-child(3n)) { grid-template-columns: 1fr; }
+  .projects:has(> .project-card:last-child:nth-child(2n)):not(:has(> .project-card:last-child:nth-child(3n))) {
+    grid-template-columns: 1fr;
+  }
 }
 .project-card {
   background: var(--card-bg);

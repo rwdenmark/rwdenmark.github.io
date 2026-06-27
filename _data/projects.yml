@@ -42,3 +42,14 @@
   github: https://github.com/rwdenmark/steam-analyzer
   demo: https://steam-analyzer.onrender.com/
   home: https://rdenmark.savannah-luma.ts.net/steam/
+- title: Translate to English
+  thumb: /projects/translate-to-english.webp
+  alt: "Translate to English app in a dark green two-panel layout: an 'Any language' input on the left and an 'English' output on the right, under the heading Type anything. Translate to English."
+  width: 1200
+  height: 800
+  stack: [Python, Flask, langdetect, gunicorn, MyMemory API]
+  description: "Flask web app that auto-detects the language of any text and translates it to English via the free MyMemory API. On short input it uses the translation result itself to self-correct the language guess."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/translator
+  demo: https://translator-n227.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/translate/
