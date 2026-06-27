@@ -1,5 +1,23 @@
 [
   {
+    "repo": "translator",
+    "message": "Derive API path from current path so it works behind a subpath",
+    "date": "2026-06-27T20:27:37Z",
+    "url": "https://github.com/rwdenmark/translator/commit/d0fd3832e4a74ae1f0ce90903f488ed5d8973556"
+  },
+  {
+    "repo": "translator",
+    "message": "Use relative API path so it works behind a subpath",
+    "date": "2026-06-27T20:23:05Z",
+    "url": "https://github.com/rwdenmark/translator/commit/01a148ac4e7517f08213b0acb5d386144b8fab9b"
+  },
+  {
+    "repo": "translator",
+    "message": "Auto-detect to English translator",
+    "date": "2026-06-27T20:06:18Z",
+    "url": "https://github.com/rwdenmark/translator/commit/3038198b24db3db1a86c9e6bb7d510343e13cc2d"
+  },
+  {
     "repo": "edi-format-converter",
     "message": "Adding X12 creation and fixing error reporting. Updating the left text field for input only",
     "date": "2026-06-27T08:10:20Z",
@@ -10,23 +28,5 @@
     "message": "Updating README",
     "date": "2026-06-27T06:51:04Z",
     "url": "https://github.com/rwdenmark/steam-analyzer/commit/358cb439681ab067ead2e95b02a568ba74b31d91"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Fixing score validation",
-    "date": "2026-06-26T07:44:53Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/e2e0028c587c642ff53bb9bb076f7498dad7c759"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Optimizing the game on load",
-    "date": "2026-06-26T06:21:47Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/ce1c81e60a6b43fd765817c233ee7a2ac8202cb8"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Updating game mechanics and balancing. Optimizing code.",
-    "date": "2026-06-26T06:00:35Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/e33220bc2539b46450e20ed63d1aee7952834ca5"
   }
 ]
