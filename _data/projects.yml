@@ -20,6 +20,17 @@
   github: https://github.com/rwdenmark/ranger-survivor
   demo: https://ranger-survivor.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/ranger/
+- title: Astro Siege
+  thumb: /projects/astro-siege.webp
+  alt: "Astro Siege gameplay: five rows of glowing orb enemies in purple, blue, and green descend toward four green battlement bunkers and a dome-turret cannon firing upward, a red saucer crossing the top, with SCORE, HI-SCORE, WAVE, and LIVES on a retro green HUD."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
+  description: "Arcade fixed-shooter on an HTML5 canvas with original pixel art and synthesized 8-bit audio. Clear waves of orbs and shelter behind eroding bunkers. Spring Boot backend persists scores to a leaderboard."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/astro-siege
+  demo: https://astro-siege.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/astro/
 - title: WoW Explorer
   thumb: /projects/wow-explorer.webp
   alt: "WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render."
