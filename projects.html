@@ -87,9 +87,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 <div id="recent-commits" data-commits-url="{{ '/commits.json' | relative_url }}"></div>
 
 <script>
-  // Live Demo failover: when a button is pressed, check whether the self-hosted
-  // (Tailscale Funnel) app is up. If it answers in time, open it; otherwise open the
-  // always-on Render copy. The health probe also wakes the shared Neon database.
+  // Live Demo failover: probe the self-hosted (Tailscale Funnel) app; if up open it,
+  // else fall back to the always-on Render copy. The probe also wakes the Neon DB.
   (function () {
     const HEALTH = "api/health";
     const TIMEOUT_MS = 1500;
@@ -100,8 +99,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
       if (!link) return;
       e.preventDefault();
 
-      // Open the tab now, synchronously, so the browser treats it as a user action
-      // (an async window.open after the fetch would be blocked as a popup).
+      // Open the tab synchronously so it isn't blocked as a popup (an async open would be).
       const tab = window.open("", "_blank");
       if (tab) tab.document.write('<!doctype html><meta name="color-scheme" content="dark"><title>Connecting…</title><body style="margin:0;background:#0d1117"></body>');
       const home = link.dataset.home;
@@ -115,9 +113,9 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
         const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
         const res = await fetch(withSlash(home) + HEALTH, { signal: ctrl.signal, cache: "no-store" });
         clearTimeout(timer);
-        if (res.ok) target = home;            // home is up; its probe already warmed Neon
+        if (res.ok) target = home;
       } catch (_) {
-        // home unreachable; warm the Render copy's Neon before we land there
+        // home down: warm the Render copy's Neon before we land there
         fetch(withSlash(cloud) + HEALTH, { cache: "no-store", mode: "no-cors" }).catch(() => {});
       }
 
@@ -126,9 +124,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
       else { window.location.href = target; } // popup blocked: fall back to same tab
     });
 
-    // Per-project status dots (mainly for me). All three apps run on one box, so a single
-    // DB-free probe to EDI's health endpoint (CORS-enabled, no Neon impact) drives every
-    // dot. A green dot means the self-hosted box is up and that demo is served from home.
+    // Status dots: one DB-free probe to EDI's CORS-enabled health endpoint drives every
+    // dot, since all apps share one box. Green dot = box is up, demo served from home.
     const projDots = document.querySelectorAll(".proj-dot");
     const notes = document.querySelectorAll(".project-note");
     const ediLink = [...document.querySelectorAll("a.demo-link[data-home]")]
@@ -139,13 +136,12 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
       function applyStatus(online) {
         projDots.forEach((d) => { d.style.display = online ? "inline-block" : "none"; });
-        // When the self-hosted box is up the demo loads instantly, so drop the cold-start note.
+        // Box up: demo loads instantly, so drop the cold-start note.
         notes.forEach((n) => { n.style.display = online ? "none" : ""; });
       }
 
-      // Render the last known status synchronously, before the probe resolves, so a
-      // returning visitor sees the final state from the first paint instead of the note
-      // flashing then hiding. With nothing cached yet, hide both until the first probe.
+      // Paint last-known status before the probe resolves so a returning visitor avoids
+      // the note flashing then hiding. With nothing cached yet, hide both until first probe.
       let cached = null;
       try { cached = localStorage.getItem(STATUS_KEY); } catch (_) {}
       if (cached === "true" || cached === "false") {

@@ -104,10 +104,8 @@
     ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
   } catch (e) {}
 
-  // Count this homepage view in GoatCounter. Bot filtering and unique-visitor
-  // detection happen server-side (by user-agent + a daily-rotating IP hash, no
-  // cookies). Owner is excluded via the rwd_nocount flag handled above.
-  // NOTE: the host below must match your GoatCounter site code.
+  // Count this homepage view in GoatCounter (server-side bot filtering and unique
+  // detection, no cookies). Owner excluded via the rwd_nocount flag above.
   if (isHome && !ownerExcluded) {
     var gcImg = new Image();
     gcImg.src = 'https://rwdenmark.goatcounter.com/count' +

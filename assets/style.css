@@ -192,10 +192,8 @@ body[data-page="about"] .gallery-tabs {
   border-right-color: var(--accent-hover);
   border-bottom-color: var(--accent-hover);
 }
-.testimonial-card, .reference-card {
-  padding: 20px 24px;
-  margin-bottom: 16px;
-}
+.testimonial-card, .reference-card { margin-bottom: 16px; }
+.reference-card { padding: 20px 24px; }
 .testimonial-card { padding: 12px 24px; }
 .testimonial-card blockquote, .reference-card blockquote {
   margin: 0 0 12px;
