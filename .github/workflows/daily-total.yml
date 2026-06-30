@@ -1,27 +1,25 @@
 name: Daily hits email
 
-# GitHub Actions cron runs in UTC and is often delayed by tens of minutes
-# (occasionally hours) at the top of the hour. We schedule both 5:00 and 6:00 UTC
-# so at least one fires close to midnight Central year-round across DST, and the
-# job itself uses a date-stamped state file to make sure we only email once per
-# Central calendar day no matter when the runner actually picks the job up.
+# Two crons + a Central-day gate so the email goes out once per Central calendar
+# day even though Actions' scheduled runs are often delayed. Stats come from the
+# GoatCounter API (bots filtered, unique visitors detected server-side), so there
+# is no running-total file to maintain anymore.
 on:
   schedule:
     - cron: '0 5 * * *'
     - cron: '0 6 * * *'
   workflow_dispatch:
 
-# Shared push lock with the hourly recent-commits workflow so the two never push to
-# main at the same time. cancel-in-progress is false so a newer run never cancels this
-# email job mid-flight; if recent-commits is mid-push, this job simply waits its turn.
+# Shared push lock with the hourly recent-commits workflow so the two never push
+# to main at the same time. cancel-in-progress is false so a newer run never
+# cancels this email job mid-flight.
 concurrency:
   group: main-push
   cancel-in-progress: false
 
-# Force the Node.js 20-based actions (checkout, action-send-mail) onto Node 24,
-# matching the GitHub Actions runner default that goes into effect June 16, 2026.
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  GC_CODE: rwdenmark            # GoatCounter site code -> https://rwdenmark.goatcounter.com
 
 jobs:
   email-daily:
@@ -37,11 +35,7 @@ jobs:
         id: gate
         run: |
           today=$(TZ='America/Chicago' date +%Y-%m-%d)
-          if [ -f .github/last-run-date.txt ]; then
-            last=$(cat .github/last-run-date.txt)
-          else
-            last=""
-          fi
+          if [ -f .github/last-run-date.txt ]; then last=$(cat .github/last-run-date.txt); else last=""; fi
           echo "today=$today" >> $GITHUB_OUTPUT
           if [ "$today" = "$last" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
             echo "Already emailed for $today, skipping."
@@ -50,44 +44,44 @@ jobs:
             echo "proceed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Read yesterday's count
+      - name: Fetch GoatCounter stats for yesterday (Central)
         if: steps.gate.outputs.proceed == 'true'
-        id: yesterday
+        id: stats
+        env:
+          GC_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: |
-          if [ -f .github/count.txt ]; then
-            echo "count=$(cat .github/count.txt)" >> $GITHUB_OUTPUT
-          else
-            echo "count=0" >> $GITHUB_OUTPUT
-          fi
+          set -euo pipefail
+          api="https://${GC_CODE}.goatcounter.com/api/v0"
+          # Exact Central-time day boundaries (DST-aware), rounded to the hour as the
+          # API expects. Passing the offset explicitly makes the window correct no
+          # matter which timezone is configured in GoatCounter.
+          day=$(TZ='America/Chicago' date -d 'yesterday' +%Y-%m-%d)
+          start=$(TZ='America/Chicago' date -d 'yesterday 00:00' '+%Y-%m-%dT%H:%M:%S%:z')
+          end=$(TZ='America/Chicago' date -d 'yesterday 23:00' '+%Y-%m-%dT%H:%M:%S%:z')
+          echo "day=$day" >> $GITHUB_OUTPUT
 
-      - name: Fetch current total
-        if: steps.gate.outputs.proceed == 'true'
-        id: current
-        run: |
-          url="https://api.counterapi.dev/v1/rwdenmark/portfolio-2026"
-          # A bare "curl -s" comes back empty from the runner (CDN drops the default
-          # curl UA / datacenter IP). Send a real UA, follow redirects, retry, time out.
-          resp=$(curl -sSL --fail --retry 4 --retry-delay 3 --retry-all-errors --max-time 25 \
-            -A "Mozilla/5.0 (compatible; portfolio-hits-bot/1.0; +https://rwdenmark.github.io)" \
-            -H "Accept: application/json" "$url") || resp=""
-          # Fail loudly instead of emailing a bogus 0 and clobbering count.txt with 0.
-          if [ -z "$resp" ] || ! echo "$resp" | jq -e . >/dev/null 2>&1; then
-            echo "::error::counterapi fetch failed or returned non-JSON. Aborting to avoid a false 0."
-            echo "Raw response: '$resp'"
-            exit 1
-          fi
-          count=$(echo "$resp" | jq -r '.count // 0')
-          echo "Fetched count=$count"
-          echo "count=$count" >> $GITHUB_OUTPUT
+          gc() {
+            curl -sS --fail --retry 4 --retry-delay 3 --retry-all-errors --max-time 25 \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${GC_TOKEN}" -G \
+              --data-urlencode "start=$start" --data-urlencode "end=$end" "$@"
+          }
 
-      - name: Calculate hits today
-        if: steps.gate.outputs.proceed == 'true'
-        id: daily
-        run: |
-          hits=$((${{ steps.current.outputs.count }} - ${{ steps.yesterday.outputs.count }}))
-          # Guard against a negative number if the counter ever resets
-          if [ "$hits" -lt 0 ]; then hits=0; fi
-          echo "hits=$hits" >> $GITHUB_OUTPUT
+          # Total pageviews for the day. Abort on failure rather than emailing a bogus 0.
+          total_json=$(gc "$api/stats/total") || { echo "::error::GoatCounter total fetch failed"; exit 1; }
+          echo "$total_json" | jq -e . >/dev/null 2>&1 || { echo "::error::non-JSON from GoatCounter: $total_json"; exit 1; }
+          views=$(echo "$total_json" | jq -r '.total // 0')
+          echo "views=$views" >> $GITHUB_OUTPUT
+
+          # Top countries (best-effort; don't fail the email if this call hiccups).
+          loc_json=$(gc "$api/stats/locations") || loc_json='{"stats":[]}'
+          countries=$(echo "$loc_json" | jq -r '.stats[]? | "  \(.name): \(.count)"' | head -5)
+          [ -z "$countries" ] && countries="  (none)"
+          {
+            echo 'countries<<COUNTRIES_EOF'
+            echo "$countries"
+            echo 'COUNTRIES_EOF'
+          } >> $GITHUB_OUTPUT
 
       - name: Send email
         if: steps.gate.outputs.proceed == 'true'
@@ -102,26 +96,28 @@ jobs:
           to: ryanwdenmark@gmail.com
           from: Portfolio Bot <${{ secrets.MAIL_USERNAME }}>
           body: |
-            Here are the daily statistics for your developer website.
+            Daily statistics for rwdenmark.github.io (via GoatCounter, bots filtered).
 
-            Total hits: ${{ steps.daily.outputs.hits }}
+            Date: ${{ steps.stats.outputs.day }}
+            Homepage views: ${{ steps.stats.outputs.views }}
 
-      - name: Store today's count and date for tomorrow
+            Top countries:
+            ${{ steps.stats.outputs.countries }}
+
+      - name: Record that we emailed today
         if: steps.gate.outputs.proceed == 'true'
         run: |
-          echo "${{ steps.current.outputs.count }}" > .github/count.txt
           echo "${{ steps.gate.outputs.today }}" > .github/last-run-date.txt
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/count.txt .github/last-run-date.txt
+          git add .github/last-run-date.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "chore: store daily view count [skip ci]"
-          # The hourly recent-commits workflow also pushes to main and can fire on
-          # this same top-of-hour minute, so a bare push may be rejected as
-          # non-fast-forward. Rebase onto the latest main and retry up to 5x.
+          git commit -m "chore: record daily stats email sent [skip ci]"
+          # recent-commits also pushes to main, so a bare push may be rejected as
+          # non-fast-forward; rebase onto latest main and retry up to 5x.
           n=0
           until git push; do
             n=$((n+1))

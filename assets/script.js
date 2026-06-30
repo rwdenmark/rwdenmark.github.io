@@ -104,8 +104,17 @@
     ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
   } catch (e) {}
 
+  // Count this homepage view in GoatCounter. Bot filtering and unique-visitor
+  // detection happen server-side (by user-agent + a daily-rotating IP hash, no
+  // cookies). Owner is excluded via the rwd_nocount flag handled above.
+  // NOTE: the host below must match your GoatCounter site code.
   if (isHome && !ownerExcluded) {
-    fetch('https://api.counterapi.dev/v1/rwdenmark/portfolio-2026/up').catch(function () {});
+    var gcImg = new Image();
+    gcImg.src = 'https://rwdenmark.goatcounter.com/count' +
+      '?p=/' +
+      '&t=' + encodeURIComponent(document.title) +
+      '&r=' + encodeURIComponent(document.referrer) +
+      '&rnd=' + Math.random().toString(36).slice(2);
   }
 
   (function () {
