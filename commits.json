@@ -1,9 +1,21 @@
 [
   {
     "repo": "order-to-cash-cpi",
-    "message": "Initial Commit: Order-to-cash SAP Integration",
-    "date": "2026-06-30T04:59:22Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/1f20c6392e8b8ad9f27d3e1a08d3f2a7ae5307b6"
+    "message": "Adding root and warehouse READMEs",
+    "date": "2026-06-30T07:19:09Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/a95b21fbd23f20d5b0ebbcf2a773d987c33f9ba1"
+  },
+  {
+    "repo": "order-to-cash-cpi",
+    "message": "drop tsx (WSL build fix), serve routes at root for Tailscale Funnel",
+    "date": "2026-06-30T06:12:18Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/f5b0d76844f7f1400c05b91d30e6d1eef5d598be"
+  },
+  {
+    "repo": "order-to-cash-cpi",
+    "message": "Restructure repo: add warehouse-receiver under SAP root",
+    "date": "2026-06-30T05:04:00Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/e378cefa13e4f1a830e162c41c4d4326c4265349"
   },
   {
     "repo": "astro-siege",
@@ -16,17 +28,5 @@
     "message": "Fixing music loop and boss speed in remix version",
     "date": "2026-06-29T21:11:55Z",
     "url": "https://github.com/rwdenmark/astro-siege/commit/3a395e65b78243b412c82bdc6a418db818809703"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Balancing remix and adding difficulty",
-    "date": "2026-06-29T07:43:52Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/df6f12d349d5784c142497172792258022fb601b"
-  },
-  {
-    "repo": "translator",
-    "message": "Add Docker and /api/health and make API path subpath-safe",
-    "date": "2026-06-27T22:19:15Z",
-    "url": "https://github.com/rwdenmark/translator/commit/c5fc678b401b0cbab2ca5ebccac4be37a120c41c"
   }
 ]
