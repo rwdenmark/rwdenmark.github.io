@@ -1,5 +1,11 @@
 [
   {
+    "repo": "order-to-cash-cpi",
+    "message": "Initial Commit: Order-to-cash SAP Integration",
+    "date": "2026-06-30T04:59:22Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/1f20c6392e8b8ad9f27d3e1a08d3f2a7ae5307b6"
+  },
+  {
     "repo": "astro-siege",
     "message": "Upping the difficuly of remix",
     "date": "2026-06-30T00:02:31Z",
@@ -22,11 +28,5 @@
     "message": "Add Docker and /api/health and make API path subpath-safe",
     "date": "2026-06-27T22:19:15Z",
     "url": "https://github.com/rwdenmark/translator/commit/c5fc678b401b0cbab2ca5ebccac4be37a120c41c"
-  },
-  {
-    "repo": "translator",
-    "message": "Add CORS-open /api/health for demo failover",
-    "date": "2026-06-27T21:59:06Z",
-    "url": "https://github.com/rwdenmark/translator/commit/798b4f1319a0a885a7236a154225f9a8c5c60a14"
   }
 ]
