@@ -1,17 +1,32 @@
 featured:
+  - title: Exploring SAP Business Technology Platform
+    meta: "SAP Learning &middot; Issued 2026"
+    url: https://badger.learning.sap.com/verify/xulil-sumyf-bomyn-lugic-kigor
+    logo: /assets/sap-logo.jpg
+    alt: SAP
   - title: Building with the Claude API
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/b84nzcmctcdx
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic
+list:
   - title: Claude Code in Action
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/ygxskxtqsxp3
-list:
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic
   - title: Claude 101
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/tes7i72fth3j
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic
   - title: Claude Code 101
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/v9tsqkyjp7iv
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic
   - title: Introduction to Claude Cowork
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/5e2uxvj9iomi
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic

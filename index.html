@@ -32,7 +32,7 @@ og_description: Backend Software Engineer. 7+ years on cross-functional teams. J
   {% for c in site.data.certs.featured %}
   <article class="cert-feature">
     <div class="cert-feature-head">
-      <img class="cert-logo-lg" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="50" height="50" />
+      <img class="cert-logo-lg" src="{{ c.logo | default: '/assets/anthropic-mark.png' | relative_url }}" alt="{{ c.alt | default: 'Anthropic' }}" width="50" height="50" />
       <h3>{{ c.title }}</h3>
     </div>
     <p class="cert-meta">{{ c.meta }}</p>
@@ -43,7 +43,7 @@ og_description: Backend Software Engineer. 7+ years on cross-functional teams. J
 <div class="certs">
   {% for c in site.data.certs.list %}
   <article class="cert-card">
-    <img class="cert-logo" src="{{ '/assets/anthropic-mark.png' | relative_url }}" alt="Anthropic" width="30" height="30" />
+    <img class="cert-logo" src="{{ c.logo | default: '/assets/anthropic-mark.png' | relative_url }}" alt="{{ c.alt | default: 'Anthropic' }}" width="30" height="30" />
     <div class="cert-body">
       <h3>{{ c.title }}</h3>
       <p class="cert-meta">{{ c.meta }}</p>
