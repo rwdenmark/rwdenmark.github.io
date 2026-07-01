@@ -1,5 +1,11 @@
 [
   {
+    "repo": "astro-siege",
+    "message": "Fix to README and comments",
+    "date": "2026-07-01T18:42:16Z",
+    "url": "https://github.com/rwdenmark/astro-siege/commit/6975394403621ba69a2e564f54e60b062a4c6aee"
+  },
+  {
     "repo": "order-to-cash-cpi",
     "message": "Adding manual start README",
     "date": "2026-07-01T04:55:53Z",
@@ -22,11 +28,5 @@
     "message": "Upping the difficuly of remix",
     "date": "2026-06-30T00:02:31Z",
     "url": "https://github.com/rwdenmark/astro-siege/commit/4785544b5bd4ae9b9c90ef589fafaf84674449a5"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Fixing music loop and boss speed in remix version",
-    "date": "2026-06-29T21:11:55Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/3a395e65b78243b412c82bdc6a418db818809703"
   }
 ]
