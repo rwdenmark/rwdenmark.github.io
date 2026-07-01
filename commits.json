@@ -1,6 +1,12 @@
 [
   {
     "repo": "order-to-cash-cpi",
+    "message": "Adding manual start README",
+    "date": "2026-07-01T04:55:53Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/b86b86d20a968e63250e9be8bbdeeb059487fb63"
+  },
+  {
+    "repo": "order-to-cash-cpi",
     "message": "Adding root and warehouse READMEs",
     "date": "2026-06-30T07:19:09Z",
     "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/a95b21fbd23f20d5b0ebbcf2a773d987c33f9ba1"
@@ -10,12 +16,6 @@
     "message": "drop tsx (WSL build fix), serve routes at root for Tailscale Funnel",
     "date": "2026-06-30T06:12:18Z",
     "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/f5b0d76844f7f1400c05b91d30e6d1eef5d598be"
-  },
-  {
-    "repo": "order-to-cash-cpi",
-    "message": "Restructure repo: add warehouse-receiver under SAP root",
-    "date": "2026-06-30T05:04:00Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/e378cefa13e4f1a830e162c41c4d4326c4265349"
   },
   {
     "repo": "astro-siege",
