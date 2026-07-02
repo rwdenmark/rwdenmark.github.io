@@ -1,5 +1,23 @@
 [
   {
+    "repo": "ranger-survivor",
+    "message": "Add server-timed session and spawn-model score validation",
+    "date": "2026-07-02T06:16:32Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/fd463ccdc39273b776c52d8ef5e3aa3725ecafc2"
+  },
+  {
+    "repo": "order-to-cash-cpi",
+    "message": "idea config fix",
+    "date": "2026-07-02T06:09:54Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/02554d49a8e0b9cbfdb6346ff06af3208808cbdd"
+  },
+  {
+    "repo": "edi-format-converter",
+    "message": "README fix",
+    "date": "2026-07-02T06:09:24Z",
+    "url": "https://github.com/rwdenmark/edi-format-converter/commit/a3f0e5e40513c2d28c7dd3a65a81a1b700a442e0"
+  },
+  {
     "repo": "astro-siege",
     "message": "Fix to README and comments",
     "date": "2026-07-01T18:42:16Z",
@@ -10,23 +28,5 @@
     "message": "Adding manual start README",
     "date": "2026-07-01T04:55:53Z",
     "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/b86b86d20a968e63250e9be8bbdeeb059487fb63"
-  },
-  {
-    "repo": "order-to-cash-cpi",
-    "message": "Adding root and warehouse READMEs",
-    "date": "2026-06-30T07:19:09Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/a95b21fbd23f20d5b0ebbcf2a773d987c33f9ba1"
-  },
-  {
-    "repo": "order-to-cash-cpi",
-    "message": "drop tsx (WSL build fix), serve routes at root for Tailscale Funnel",
-    "date": "2026-06-30T06:12:18Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/f5b0d76844f7f1400c05b91d30e6d1eef5d598be"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Upping the difficuly of remix",
-    "date": "2026-06-30T00:02:31Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/4785544b5bd4ae9b9c90ef589fafaf84674449a5"
   }
 ]
