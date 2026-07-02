@@ -1,6 +1,12 @@
 [
   {
     "repo": "ranger-survivor",
+    "message": "Updating map gen pathing to be randomized",
+    "date": "2026-07-02T08:58:53Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/4e42bbdb0505599d6b3c1844174a37b9d8bf57b0"
+  },
+  {
+    "repo": "ranger-survivor",
     "message": "Add server-timed session and spawn-model score validation",
     "date": "2026-07-02T06:16:32Z",
     "url": "https://github.com/rwdenmark/ranger-survivor/commit/fd463ccdc39273b776c52d8ef5e3aa3725ecafc2"
@@ -22,11 +28,5 @@
     "message": "Fix to README and comments",
     "date": "2026-07-01T18:42:16Z",
     "url": "https://github.com/rwdenmark/astro-siege/commit/6975394403621ba69a2e564f54e60b062a4c6aee"
-  },
-  {
-    "repo": "order-to-cash-cpi",
-    "message": "Adding manual start README",
-    "date": "2026-07-01T04:55:53Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/b86b86d20a968e63250e9be8bbdeeb059487fb63"
   }
 ]
