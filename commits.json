@@ -1,32 +1,32 @@
 [
   {
-    "repo": "wow-explorer",
-    "message": "Harden upstream error handling, validate lookup input, shrink transaction scope",
-    "date": "2026-07-03T02:41:22Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/cab647d6ccc0a4cb989fa84ca6d58453b7d0c98b"
-  },
-  {
-    "repo": "translator",
-    "message": "Add input cap and rate limiting, clean upstream errors, pin deps, add CI",
-    "date": "2026-07-03T02:41:00Z",
-    "url": "https://github.com/rwdenmark/translator/commit/109904406124707ee3526561ac998f876b185860"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Fix key leak in logs, junk filter false positives, and empty-envelope handling, add tests and CI",
-    "date": "2026-07-03T02:40:39Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/5c5c19c6b342f629fb77f40a3be5bbb8d52921b5"
-  },
-  {
     "repo": "spring-boot-starter",
-    "message": "Fix springdoc version, add PATCH ownership and duplicate-email 400, harden rate limiting and admin bootstrap",
-    "date": "2026-07-03T02:40:16Z",
-    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a54cbbdd309489cf55ca5c8f1f18c94e17fd475a"
+    "message": "Fixing JWT component",
+    "date": "2026-07-03T06:18:11Z",
+    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/0d25a8a19e9e875c8f712d682a5502e40728619c"
   },
   {
     "repo": "order-to-cash-cpi",
-    "message": "Add auth and region checks to the receiver, timeouts and validation to the order app, tests for both",
-    "date": "2026-07-03T02:39:53Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/38226647564cae3fa67e8a8dabca35b7ecfd38ed"
+    "message": "Re-add warehouse receiver manual start doc",
+    "date": "2026-07-03T06:02:40Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/343a2852fc91ab80ca0672cd1fcbd8a493868798"
+  },
+  {
+    "repo": "wow-explorer",
+    "message": "Current-tier raid progress, connect retry, recents bump, realm retry, stable search button, frontend tests",
+    "date": "2026-07-03T05:59:45Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/881db44b955cff560f01f3f5741acc670a47e707"
+  },
+  {
+    "repo": "translator",
+    "message": "Accept confident cognate mirrors, fall back to English, keep paragraph breaks, copy feedback",
+    "date": "2026-07-03T05:59:24Z",
+    "url": "https://github.com/rwdenmark/translator/commit/9f4823ade7967fbca76ae24f44f522834a64df73"
+  },
+  {
+    "repo": "steam-analyzer",
+    "message": "Rate limit profile endpoints, move junk classification to the backend, dedupe app.js, add MIT license",
+    "date": "2026-07-03T05:59:02Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/eb5c2ad633b511afbcbe4b7e80137663204ea50c"
   }
 ]
