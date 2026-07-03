@@ -1,32 +1,32 @@
 [
   {
-    "repo": "ranger-survivor",
-    "message": "Updating map gen pathing to be randomized",
-    "date": "2026-07-02T08:58:53Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/4e42bbdb0505599d6b3c1844174a37b9d8bf57b0"
+    "repo": "wow-explorer",
+    "message": "Harden upstream error handling, validate lookup input, shrink transaction scope",
+    "date": "2026-07-03T02:41:22Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/cab647d6ccc0a4cb989fa84ca6d58453b7d0c98b"
   },
   {
-    "repo": "ranger-survivor",
-    "message": "Add server-timed session and spawn-model score validation",
-    "date": "2026-07-02T06:16:32Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/fd463ccdc39273b776c52d8ef5e3aa3725ecafc2"
+    "repo": "translator",
+    "message": "Add input cap and rate limiting, clean upstream errors, pin deps, add CI",
+    "date": "2026-07-03T02:41:00Z",
+    "url": "https://github.com/rwdenmark/translator/commit/109904406124707ee3526561ac998f876b185860"
+  },
+  {
+    "repo": "steam-analyzer",
+    "message": "Fix key leak in logs, junk filter false positives, and empty-envelope handling, add tests and CI",
+    "date": "2026-07-03T02:40:39Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/5c5c19c6b342f629fb77f40a3be5bbb8d52921b5"
+  },
+  {
+    "repo": "spring-boot-starter",
+    "message": "Fix springdoc version, add PATCH ownership and duplicate-email 400, harden rate limiting and admin bootstrap",
+    "date": "2026-07-03T02:40:16Z",
+    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a54cbbdd309489cf55ca5c8f1f18c94e17fd475a"
   },
   {
     "repo": "order-to-cash-cpi",
-    "message": "idea config fix",
-    "date": "2026-07-02T06:09:54Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/02554d49a8e0b9cbfdb6346ff06af3208808cbdd"
-  },
-  {
-    "repo": "edi-format-converter",
-    "message": "README fix",
-    "date": "2026-07-02T06:09:24Z",
-    "url": "https://github.com/rwdenmark/edi-format-converter/commit/a3f0e5e40513c2d28c7dd3a65a81a1b700a442e0"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Fix to README and comments",
-    "date": "2026-07-01T18:42:16Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/6975394403621ba69a2e564f54e60b062a4c6aee"
+    "message": "Add auth and region checks to the receiver, timeouts and validation to the order app, tests for both",
+    "date": "2026-07-03T02:39:53Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/38226647564cae3fa67e8a8dabca35b7ecfd38ed"
   }
 ]
