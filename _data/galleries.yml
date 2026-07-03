@@ -18,31 +18,31 @@
   dir: boundary-waters
   hidden: false
   items:
-    - { file: bw-01.jpg, alt: "Boundary Waters trip photo 1" }
-    - { file: bw-02.jpg, alt: "Boundary Waters trip photo 2" }
-    - { file: bw-03.jpg, alt: "Boundary Waters trip photo 3" }
-    - { file: bw-04.jpg, alt: "Boundary Waters trip photo 4" }
-    - { file: bw-05.jpg, alt: "Boundary Waters trip photo 5" }
-    - { file: bw-06.jpg, alt: "Boundary Waters trip photo 6" }
-    - { file: bw-07.jpg, alt: "Boundary Waters trip photo 7" }
-    - { file: bw-08.jpg, alt: "Boundary Waters trip photo 8" }
-    - { file: bw-09.jpg, alt: "Boundary Waters trip photo 9" }
-    - { file: bw-10.jpg, alt: "Boundary Waters trip photo 10" }
-    - { file: bw-11.jpg, alt: "Boundary Waters trip photo 11" }
-    - { file: bw-12.jpg, alt: "Boundary Waters trip photo 12" }
+    - { file: bw-01.jpg, alt: "Ryan and Rebecca with Jax on a rocky lakeshore at sunset" }
+    - { file: bw-02.jpg, alt: "Selfie of Ryan and Rebecca in a pink ball cap under a cloudy sky" }
+    - { file: bw-03.jpg, alt: "Wet golden retriever sitting in front of a wooden bridge rail with a lake behind" }
+    - { file: bw-04.jpg, alt: "Ryan standing on a bridge over a lake with Jax sitting at his feet" }
+    - { file: bw-05.jpg, alt: "Jax standing against the bridge rail next to Ryan, both looking at the lake" }
+    - { file: bw-06.jpg, alt: "Selfie of Ryan and Rebecca on a wooded trail lined with birch trees" }
+    - { file: bw-07.jpg, alt: "Ryan crouching beside Jax on a leafy forest trail" }
+    - { file: bw-08.jpg, alt: "Jax licking Ryan's face on a forest trail" }
+    - { file: bw-09.jpg, alt: "Jax sitting in tall green brush on an overgrown trail" }
+    - { file: bw-10.jpg, alt: "Jax carrying a very long stick through thick greenery" }
+    - { file: bw-11.jpg, alt: "Close-up of a wet Jax sitting among ferns" }
+    - { file: bw-12.jpg, alt: "Jax rolling on his back in tall grass" }
 - id: cats
   dir: cats
   hidden: true
   items:
-    - { file: cat-01.jpg, alt: "Cat photo 1" }
-    - { file: cat-02.jpg, alt: "Cat photo 2" }
-    - { file: cat-03.jpg, alt: "Cat photo 3" }
-    - { file: cat-04.jpg, alt: "Cat photo 4" }
-    - { file: cat-05.jpg, alt: "Cat photo 5" }
-    - { file: cat-06.jpg, alt: "Cat photo 6" }
-    - { file: cat-07.jpg, alt: "Cat photo 7" }
-    - { file: cat-08.jpg, alt: "Cat photo 8" }
-    - { file: cat-09.jpg, alt: "Cat photo 9" }
-    - { file: cat-10.jpg, alt: "Cat photo 10" }
-    - { file: cat-11.jpg, alt: "Cat photo 11" }
-    - { file: cat-12.jpg, alt: "Cat photo 12" }
+    - { file: cat-01.jpg, alt: "Eva lying on a folded blue blanket" }
+    - { file: cat-02.jpg, alt: "Zed licking his nose in a cat tree bed" }
+    - { file: cat-03.jpg, alt: "Zed lying upside down next to an orange scratcher" }
+    - { file: cat-04.jpg, alt: "Zed mid-yawn in a sunny window seat" }
+    - { file: cat-05.jpg, alt: "Zed sprawled on the carpet looking up at the camera" }
+    - { file: cat-06.jpg, alt: "Zed as a kitten sitting on a purple sequined blanket" }
+    - { file: cat-07.jpg, alt: "Close-up of Eva with wide eyes and a pink nose" }
+    - { file: cat-08.jpg, alt: "Zed as a kitten lying in front of a pink play tunnel" }
+    - { file: cat-09.jpg, alt: "Eva asleep on the couch with paws curled up" }
+    - { file: cat-10.jpg, alt: "Zed with amber eyes on the kitchen tile" }
+    - { file: cat-11.jpg, alt: "Zed grooming Eva's face while they cuddle" }
+    - { file: cat-12.jpg, alt: "Eva wearing a pink knit sweater on a fuzzy white blanket" }
