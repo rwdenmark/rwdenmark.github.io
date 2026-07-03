@@ -53,11 +53,12 @@ jobs:
           set -euo pipefail
           api="https://${GC_CODE}.goatcounter.com/api/v0"
           # Exact Central-time day boundaries (DST-aware), rounded to the hour as the
-          # API expects. Passing the offset explicitly makes the window correct no
-          # matter which timezone is configured in GoatCounter.
+          # API expects. Ending at today 00:00 makes the range cover the full day,
+          # including the 23:00-24:00 hour. Passing the offset explicitly makes the
+          # window correct no matter which timezone is configured in GoatCounter.
           day=$(TZ='America/Chicago' date -d 'yesterday' +%Y-%m-%d)
           start=$(TZ='America/Chicago' date -d 'yesterday 00:00' '+%Y-%m-%dT%H:%M:%S%:z')
-          end=$(TZ='America/Chicago' date -d 'yesterday 23:00' '+%Y-%m-%dT%H:%M:%S%:z')
+          end=$(TZ='America/Chicago' date -d 'today 00:00' '+%Y-%m-%dT%H:%M:%S%:z')
           echo "day=$day" >> $GITHUB_OUTPUT
 
           gc() {
@@ -83,28 +84,10 @@ jobs:
             echo 'COUNTRIES_EOF'
           } >> $GITHUB_OUTPUT
 
-      - name: Send email
-        if: steps.gate.outputs.proceed == 'true'
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "Daily statistics for your developer website"
-          to: ryanwdenmark@gmail.com
-          from: Portfolio Bot <${{ secrets.MAIL_USERNAME }}>
-          body: |
-            Daily statistics for rwdenmark.github.io (via GoatCounter, bots filtered).
-
-            Date: ${{ steps.stats.outputs.day }}
-            Homepage views: ${{ steps.stats.outputs.views }}
-
-            Top countries:
-            ${{ steps.stats.outputs.countries }}
-
-      - name: Record that we emailed today
+      # The last-run date is committed and pushed before the email goes out. If
+      # the push fails the job stops here without sending, so the next cron can
+      # retry cleanly instead of re-sending a duplicate.
+      - name: Record today's run before emailing
         if: steps.gate.outputs.proceed == 'true'
         run: |
           echo "${{ steps.gate.outputs.today }}" > .github/last-run-date.txt
@@ -128,3 +111,24 @@ jobs:
             echo "Push rejected (attempt $n); rebasing onto latest main..."
             git pull --rebase origin main
           done
+
+      - name: Send email
+        if: steps.gate.outputs.proceed == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "Daily statistics for your developer website"
+          to: ryanwdenmark@gmail.com
+          from: Portfolio Bot <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            Daily statistics for rwdenmark.github.io (via GoatCounter, bots filtered).
+
+            Date: ${{ steps.stats.outputs.day }}
+            Homepage views: ${{ steps.stats.outputs.views }}
+
+            Top countries:
+            ${{ steps.stats.outputs.countries }}

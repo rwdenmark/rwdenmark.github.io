@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ page.title | default: site.title }}</title>
   <meta name="description" content="{{ page.description }}" />
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}" />
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}" />
   <link rel="alternate icon" href="{{ '/favicon.ico' | relative_url }}" />
   {% if page.page_id == 'home' %}<link rel="preconnect" href="https://rwdenmark.goatcounter.com" crossorigin />{% endif %}
@@ -43,6 +44,7 @@
   </script>
 </head>
 <body data-page="{{ page.page_id }}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="rail-bg" aria-hidden="true"></div>
   <div class="bg-circuit" aria-hidden="true">
     <svg class="bg-half bg-half-left" xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +123,7 @@
       <p class="tagline">Backend Software Engineer. 7+ years on cross-functional teams. Java, SQL, REST APIs, multi-stage pipelines, regulated data.</p>
       <nav class="links" aria-label="Main navigation">
         <div class="links-group">
-          <a href="{{ '/index.html' | relative_url }}"{% if page.page_id == 'home' %} class="active" aria-current="page"{% endif %}>Home</a>
+          <a href="{{ '/' | relative_url }}"{% if page.page_id == 'home' %} class="active" aria-current="page"{% endif %}>Home</a>
           <a href="{{ '/projects.html' | relative_url }}"{% if page.page_id == 'projects' %} class="active" aria-current="page"{% endif %}>Projects</a>
           <a href="{{ '/about.html' | relative_url }}"{% if page.page_id == 'about' %} class="active" aria-current="page"{% endif %}>About</a>
           <a href="{{ '/resume.html' | relative_url }}"{% if page.page_id == 'resume' %} class="active" aria-current="page"{% endif %}>Resume</a>
@@ -134,7 +136,7 @@
       </nav>
     </div>
   </header>
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="container">
       {{ content }}
     </div>

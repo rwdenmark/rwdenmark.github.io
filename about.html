@@ -16,13 +16,13 @@ og_description: Outside of work. Family, hiking, and gaming.
 <p>Beyond that I unwind with video games. My main rotation includes WoW, LoL, Tarkov, PoE, Dark Souls, Zelda, Metroid, and plenty more. A good mix of competitive and casual games to get lost in.</p>
 
 <div class="gallery-tabs" role="tablist" aria-label="Photo galleries">
-  <button type="button" class="gallery-tab active" data-gallery="boundary-waters" role="tab" aria-selected="true" aria-controls="gallery-boundary-waters">Boundary Waters</button>
-  <button type="button" class="gallery-tab" data-gallery="jax" role="tab" aria-selected="false" aria-controls="gallery-jax">Jax</button>
-  <button type="button" class="gallery-tab" data-gallery="cats" role="tab" aria-selected="false" aria-controls="gallery-cats">Cats</button>
+  <button type="button" class="gallery-tab active" id="tab-boundary-waters" data-gallery="boundary-waters" role="tab" aria-selected="true" aria-controls="gallery-boundary-waters">Boundary Waters</button>
+  <button type="button" class="gallery-tab" id="tab-jax" data-gallery="jax" role="tab" aria-selected="false" aria-controls="gallery-jax">Jax</button>
+  <button type="button" class="gallery-tab" id="tab-cats" data-gallery="cats" role="tab" aria-selected="false" aria-controls="gallery-cats">Cats</button>
 </div>
 
 {% for g in site.data.galleries %}
-<div class="gallery" id="gallery-{{ g.id }}" role="tabpanel" data-gallery-panel="{{ g.id }}"{% if g.hidden %} hidden{% endif %}>
+<div class="gallery" id="gallery-{{ g.id }}" role="tabpanel" aria-labelledby="tab-{{ g.id }}" data-gallery-panel="{{ g.id }}"{% if g.hidden %} hidden{% endif %}>
   {% for photo in g.items %}
   <div class="card"><img src="{{ '/' | append: g.dir | append: '/' | append: photo.file | relative_url }}" width="600" height="600" alt="{{ photo.alt }}" loading="lazy" /></div>
   {% endfor %}

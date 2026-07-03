@@ -11,8 +11,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
-    <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}" loading="eager" fetchpriority="high" decoding="async" />
-    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online" style="display:none;width:8px;height:8px;border-radius:50%;background:#2da44e;box-shadow:0 0 6px rgba(45,164,78,0.6);vertical-align:middle;position:relative;top:-1px;margin-left:7px;"></span>{% endif %}</h3>
+    <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}"{% if forloop.index <= 2 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async" />
+    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online"></span>{% endif %}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
       {% endfor %}

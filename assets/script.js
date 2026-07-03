@@ -83,8 +83,17 @@
       });
     }
 
-    tabs.forEach(function (t) {
+    tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { activate(t.dataset.gallery); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault();
+        var next = e.key === 'ArrowRight'
+          ? (i + 1) % tabs.length
+          : (i - 1 + tabs.length) % tabs.length;
+        tabs[next].focus();
+        activate(tabs[next].dataset.gallery);
+      });
     });
   })();
 
@@ -143,7 +152,7 @@
         var html = '<h2 class="section-title">Recent Activity</h2><ul class="commits-list">';
         commits.forEach(function (c) {
           html += '<li class="commit-item">' +
-            '<a class="commit-repo" href="' + c.url + '" rel="noopener noreferrer" target="_blank">' + escapeHtml(c.repo) + '</a>' +
+            '<a class="commit-repo" href="' + escapeHtml(c.url) + '" rel="noopener noreferrer" target="_blank">' + escapeHtml(c.repo) + '</a>' +
             '<span class="commit-msg">' + escapeHtml(c.message) + '</span>' +
             '<time class="commit-time" datetime="' + c.date + '">' + relativeTime(c.date) + '</time>' +
             '</li>';
@@ -162,7 +171,7 @@
     var S_MIN = 521.45, S_MAX = 1085.652;
     var DUR = { pa: 20, pb: 857 / 30, pc: 706 / 30 };
     var V = [[0,40],[70,40],[90,60],[150,60],[170,40],[350,40],[370,60],[430,60],[450,40],
-             [630,40],[650,60],[710,60],[730,40],[910,40],[930,60],[990,60],[1010,40],[1120,40]];
+             [630,40],[650,60],[710,60],[730,40],[910,40],[930,60],[990,60],[1010,40],[1160,40]];
     var seg = [], acc = 0, i;
     for (i = 1; i < V.length; i++) {
       var d = Math.hypot(V[i][0] - V[i-1][0], V[i][1] - V[i-1][1]);
@@ -173,7 +182,7 @@
         var g = seg[j];
         if (v >= g[0] && v <= g[1]) return g[2] + (g[3] - g[2]) * ((v - g[0]) / (g[1] - g[0]));
       }
-      return 1120;
+      return 1160;
     }
     function rnd() { return S_MIN + Math.random() * (S_MAX - S_MIN); }
     function delay(c, s) {

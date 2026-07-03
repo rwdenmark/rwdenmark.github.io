@@ -20,6 +20,22 @@ html { scroll-behavior: smooth; }
   border-radius: 3px;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 16px;
+  z-index: 100;
+  background: var(--header-bg);
+  color: var(--accent);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.skip-link:focus { left: 16px; }
+#main-content:focus, #main-content:focus-visible { outline: none; }
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   color: var(--text);
@@ -255,6 +271,18 @@ body[data-page="about"] .gallery-tabs {
   color: var(--muted);
   margin: 0;
   font-style: italic;
+}
+.proj-dot {
+  display: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2da44e;
+  box-shadow: 0 0 6px rgba(45,164,78,0.6);
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  margin-left: 7px;
 }
 .project-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .project-actions a, .script-actions a, .cert-link, .download-pdf, .testimonials-all a {
