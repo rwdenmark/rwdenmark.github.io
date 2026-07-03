@@ -14,7 +14,7 @@ Layout and shared chrome (header, footer, animated circuit background, copy-to-c
 _config.yml                 Jekyll config
 _layouts/default.html       Shared page chrome
 assets/style.css            All CSS
-assets/script.js            Most client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed). The Live Demo failover script is inline in projects.html
+assets/script.js            Most client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed, circuit-background pulses). The Live Demo failover and status-dot script is inline in projects.html
 index.html                  Home: intro, testimonials, certifications
 projects.html               Projects, utilities, recent-activity feed
 about.html                  About + photo galleries (Boundary Waters, Jax, Cats)
@@ -22,11 +22,14 @@ references.html             Full LinkedIn recommendations
 resume.html                 Resume page (mirrors Resume_Ryan_Denmark.pdf)
 404.html                    Not-found page
 .github/workflows/          Daily hit-count email + hourly recent-commits cache
+.github/last-run-date.txt   Day gate so the daily email sends once per Central day
 favicon.svg, favicon.ico    Favicons
 og-image.png                Open Graph preview image
+robots.txt                  Allow-all crawl policy plus sitemap pointer
 projects/                   Project card thumbnails
 jax/, boundary-waters/, cats/   Photos for the About galleries
 commits.json                Cached recent-commits feed (generated hourly by the workflow)
+last-updated.txt            Footer date of the last real content commit (also generated hourly)
 ```
 
 ## Deploy
@@ -47,4 +50,4 @@ Otherwise just push to a feature branch and let GitHub Pages render it.
 
 ## Hit counter and daily email
 
-The home page sends a pageview to [GoatCounter](https://www.goatcounter.com) (`rwdenmark.goatcounter.com`), which filters bots and detects unique visitors server-side. A daily GitHub Actions workflow (`.github/workflows/daily-total.yml`) fires at midnight Central, reads yesterday's views and top countries from the GoatCounter API, and emails the result via Gmail SMTP. Requires repo secrets `MAIL_USERNAME`, `MAIL_PASSWORD` (a Gmail app password), and `GOATCOUNTER_TOKEN` (a GoatCounter API key with "Read statistics").
+The home page sends a pageview to [GoatCounter](https://www.goatcounter.com) (`rwdenmark.goatcounter.com`), which filters bots and detects unique visitors server-side. A daily GitHub Actions workflow (`.github/workflows/daily-total.yml`) fires at midnight Central (two UTC crons cover daylight saving, and a committed day-gate file keeps it to one email per Central day), reads yesterday's views and top countries from the GoatCounter API, and emails the result via Gmail SMTP. Requires repo secrets `MAIL_USERNAME`, `MAIL_PASSWORD` (a Gmail app password), and `GOATCOUNTER_TOKEN` (a GoatCounter API key with "Read statistics").

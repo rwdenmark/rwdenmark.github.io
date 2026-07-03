@@ -87,8 +87,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 <div id="recent-commits" data-commits-url="{{ '/commits.json' | relative_url }}"></div>
 
 <script>
-  // Live Demo failover: probe the self-hosted (Tailscale Funnel) app; if up open it,
-  // else fall back to the always-on Render copy. The probe also wakes the Neon DB.
+  // Live Demo failover. Probe the self-hosted (Tailscale Funnel) app and open it if
+  // it is up, else fall back to the always-on Render copy. The probe also wakes the Neon DB.
   (function () {
     const HEALTH = "api/health";
     const TIMEOUT_MS = 1500;
@@ -115,16 +115,16 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
         clearTimeout(timer);
         if (res.ok) target = home;
       } catch (_) {
-        // home down: warm the Render copy's Neon before we land there
+        // home is down, so warm the Render copy's Neon before we land there
         fetch(withSlash(cloud) + HEALTH, { cache: "no-store", mode: "no-cors" }).catch(() => {});
       }
 
       link.textContent = label;
       if (tab) { tab.location = target; }
-      else { window.location.href = target; } // popup blocked: fall back to same tab
+      else { window.location.href = target; } // popup blocked, fall back to same tab
     });
 
-    // Status dots: one DB-free probe to EDI's CORS-enabled health endpoint drives every
+    // Status dots. One DB-free probe to EDI's CORS-enabled health endpoint drives every
     // dot, since all apps share one box. Green dot = box is up, demo served from home.
     const projDots = document.querySelectorAll(".proj-dot");
     const notes = document.querySelectorAll(".project-note");
@@ -136,7 +136,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
       function applyStatus(online) {
         projDots.forEach((d) => { d.style.display = online ? "inline-block" : "none"; });
-        // Box up: demo loads instantly, so drop the cold-start note.
+        // Box is up, the demo loads instantly, so drop the cold-start note.
         notes.forEach((n) => { n.style.display = online ? "none" : ""; });
       }
 

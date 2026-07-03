@@ -74,7 +74,7 @@ jobs:
           views=$(echo "$total_json" | jq -r '.total // 0')
           echo "views=$views" >> $GITHUB_OUTPUT
 
-          # Top countries (best-effort; don't fail the email if this call hiccups).
+          # Top countries (best-effort, don't fail the email if this call hiccups).
           loc_json=$(gc "$api/stats/locations") || loc_json='{"stats":[]}'
           countries=$(echo "$loc_json" | jq -r '.stats[]? | "  \(.name): \(.count)"' | head -5)
           [ -z "$countries" ] && countries="  (none)"
@@ -100,7 +100,7 @@ jobs:
           fi
           git commit -m "chore: record daily stats email sent [skip ci]"
           # recent-commits also pushes to main, so a bare push may be rejected as
-          # non-fast-forward; rebase onto latest main and retry up to 5x.
+          # non-fast-forward. Rebase onto latest main and retry up to 5x.
           n=0
           until git push; do
             n=$((n+1))
@@ -108,7 +108,7 @@ jobs:
               echo "::error::Failed to push after $n attempts."
               exit 1
             fi
-            echo "Push rejected (attempt $n); rebasing onto latest main..."
+            echo "Push rejected (attempt $n), rebasing onto latest main..."
             git pull --rebase origin main
           done
 

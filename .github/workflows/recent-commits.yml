@@ -1,6 +1,6 @@
 name: Recent commits cache
 
-# Generates commits.json once an hour so the home page reads a static file
+# Generates commits.json once an hour so the projects page reads a static file
 # instead of calling the GitHub API from each visitor's browser (which hit the
 # unauthenticated 60/hour-per-IP limit and silently blanked the feed).
 #
@@ -11,10 +11,10 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
-# Shared push lock with the daily-hits workflow: both push to main and can fire on
-# the same top-of-hour minute (05:00 / 06:00 UTC). A single shared group serializes
-# them so they never push at once. cancel-in-progress is false so neither job ever
-# cancels the other mid-run; a queued run waits and then runs. This also keeps a
+# Shared push lock with the daily-hits workflow. Both push to main and can fire on
+# the same top-of-hour minute (05:00 / 06:00 UTC), so a single shared group serializes
+# them and they never push at once. cancel-in-progress is false so neither job ever
+# cancels the other mid-run. A queued run waits and then runs. This also keeps a
 # delayed copy of THIS hourly job from overlapping the next one (it queues instead).
 # The rebase-retry on the push step remains the correctness backstop.
 concurrency:
@@ -67,9 +67,9 @@ jobs:
       - name: Compute last content-update date
         run: |
           # Date of the most recent commit that changed real content, anything except
-          # the bot-maintained housekeeping files (.github/*, commits.json) and this file
-          # itself. So the footer reflects content edits (any page, the resume PDF, new
-          # About photos), not the hourly cache pushes or the daily counter commits.
+          # the bot-maintained housekeeping files (.github/*, commits.json,
+          # last-updated.txt). So the footer reflects content edits (any page, the resume
+          # PDF, new About photos), not the hourly cache pushes or the daily email-gate commits.
           d=$(git log -1 --no-merges --format=%cs -- . ':(exclude).github' ':(exclude)commits.json' ':(exclude)last-updated.txt')
           echo "Last content update: $d"
           echo "$d" > last-updated.txt
@@ -94,6 +94,6 @@ jobs:
               echo "::error::Failed to push after $n attempts."
               exit 1
             fi
-            echo "Push rejected (attempt $n); rebasing onto latest main..."
+            echo "Push rejected (attempt $n), rebasing onto latest main..."
             git pull --rebase origin main
           done
