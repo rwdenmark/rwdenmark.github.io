@@ -197,7 +197,7 @@ body[data-page="about"] .gallery-tabs {
   font-style: italic;
   color: var(--text);
 }
-.testimonial-card blockquote { font-size: 0.93rem; margin-bottom: 8px; }
+.testimonial-card blockquote { font-size: 0.95rem; margin-bottom: 8px; }
 .reference-card blockquote p { margin: 0 0 10px; }
 .reference-card blockquote p:last-child { margin-bottom: 0; }
 .testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
