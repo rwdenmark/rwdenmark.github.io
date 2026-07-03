@@ -1,32 +1,32 @@
 [
   {
-    "repo": "spring-boot-starter",
-    "message": "Fixing JWT component",
-    "date": "2026-07-03T06:18:11Z",
-    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/0d25a8a19e9e875c8f712d682a5502e40728619c"
+    "repo": "astro-siege",
+    "message": "Re-add re-encoded music tracks",
+    "date": "2026-07-03T08:46:34Z",
+    "url": "https://github.com/rwdenmark/astro-siege/commit/13fd7126af34c00cd3f7c309afc4e8903a83b128"
   },
   {
-    "repo": "order-to-cash-cpi",
-    "message": "Re-add warehouse receiver manual start doc",
-    "date": "2026-07-03T06:02:40Z",
-    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/343a2852fc91ab80ca0672cd1fcbd8a493868798"
+    "repo": "ranger-survivor",
+    "message": "Re-add quantized sprite sheets",
+    "date": "2026-07-03T08:46:17Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/7867a8b153acecb6abe12f4d1f617f970acd03ba"
+  },
+  {
+    "repo": "spring-boot-starter",
+    "message": "Remove dependabot config",
+    "date": "2026-07-03T07:16:09Z",
+    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a44dabad989f2636b6d1ca0cb0baea73312ae340"
   },
   {
     "repo": "wow-explorer",
-    "message": "Current-tier raid progress, connect retry, recents bump, realm retry, stable search button, frontend tests",
-    "date": "2026-07-03T05:59:45Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/881db44b955cff560f01f3f5741acc670a47e707"
+    "message": "Remove dependabot config",
+    "date": "2026-07-03T07:15:55Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/4d0bd546f695ecb799d190ff1722bb6c04648d79"
   },
   {
-    "repo": "translator",
-    "message": "Accept confident cognate mirrors, fall back to English, keep paragraph breaks, copy feedback",
-    "date": "2026-07-03T05:59:24Z",
-    "url": "https://github.com/rwdenmark/translator/commit/9f4823ade7967fbca76ae24f44f522834a64df73"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Rate limit profile endpoints, move junk classification to the backend, dedupe app.js, add MIT license",
-    "date": "2026-07-03T05:59:02Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/eb5c2ad633b511afbcbe4b7e80137663204ea50c"
+    "repo": "wow-explorer",
+    "message": "Final docs pass, sync README and DEPLOY with retry, validation, and recent-list behavior",
+    "date": "2026-07-03T07:14:11Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/d9b233241940aabc4ac16c27a51fb3e0d63ffb37"
   }
 ]
