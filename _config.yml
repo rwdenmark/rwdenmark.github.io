@@ -7,6 +7,8 @@ exclude:
   - README.md
   - .gitignore
   - .github
+  - LICENSE
+  - .gitattributes
 
 # GitHub Pages allows these plugins out of the box
 plugins:

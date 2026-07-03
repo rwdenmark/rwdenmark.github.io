@@ -14,7 +14,7 @@ Layout and shared chrome (header, footer, animated circuit background, copy-to-c
 _config.yml                 Jekyll config
 _layouts/default.html       Shared page chrome
 assets/style.css            All CSS
-assets/script.js            All client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed)
+assets/script.js            Most client JS (email-copy, last-updated, hit-counter ping, photo-gallery tabs, recent-commits feed). The Live Demo failover script is inline in projects.html
 index.html                  Home: intro, testimonials, certifications
 projects.html               Projects, utilities, recent-activity feed
 about.html                  About + photo galleries (Boundary Waters, Jax, Cats)
