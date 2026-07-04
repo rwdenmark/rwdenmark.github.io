@@ -45,13 +45,15 @@ jobs:
               --data-urlencode "start=$start" --data-urlencode "end=$end" "$@"
           }
 
-          # Sums deduplicated visitors (GoatCounter "visits") across paths,
-          # NOT raw pageviews, so one person refreshing does not count again.
+          # stats/total returns deduplicated VISITORS in current GoatCounter
+          # (TotalCount.Total is "total number of visitors", there is no separate
+          # pageview metric in the API anymore), so refreshes never re-count.
+          # Verified against the goatcounter source (hit_list.go) on 7/4/2026.
           total_for() {
             local json
-            json=$(gc "$1" "$2" "$api/stats/hits") || return 1
+            json=$(gc "$1" "$2" "$api/stats/total") || return 1
             echo "$json" | jq -e . >/dev/null 2>&1 || return 1
-            echo "$json" | jq -r '[.hits[]? | .visits // 0] | add // 0'
+            echo "$json" | jq -r '.total // 0'
           }
 
           today=$(TZ='America/Chicago' date +%Y-%m-%d)
