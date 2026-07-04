@@ -1,0 +1,153 @@
+name: Visit alert email
+
+# Polls the GoatCounter API every 15 minutes and emails when new homepage views
+# appear, replacing the fixed daily digest. No email when nothing changed, so
+# zero-count emails are gone. GitHub delays scheduled runs by 5-30 minutes under
+# load, so "as soon as" means within roughly half an hour of the visit.
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+# Shared push lock with the other workflows that push to main.
+concurrency:
+  group: main-push
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  GC_CODE: rwdenmark            # GoatCounter site code -> https://rwdenmark.goatcounter.com
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for new views since last poll
+        id: check
+        env:
+          GC_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: |
+          set -euo pipefail
+          api="https://${GC_CODE}.goatcounter.com/api/v0"
+
+          gc() {
+            local start="$1" end="$2"; shift 2
+            curl -sS --fail --retry 4 --retry-delay 3 --retry-all-errors --max-time 25 \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${GC_TOKEN}" -G \
+              --data-urlencode "start=$start" --data-urlencode "end=$end" "$@"
+          }
+
+          total_for() {
+            local json
+            json=$(gc "$1" "$2" "$api/stats/total") || return 1
+            echo "$json" | jq -e . >/dev/null 2>&1 || return 1
+            echo "$json" | jq -r '.total // 0'
+          }
+
+          today=$(TZ='America/Chicago' date +%Y-%m-%d)
+          start_today=$(TZ='America/Chicago' date -d "$today 00:00" '+%Y-%m-%dT%H:%M:%S%:z')
+          # End one hour ahead, rounded to the hour, so the current partial hour counts.
+          end_now=$(TZ='America/Chicago' date -d '+1 hour' '+%Y-%m-%dT%H:00:00%:z')
+
+          total_today=$(total_for "$start_today" "$end_now") || { echo "::error::GoatCounter fetch failed"; exit 1; }
+
+          state_file=".github/last-seen-total.txt"
+          state_date=""; state_count=0; have_state=false
+          if [ -f "$state_file" ]; then
+            have_state=true
+            state_date=$(cut -d'|' -f1 "$state_file")
+            state_count=$(cut -d'|' -f2 "$state_file")
+          fi
+
+          send=false; summary=""; missed=0; new=0
+
+          if [ "$have_state" = false ]; then
+            # First run ever: record the baseline quietly, never email a backlog.
+            echo "Initializing state at $today|$total_today"
+          else
+            if [ "$state_date" != "$today" ]; then
+              # Day rolled over. Views between the last poll and midnight would
+              # otherwise slip through, so check the final total of the old day too.
+              ystart=$(TZ='America/Chicago' date -d "$state_date 00:00" '+%Y-%m-%dT%H:%M:%S%:z' 2>/dev/null || true)
+              yend=$(TZ='America/Chicago' date -d "$today 00:00" '+%Y-%m-%dT%H:%M:%S%:z')
+              if [ -n "$ystart" ]; then
+                yfinal=$(total_for "$ystart" "$yend") || yfinal="$state_count"
+                if [ "$yfinal" -gt "$state_count" ]; then missed=$((yfinal - state_count)); fi
+              fi
+              new=$total_today
+            elif [ "$total_today" -gt "$state_count" ]; then
+              new=$((total_today - state_count))
+            fi
+            if [ "$new" -gt 0 ] || [ "$missed" -gt 0 ]; then
+              send=true
+              summary="New homepage views: $((new + missed))"
+              if [ "$missed" -gt 0 ]; then summary="$summary (including $missed late on $state_date)"; fi
+              summary="$summary
+          Total views today ($today): $total_today"
+            fi
+          fi
+
+          changed=false
+          if [ "$have_state" = false ] || [ "$state_date" != "$today" ] || [ "$total_today" != "$state_count" ]; then
+            changed=true
+          fi
+
+          echo "send=$send"         >> $GITHUB_OUTPUT
+          echo "changed=$changed"   >> $GITHUB_OUTPUT
+          echo "today=$today"       >> $GITHUB_OUTPUT
+          echo "total=$total_today" >> $GITHUB_OUTPUT
+          {
+            echo 'summary<<SUMMARY_EOF'
+            echo "$summary"
+            echo 'SUMMARY_EOF'
+          } >> $GITHUB_OUTPUT
+
+      # State is committed and pushed BEFORE the email goes out, same pattern as
+      # the old daily job: if the push fails, no email is sent and the next poll
+      # retries cleanly instead of double-emailing.
+      - name: Record state before emailing
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-total.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/last-seen-total.txt
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: record last seen visit total [skip ci]"
+          n=0
+          until git push; do
+            n=$((n+1))
+            if [ "$n" -ge 5 ]; then
+              echo "::error::Failed to push after $n attempts."
+              exit 1
+            fi
+            echo "Push rejected (attempt $n), rebasing onto latest main..."
+            git pull --rebase origin main
+          done
+
+      - name: Send email
+        if: steps.check.outputs.send == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "Someone visited your developer website"
+          to: ryanwdenmark@gmail.com
+          from: Portfolio Bot <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            rwdenmark.github.io just got traffic (via GoatCounter, bots filtered).
+
+            ${{ steps.check.outputs.summary }}

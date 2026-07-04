@@ -5,9 +5,9 @@ name: Daily hits email
 # GoatCounter API (bots filtered, unique visitors detected server-side), so there
 # is no running-total file to maintain anymore.
 on:
-  schedule:
-    - cron: '0 5 * * *'
-    - cron: '0 6 * * *'
+  # Schedule removed 7/4/2026. Replaced by visit-alert.yml, which polls every
+  # 15 minutes and only emails when there are new views (no zero-count days).
+  # Manual runs still work for an on-demand daily summary.
   workflow_dispatch:
 
 # Shared push lock with the hourly recent-commits workflow so the two never push
