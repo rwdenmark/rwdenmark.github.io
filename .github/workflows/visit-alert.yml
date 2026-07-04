@@ -104,6 +104,8 @@ jobs:
             changed=true
           fi
 
+          echo "DEBUG window=$start_today..$end_now state=$state_date|$state_count total_today=$total_today new=$new missed=$missed send=$send changed=$changed"
+
           echo "send=$send"         >> $GITHUB_OUTPUT
           echo "changed=$changed"   >> $GITHUB_OUTPUT
           echo "today=$today"       >> $GITHUB_OUTPUT
