@@ -1,32 +1,32 @@
 [
   {
+    "repo": "ranger-survivor",
+    "message": "Restore Enter your name placeholder on the score field",
+    "date": "2026-07-04T08:00:54Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/20a083385989a85ef72d5b98bfce468f5b810e81"
+  },
+  {
     "repo": "astro-siege",
-    "message": "Re-add re-encoded music tracks",
-    "date": "2026-07-03T08:46:34Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/13fd7126af34c00cd3f7c309afc4e8903a83b128"
+    "message": "Restore Enter your name placeholder on the score field",
+    "date": "2026-07-04T08:00:44Z",
+    "url": "https://github.com/rwdenmark/astro-siege/commit/65b98d89c70b3a5d0bd84f70b167ee4d309ca40e"
+  },
+  {
+    "repo": "astro-siege",
+    "message": "Rename score-entry field to callsign to kill Chrome card autofill",
+    "date": "2026-07-04T07:55:08Z",
+    "url": "https://github.com/rwdenmark/astro-siege/commit/10dffc7b1b18a31140cf54221de6d0aa0348972c"
   },
   {
     "repo": "ranger-survivor",
-    "message": "Re-add quantized sprite sheets",
-    "date": "2026-07-03T08:46:17Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/7867a8b153acecb6abe12f4d1f617f970acd03ba"
+    "message": "Rename score-entry field to callsign to kill Chrome card autofill",
+    "date": "2026-07-04T07:54:56Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/1c43987bd4cdd205ffef52fdf9ecb9a1d4278ea3"
   },
   {
-    "repo": "spring-boot-starter",
-    "message": "Remove dependabot config",
-    "date": "2026-07-03T07:16:09Z",
-    "url": "https://github.com/rwdenmark/spring-boot-starter/commit/a44dabad989f2636b6d1ca0cb0baea73312ae340"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Remove dependabot config",
-    "date": "2026-07-03T07:15:55Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/4d0bd546f695ecb799d190ff1722bb6c04648d79"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Final docs pass, sync README and DEPLOY with retry, validation, and recent-list behavior",
-    "date": "2026-07-03T07:14:11Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/d9b233241940aabc4ac16c27a51fb3e0d63ffb37"
+    "repo": "ranger-survivor",
+    "message": "Stop Chrome offering credit card autofill on the name input",
+    "date": "2026-07-04T07:49:23Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/f20a76e292f1ec48ba16764825daec90a69ed9b8"
   }
 ]
