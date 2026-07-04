@@ -63,6 +63,11 @@ jobs:
 
           total_today=$(total_for "$start_today" "$end_now") || { echo "::error::GoatCounter fetch failed"; exit 1; }
 
+          # TEMP DEBUG: dump raw API responses to settle the schema question.
+          echo "DEBUG raw stats/total: $(gc "$start_today" "$end_now" "$api/stats/total")"
+          echo "DEBUG raw stats/hits:  $(gc "$start_today" "$end_now" "$api/stats/hits" | head -c 2000)"
+          echo "DEBUG raw total, no params: $(curl -sS --fail -H 'Content-Type: application/json' -H "Authorization: Bearer ${GC_TOKEN}" "$api/stats/total")"
+
           state_file=".github/last-seen-visits.txt"
           state_date=""; state_count=0; have_state=false
           if [ -f "$state_file" ]; then
