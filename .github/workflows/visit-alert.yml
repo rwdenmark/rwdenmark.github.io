@@ -1,7 +1,8 @@
 name: Visit alert email
 
-# Polls the GoatCounter API every 15 minutes and emails when new homepage views
-# appear, replacing the fixed daily digest. No email when nothing changed, so
+# Polls the GoatCounter API every 15 minutes and emails when new VISITORS
+# appear (GoatCounter "visits", deduplicated sessions, so refreshes by the same
+# person do not send mail), replacing the fixed daily digest. No email when nothing changed, so
 # zero-count emails are gone. GitHub delays scheduled runs by 5-30 minutes under
 # load, so "as soon as" means within roughly half an hour of the visit.
 on:
@@ -44,11 +45,13 @@ jobs:
               --data-urlencode "start=$start" --data-urlencode "end=$end" "$@"
           }
 
+          # Sums deduplicated visitors (GoatCounter "visits") across paths,
+          # NOT raw pageviews, so one person refreshing does not count again.
           total_for() {
             local json
-            json=$(gc "$1" "$2" "$api/stats/total") || return 1
+            json=$(gc "$1" "$2" "$api/stats/hits") || return 1
             echo "$json" | jq -e . >/dev/null 2>&1 || return 1
-            echo "$json" | jq -r '.total // 0'
+            echo "$json" | jq -r '[.hits[]? | .visits // 0] | add // 0'
           }
 
           today=$(TZ='America/Chicago' date +%Y-%m-%d)
@@ -58,7 +61,7 @@ jobs:
 
           total_today=$(total_for "$start_today" "$end_now") || { echo "::error::GoatCounter fetch failed"; exit 1; }
 
-          state_file=".github/last-seen-total.txt"
+          state_file=".github/last-seen-visits.txt"
           state_date=""; state_count=0; have_state=false
           if [ -f "$state_file" ]; then
             have_state=true
@@ -87,10 +90,10 @@ jobs:
             fi
             if [ "$new" -gt 0 ] || [ "$missed" -gt 0 ]; then
               send=true
-              summary="New homepage views: $((new + missed))"
+              summary="New visitors: $((new + missed))"
               if [ "$missed" -gt 0 ]; then summary="$summary (including $missed late on $state_date)"; fi
               summary="$summary
-          Total views today ($today): $total_today"
+          Visitors today ($today): $total_today"
             fi
           fi
 
@@ -115,10 +118,11 @@ jobs:
       - name: Record state before emailing
         if: steps.check.outputs.changed == 'true'
         run: |
-          echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-total.txt
+          echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-visits.txt
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/last-seen-total.txt
+          git rm -f -q --ignore-unmatch .github/last-seen-total.txt
+          git add .github/last-seen-visits.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
