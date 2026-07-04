@@ -63,10 +63,14 @@ jobs:
 
           total_today=$(total_for "$start_today" "$end_now") || { echo "::error::GoatCounter fetch failed"; exit 1; }
 
-          # TEMP DEBUG: dump raw API responses to settle the schema question.
-          echo "DEBUG raw stats/total: $(gc "$start_today" "$end_now" "$api/stats/total")"
-          echo "DEBUG raw stats/hits:  $(gc "$start_today" "$end_now" "$api/stats/hits" | head -c 2000)"
-          echo "DEBUG raw total, no params: $(curl -sS --fail -H 'Content-Type: application/json' -H "Authorization: Bearer ${GC_TOKEN}" "$api/stats/total")"
+          # TEMP DEBUG: the offset format (2026-07-04T00:00:00-05:00) selects the
+          # right days but matches zero visits. Try three formats to find the one
+          # the API actually filters on.
+          zstart=$(TZ='America/Chicago' date -d "$today 00:00" -u '+%Y-%m-%dT%H:%M:%SZ')
+          zend=$(date -u -d '+1 hour' '+%Y-%m-%dT%H:00:00Z')
+          echo "DEBUG A date-only  ($today..$today):  $(gc "$today" "$today" "$api/stats/total" | jq -c '{total,total_utc}')"
+          echo "DEBUG B utc-Z      ($zstart..$zend):  $(gc "$zstart" "$zend" "$api/stats/total" | jq -c '{total,total_utc}')"
+          echo "DEBUG C naive      ($today 00:00:00..$today 23:59:59):  $(gc "$today 00:00:00" "$today 23:59:59" "$api/stats/total" | jq -c '{total,total_utc}')"
 
           state_file=".github/last-seen-visits.txt"
           state_date=""; state_count=0; have_state=false
