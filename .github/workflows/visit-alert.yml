@@ -61,16 +61,14 @@ jobs:
           # End one hour ahead, rounded to the hour, so the current partial hour counts.
           end_now=$(TZ='America/Chicago' date -d '+1 hour' '+%Y-%m-%dT%H:00:00%:z')
 
-          total_today=$(total_for "$start_today" "$end_now") || { echo "::error::GoatCounter fetch failed"; exit 1; }
+          # The API only filters correctly on UTC Z-suffix timestamps (verified
+          # 7/4/2026: offset form like 00:00:00-05:00 parses but matches zero
+          # visits, naive is a 400). So compute Central day boundaries first,
+          # then convert those instants to Z-form for the query.
+          start_z=$(date -u -d "$start_today" '+%Y-%m-%dT%H:%M:%SZ')
+          end_z=$(date -u -d "$end_now" '+%Y-%m-%dT%H:%M:%SZ')
 
-          # TEMP DEBUG: the offset format (2026-07-04T00:00:00-05:00) selects the
-          # right days but matches zero visits. Try three formats to find the one
-          # the API actually filters on.
-          zstart=$(TZ='America/Chicago' date -d "$today 00:00" -u '+%Y-%m-%dT%H:%M:%SZ')
-          zend=$(date -u -d '+1 hour' '+%Y-%m-%dT%H:00:00Z')
-          echo "DEBUG A date-only  ($today..$today):  $(gc "$today" "$today" "$api/stats/total" | jq -c '{total,total_utc}')"
-          echo "DEBUG B utc-Z      ($zstart..$zend):  $(gc "$zstart" "$zend" "$api/stats/total" | jq -c '{total,total_utc}')"
-          echo "DEBUG C naive      ($today 00:00:00..$today 23:59:59):  $(gc "$today 00:00:00" "$today 23:59:59" "$api/stats/total" | jq -c '{total,total_utc}')"
+          total_today=$(total_for "$start_z" "$end_z") || { echo "::error::GoatCounter fetch failed"; exit 1; }
 
           state_file=".github/last-seen-visits.txt"
           state_date=""; state_count=0; have_state=false
@@ -92,7 +90,9 @@ jobs:
               ystart=$(TZ='America/Chicago' date -d "$state_date 00:00" '+%Y-%m-%dT%H:%M:%S%:z' 2>/dev/null || true)
               yend=$(TZ='America/Chicago' date -d "$today 00:00" '+%Y-%m-%dT%H:%M:%S%:z')
               if [ -n "$ystart" ]; then
-                yfinal=$(total_for "$ystart" "$yend") || yfinal="$state_count"
+                ystart_z=$(date -u -d "$ystart" '+%Y-%m-%dT%H:%M:%SZ')
+                yend_z=$(date -u -d "$yend" '+%Y-%m-%dT%H:%M:%SZ')
+                yfinal=$(total_for "$ystart_z" "$yend_z") || yfinal="$state_count"
                 if [ "$yfinal" -gt "$state_count" ]; then missed=$((yfinal - state_count)); fi
               fi
               new=$total_today
@@ -113,7 +113,7 @@ jobs:
             changed=true
           fi
 
-          echo "DEBUG window=$start_today..$end_now state=$state_date|$state_count total_today=$total_today new=$new missed=$missed send=$send changed=$changed"
+          echo "DEBUG window=$start_z..$end_z state=$state_date|$state_count total_today=$total_today new=$new missed=$missed send=$send changed=$changed"
 
           echo "send=$send"         >> $GITHUB_OUTPUT
           echo "changed=$changed"   >> $GITHUB_OUTPUT
