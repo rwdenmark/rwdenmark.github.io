@@ -1,6 +1,12 @@
 [
   {
     "repo": "ranger-survivor",
+    "message": "V3: Adding a second level with new enemies",
+    "date": "2026-07-05T08:56:50Z",
+    "url": "https://github.com/rwdenmark/ranger-survivor/commit/0608eb3edd4091afeec2374ad3fbfdad95016e6a"
+  },
+  {
+    "repo": "ranger-survivor",
     "message": "Restore Enter your name placeholder on the score field",
     "date": "2026-07-04T08:00:54Z",
     "url": "https://github.com/rwdenmark/ranger-survivor/commit/20a083385989a85ef72d5b98bfce468f5b810e81"
@@ -22,11 +28,5 @@
     "message": "Rename score-entry field to callsign to kill Chrome card autofill",
     "date": "2026-07-04T07:54:56Z",
     "url": "https://github.com/rwdenmark/ranger-survivor/commit/1c43987bd4cdd205ffef52fdf9ecb9a1d4278ea3"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Stop Chrome offering credit card autofill on the name input",
-    "date": "2026-07-04T07:49:23Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/f20a76e292f1ec48ba16764825daec90a69ed9b8"
   }
 ]
