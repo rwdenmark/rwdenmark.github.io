@@ -1,14 +1,3 @@
-- title: EDI Format Converter
-  thumb: /projects/EDI-Format-Converter.webp
-  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, XML and STRING toggles and 837P/837I/837D sample buttons, in a dark purple theme."
-  width: 1200
-  height: 800
-  stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
-  description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/edi-format-converter
-  demo: https://edi-format-converter.onrender.com
-  home: https://rdenmark.savannah-luma.ts.net/edi/
 - title: Recurve
   thumb: /projects/recurve.webp
   alt: "Top-down view of Recurve: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
@@ -31,6 +20,17 @@
   github: https://github.com/rwdenmark/astro-siege
   demo: https://astro-siege.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/astro/
+- title: EDI Format Converter
+  thumb: /projects/EDI-Format-Converter.webp
+  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, XML and STRING toggles and 837P/837I/837D sample buttons, in a dark purple theme."
+  width: 1200
+  height: 800
+  stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
+  description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
+  note: "The live demo may take up to a minute to load while the backend wakes up."
+  github: https://github.com/rwdenmark/edi-format-converter
+  demo: https://edi-format-converter.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/edi/
 - title: WoW Explorer
   thumb: /projects/wow-explorer.webp
   alt: "WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render."
