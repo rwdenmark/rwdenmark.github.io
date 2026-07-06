@@ -9,17 +9,17 @@
   github: https://github.com/rwdenmark/edi-format-converter
   demo: https://edi-format-converter.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/edi/
-- title: Ranger Survivor
-  thumb: /projects/ranger-survivor.webp
-  alt: "Top-down view of Ranger Survivor: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
+- title: Recurve
+  thumb: /projects/recurve.webp
+  alt: "Top-down view of Recurve: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
-  description: "Top-down tile-based survival shooter. Pick a ranger, aim with the mouse, and survive waves of knights while stacking roguelite upgrades. Spring Boot REST backend persists scores to a moderated leaderboard."
+  description: "Endless top-down survival shooter. Aim with the mouse and loop from grass field to troll cave and back, stacking roguelite upgrade cards as enemies grow tankier and faster each cycle. Spring Boot leaderboard."
   note: "The live demo may take up to a minute to load while the backend wakes up."
-  github: https://github.com/rwdenmark/ranger-survivor
-  demo: https://ranger-survivor.onrender.com
-  home: https://rdenmark.savannah-luma.ts.net/ranger/
+  github: https://github.com/rwdenmark/recurve
+  demo: https://recurve-325o.onrender.com
+  home: https://rdenmark.savannah-luma.ts.net/recurve/
 - title: Astro Siege
   thumb: /projects/astro-siege.webp
   alt: "Astro Siege gameplay: five rows of glowing orb enemies in purple, blue, and green descend toward four green battlement bunkers and a dome-turret cannon firing upward, a red saucer crossing the top, with SCORE, HI-SCORE, WAVE, and LIVES on a retro green HUD."
