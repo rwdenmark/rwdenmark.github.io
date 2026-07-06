@@ -1,15 +1,21 @@
 [
   {
-    "repo": "ranger-survivor",
-    "message": "V3: Adding a second level with new enemies",
-    "date": "2026-07-05T08:56:50Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/0608eb3edd4091afeec2374ad3fbfdad95016e6a"
+    "repo": "recurve",
+    "message": "Fixing outdated comments, README, optimizing assets",
+    "date": "2026-07-06T08:36:03Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/092b56cebb7f3443703a1e171a5ab5709a1be2d1"
   },
   {
-    "repo": "ranger-survivor",
-    "message": "Restore Enter your name placeholder on the score field",
-    "date": "2026-07-04T08:00:54Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/20a083385989a85ef72d5b98bfce468f5b810e81"
+    "repo": "recurve",
+    "message": "Renaming to recurve and updating level 2 map gen and balancing",
+    "date": "2026-07-06T06:50:09Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/486800549b1003a7cd3d5412d070dcfe72ef9cc2"
+  },
+  {
+    "repo": "recurve",
+    "message": "V3: Adding a second level with new enemies",
+    "date": "2026-07-05T08:56:50Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/0608eb3edd4091afeec2374ad3fbfdad95016e6a"
   },
   {
     "repo": "astro-siege",
@@ -22,11 +28,5 @@
     "message": "Rename score-entry field to callsign to kill Chrome card autofill",
     "date": "2026-07-04T07:55:08Z",
     "url": "https://github.com/rwdenmark/astro-siege/commit/10dffc7b1b18a31140cf54221de6d0aa0348972c"
-  },
-  {
-    "repo": "ranger-survivor",
-    "message": "Rename score-entry field to callsign to kill Chrome card autofill",
-    "date": "2026-07-04T07:54:56Z",
-    "url": "https://github.com/rwdenmark/ranger-survivor/commit/1c43987bd4cdd205ffef52fdf9ecb9a1d4278ea3"
   }
 ]
