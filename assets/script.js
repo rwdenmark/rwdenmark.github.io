@@ -167,6 +167,9 @@
     var svgs = document.querySelectorAll('.bg-pulse');
     if (!svgs.length) return;
     var NS = 'http://www.w3.org/2000/svg';
+    // L, START_S, DASH, and DUR pair with the stroke-dasharray values in
+    // _layouts/default.html (wire-a/b/c) and the animation durations in
+    // assets/style.css (.pa/.pb/.pc). Change one and the other two must change with it.
     var TILE = 280, MAXT = 30, L = 1226.28, START_S = 889.71, DASH = 18, STEP = 1 / 30;
     var S_MIN = 521.45, S_MAX = 1085.652;
     var DUR = { pa: 20, pb: 857 / 30, pc: 706 / 30 };

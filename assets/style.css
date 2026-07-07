@@ -74,6 +74,9 @@ body {
   animation-iteration-count: infinite, 1;
   animation-fill-mode: none, forwards;
 }
+/* These durations pair with the stroke-dasharray values in _layouts/default.html
+   (wire-a/b/c) and the L, START_S, DASH, DUR constants in assets/script.js.
+   Change one and the other two must change with it. */
 .bg-pulse .pa { animation-duration: 20s, 0.2s;       animation-timing-function: steps(600), ease-out; }
 .bg-pulse .pb { animation-duration: 28.56667s, 0.2s; animation-timing-function: steps(857), ease-out; }
 .bg-pulse .pc { animation-duration: 23.53333s, 0.2s; animation-timing-function: steps(706), ease-out; }
@@ -202,8 +205,8 @@ body[data-page="about"] .gallery-tabs {
 .reference-card blockquote p:last-child { margin-bottom: 0; }
 .testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .testimonial-attribution strong { color: var(--text); }
-.testimonial-attribution a, .testimonial-attribution a:visited, .reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
-.testimonial-attribution a:hover, .reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
+.reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
+.reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-header { margin-bottom: 12px; }
 .reference-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: var(--text); }
 .reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
@@ -272,7 +275,7 @@ body[data-page="about"] .gallery-tabs {
   margin: 0;
   font-style: italic;
 }
-.proj-dot {
+.project-dot {
   display: none;
   width: 8px;
   height: 8px;
@@ -452,7 +455,6 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tab:hover { color: var(--accent-hover); }
 .gallery-tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .gallery-tab.active:hover { color: var(--text); cursor: default; }
-.gallery-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 .commits-list {
   list-style: none;

@@ -11,8 +11,8 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
-    <img class="project-thumb"{% if p.thumb_style %} style="{{ p.thumb_style }}"{% endif %} src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}"{% if forloop.index <= 2 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async" />
-    <h3>{{ p.title }}{% if p.home %} <span class="proj-dot" title="Self-hosted node online"></span>{% endif %}</h3>
+    <img class="project-thumb" src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}"{% if forloop.index <= 2 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async" />
+    <h3>{{ p.title }}{% if p.home %} <span class="project-dot" title="Self-hosted node online"></span>{% endif %}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
       {% endfor %}
@@ -31,57 +31,23 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
 <h2 class="section-title">Utilities</h2>
 <div class="scripts-list">
+  {% for u in site.data.utilities %}
   <article class="script-row">
     <div class="script-info">
       <div class="script-head">
-        <h3>Spring Boot Starter</h3>
+        <h3>{{ u.title }}</h3>
         <div class="script-stack">
-          <span>Java</span>
-          <span>Spring Boot</span>
-          <span>PostgreSQL</span>
-          <span>Docker</span>
-          <span>JUnit</span>
+          {% for s in u.stack %}<span>{{ s }}</span>
+          {% endfor %}
         </div>
       </div>
-      <p>Reusable Spring Boot backend template. REST endpoints, PostgreSQL in Docker, and JUnit integration tests.</p>
+      <p>{{ u.description }}</p>
     </div>
     <div class="script-actions">
-      <a href="https://github.com/rwdenmark/spring-boot-starter" rel="noopener noreferrer" target="_blank">View on GitHub</a>
+      <a href="{{ u.github }}" rel="noopener noreferrer" target="_blank">View on GitHub</a>
     </div>
   </article>
-  <article class="script-row">
-    <div class="script-info">
-      <div class="script-head">
-        <h3>OCI A1 Capacity Grabber</h3>
-        <div class="script-stack">
-          <span>PowerShell</span>
-          <span>OCI CLI</span>
-          <span>Automation</span>
-        </div>
-      </div>
-      <p>Retries until a free Oracle Cloud Ampere A1 instance is available, with rate-limit backoff and safe-stop handling.</p>
-    </div>
-    <div class="script-actions">
-      <a href="https://github.com/rwdenmark/oci-grab-arm" rel="noopener noreferrer" target="_blank">View on GitHub</a>
-    </div>
-  </article>
-  <article class="script-row">
-    <div class="script-info">
-      <div class="script-head">
-        <h3>Order to Cash (SAP CPI)</h3>
-        <div class="script-stack">
-          <span>Java</span>
-          <span>Spring Boot</span>
-          <span>SAP CPI</span>
-          <span>TypeScript</span>
-        </div>
-      </div>
-      <p>Routes web-form orders through SAP Integration Suite (CPI) with message mapping and content-based routing.</p>
-    </div>
-    <div class="script-actions">
-      <a href="https://github.com/rwdenmark/order-to-cash-cpi" rel="noopener noreferrer" target="_blank">View on GitHub</a>
-    </div>
-  </article>
+  {% endfor %}
 </div>
 
 <div id="recent-commits" data-commits-url="{{ '/commits.json' | relative_url }}"></div>
@@ -101,7 +67,18 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
       // Open the tab synchronously so it isn't blocked as a popup (an async open would be).
       const tab = window.open("", "_blank");
-      if (tab) tab.document.write('<!doctype html><meta name="color-scheme" content="dark"><title>Connecting…</title><body style="margin:0;background:#0d1117"></body>');
+      if (tab) {
+        // Style the interstitial about:blank via DOM (document.write is deprecated).
+        try {
+          tab.document.title = "Connecting…";
+          const meta = tab.document.createElement("meta");
+          meta.name = "color-scheme";
+          meta.content = "dark";
+          tab.document.head.appendChild(meta);
+          tab.document.body.style.margin = "0";
+          tab.document.body.style.background = "#0d1117";
+        } catch (_) {}
+      }
       const home = link.dataset.home;
       const cloud = link.getAttribute("href"); // Render fallback from the template
       const label = link.textContent;
@@ -109,11 +86,15 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
       let target = cloud;
       try {
+        // no-cors probe. Only the EDI app's health endpoint sends CORS headers, so a
+        // plain fetch throws for the other apps even when the box is up. The opaque
+        // response hides the status code (that is the tradeoff), but resolving at all
+        // means the home box answered. A rejection means it is down.
         const ctrl = new AbortController();
         const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-        const res = await fetch(withSlash(home) + HEALTH, { signal: ctrl.signal, cache: "no-store" });
+        await fetch(withSlash(home) + HEALTH, { signal: ctrl.signal, cache: "no-store", mode: "no-cors" });
         clearTimeout(timer);
-        if (res.ok) target = home;
+        target = home;
       } catch (_) {
         // home is down, so warm the Render copy's Neon before we land there
         fetch(withSlash(cloud) + HEALTH, { cache: "no-store", mode: "no-cors" }).catch(() => {});
@@ -126,7 +107,7 @@ og_description: Personal projects in Java and Spring Boot - REST APIs, OAuth int
 
     // Status dots. One DB-free probe to EDI's CORS-enabled health endpoint drives every
     // dot, since all apps share one box. Green dot = box is up, demo served from home.
-    const projDots = document.querySelectorAll(".proj-dot");
+    const projDots = document.querySelectorAll(".project-dot");
     const notes = document.querySelectorAll(".project-note");
     const ediLink = [...document.querySelectorAll("a.demo-link[data-home]")]
       .find((l) => l.dataset.home.includes("/edi"));

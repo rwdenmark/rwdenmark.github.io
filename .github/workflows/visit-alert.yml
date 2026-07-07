@@ -134,7 +134,6 @@ jobs:
           echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-visits.txt
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git rm -f -q --ignore-unmatch .github/last-seen-total.txt
           git add .github/last-seen-visits.txt
           if git diff --cached --quiet; then
             echo "No changes to commit."

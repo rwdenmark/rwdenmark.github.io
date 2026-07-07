@@ -1,8 +1,8 @@
 - title: Recurve
   thumb: /projects/recurve.webp
   alt: "Top-down view of Recurve: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
-  width: 1200
-  height: 800
+  width: 750
+  height: 500
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
   description: "Endless top-down survival shooter. Aim with the mouse and loop from grass field to troll cave and back, stacking roguelite upgrade cards as enemies grow tankier and faster each cycle. Spring Boot leaderboard."
   note: "The live demo may take up to a minute to load while the backend wakes up."
@@ -21,7 +21,7 @@
   demo: https://astro-siege.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/astro/
 - title: EDI Format Converter
-  thumb: /projects/EDI-Format-Converter.webp
+  thumb: /projects/edi-format-converter.webp
   alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, XML and STRING toggles and 837P/837I/837D sample buttons, in a dark purple theme."
   width: 1200
   height: 800
@@ -40,7 +40,7 @@
   description: "Spring Boot REST service that aggregates a WoW character profile from Battle.net OAuth and Raider.IO. Returns item level, raid and Mythic+ scores, achievements, mounts, and the Blizzard render."
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/wow-explorer
-  demo: https://wow-explorer.onrender.com/
+  demo: https://wow-explorer.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/wow/
 - title: Steam Analyzer
   thumb: /projects/steam-analyzer.webp
@@ -51,7 +51,7 @@
   description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
   note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/steam-analyzer
-  demo: https://steam-analyzer.onrender.com/
+  demo: https://steam-analyzer.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/steam/
 - title: Translate to English
   thumb: /projects/translate-to-english.webp

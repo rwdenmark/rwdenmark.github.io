@@ -1,0 +1,12 @@
+- title: Spring Boot Starter
+  stack: [Java, Spring Boot, PostgreSQL, Docker, JUnit]
+  description: "Reusable Spring Boot backend template. REST endpoints, PostgreSQL in Docker, and JUnit integration tests."
+  github: https://github.com/rwdenmark/spring-boot-starter
+- title: OCI A1 Capacity Grabber
+  stack: [PowerShell, OCI CLI, Automation]
+  description: "Retries until a free Oracle Cloud Ampere A1 instance is available, with rate-limit backoff and safe-stop handling."
+  github: https://github.com/rwdenmark/oci-grab-arm
+- title: Order to Cash (SAP CPI)
+  stack: [Java, Spring Boot, SAP CPI, TypeScript]
+  description: "Routes web-form orders through SAP Integration Suite (CPI) with message mapping and content-based routing."
+  github: https://github.com/rwdenmark/order-to-cash-cpi

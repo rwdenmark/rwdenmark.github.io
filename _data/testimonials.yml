@@ -1,0 +1,13 @@
+# Home-page pull quotes. references.html stays the canonical full text.
+- quote: "My go-to, my right-hand man, who was eager to jump into any situation&hellip; and see it through to completion."
+  name: Tyler Thompson
+  role: Implementation Manager
+  relation: direct manager
+- quote: "What really sets Ryan apart at a senior level is his leadership&hellip; someone other developers naturally turned to for guidance."
+  name: Marc Velasquez
+  role: Support Manager
+  relation: mentor
+- quote: "One of the engineers I most enjoyed collaborating with&hellip; made everyone he worked with stronger."
+  name: Brandon Maweu
+  role: Software Engineer
+  relation: peer
