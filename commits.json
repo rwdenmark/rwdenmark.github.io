@@ -1,32 +1,32 @@
 [
   {
-    "repo": "recurve",
-    "message": "Fixing outdated comments, README, optimizing assets",
-    "date": "2026-07-06T08:36:03Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/092b56cebb7f3443703a1e171a5ab5709a1be2d1"
+    "repo": "steam-analyzer",
+    "message": "Fix store client bean name collision and add a context boot test",
+    "date": "2026-07-07T08:56:33Z",
+    "url": "https://github.com/rwdenmark/steam-analyzer/commit/8435f480def24b286285e28b2224230227d9c8d0"
+  },
+  {
+    "repo": "order-to-cash-cpi",
+    "message": "Validate region and price, handle CPI timeouts, scrub funnel host from exports",
+    "date": "2026-07-07T08:48:31Z",
+    "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/2ce2905b2efe8dcb83916553bdef11636cac2a57"
+  },
+  {
+    "repo": "wow-explorer",
+    "message": "Add client timeouts and cache sync, drop unused index, tidy naming and docs",
+    "date": "2026-07-07T08:40:29Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/00d1cc08a5479340226196c5d6991e3f4c40bccb"
+  },
+  {
+    "repo": "translator",
+    "message": "Proxy aware rate limiting, zh langpair fix, pack helper, doc corrections",
+    "date": "2026-07-07T08:30:42Z",
+    "url": "https://github.com/rwdenmark/translator/commit/e8014b9b38c5cfa5dec1f5bc406bce3440610117"
   },
   {
     "repo": "recurve",
-    "message": "Renaming to recurve and updating level 2 map gen and balancing",
-    "date": "2026-07-06T06:50:09Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/486800549b1003a7cd3d5412d070dcfe72ef9cc2"
-  },
-  {
-    "repo": "recurve",
-    "message": "V3: Adding a second level with new enemies",
-    "date": "2026-07-05T08:56:50Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/0608eb3edd4091afeec2374ad3fbfdad95016e6a"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Restore Enter your name placeholder on the score field",
-    "date": "2026-07-04T08:00:44Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/65b98d89c70b3a5d0bd84f70b167ee4d309ca40e"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Rename score-entry field to callsign to kill Chrome card autofill",
-    "date": "2026-07-04T07:55:08Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/10dffc7b1b18a31140cf54221de6d0aa0348972c"
+    "message": "Bake level 1 background, extend invisible name check, rename rate limiter, add level 2 tests",
+    "date": "2026-07-07T08:30:09Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/48cfd0e0eb065408c0d6c9a8dc2e5ff0e80c78de"
   }
 ]
