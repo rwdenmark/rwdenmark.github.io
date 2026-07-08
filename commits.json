@@ -1,6 +1,12 @@
 [
   {
     "repo": "recurve",
+    "message": "Fixing menu bug and renaming Ballista card",
+    "date": "2026-07-08T18:53:27Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/9ea2f0c7ffb9dc5cb26f7e25989fe41316c43358"
+  },
+  {
+    "repo": "recurve",
     "message": "Reapplying loading screen fix",
     "date": "2026-07-08T09:25:08Z",
     "url": "https://github.com/rwdenmark/recurve/commit/bf76c88f28019a0773792d3c857bf73858b4ce10"
@@ -10,12 +16,6 @@
     "message": "Add ranger ultimate abilities, upgrade cards, and HUD indicators",
     "date": "2026-07-08T09:12:26Z",
     "url": "https://github.com/rwdenmark/recurve/commit/8713bb4fe6e8210a3b61727967d9dcfc80d2d9f5"
-  },
-  {
-    "repo": "recurve",
-    "message": "Fixing positioning issue with initial loading screen",
-    "date": "2026-07-08T07:21:38Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/e51203fc444a549dcda53f5930db548872a060c3"
   },
   {
     "repo": "steam-analyzer",
