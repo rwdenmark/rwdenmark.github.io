@@ -1,5 +1,23 @@
 [
   {
+    "repo": "recurve",
+    "message": "Fixing positioning issue with initial loading screen",
+    "date": "2026-07-08T07:21:38Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/e51203fc444a549dcda53f5930db548872a060c3"
+  },
+  {
+    "repo": "recurve",
+    "message": "Fixing issue with necromancer spawning",
+    "date": "2026-07-08T07:07:09Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/7b976a3aba09b9db4121d914842a16271b754742"
+  },
+  {
+    "repo": "recurve",
+    "message": "Updating hud style and loading screen",
+    "date": "2026-07-08T06:46:55Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/1b26e83eb31224f48d80b0ba89500b0fb8c30712"
+  },
+  {
     "repo": "steam-analyzer",
     "message": "Fix store client bean name collision and add a context boot test",
     "date": "2026-07-07T08:56:33Z",
@@ -10,23 +28,5 @@
     "message": "Validate region and price, handle CPI timeouts, scrub funnel host from exports",
     "date": "2026-07-07T08:48:31Z",
     "url": "https://github.com/rwdenmark/order-to-cash-cpi/commit/2ce2905b2efe8dcb83916553bdef11636cac2a57"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Add client timeouts and cache sync, drop unused index, tidy naming and docs",
-    "date": "2026-07-07T08:40:29Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/00d1cc08a5479340226196c5d6991e3f4c40bccb"
-  },
-  {
-    "repo": "translator",
-    "message": "Proxy aware rate limiting, zh langpair fix, pack helper, doc corrections",
-    "date": "2026-07-07T08:30:42Z",
-    "url": "https://github.com/rwdenmark/translator/commit/e8014b9b38c5cfa5dec1f5bc406bce3440610117"
-  },
-  {
-    "repo": "recurve",
-    "message": "Bake level 1 background, extend invisible name check, rename rate limiter, add level 2 tests",
-    "date": "2026-07-07T08:30:09Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/48cfd0e0eb065408c0d6c9a8dc2e5ff0e80c78de"
   }
 ]
