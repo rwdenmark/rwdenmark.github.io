@@ -1,21 +1,21 @@
 [
   {
     "repo": "recurve",
-    "message": "Fixing menu bug and renaming Ballista card",
-    "date": "2026-07-08T18:53:27Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/9ea2f0c7ffb9dc5cb26f7e25989fe41316c43358"
+    "message": "Updated main menu and game over menu. Added ultimate cards and Main Menu button",
+    "date": "2026-07-08T21:05:32Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/83f1da182fef9874f74abc4864fcf04ac83db388"
   },
   {
     "repo": "recurve",
-    "message": "Reapplying loading screen fix",
-    "date": "2026-07-08T09:25:08Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/bf76c88f28019a0773792d3c857bf73858b4ce10"
+    "message": "Fixing enemy hurt animation to prevent teleporting",
+    "date": "2026-07-08T20:09:53Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/0c70127da872142a78a059d162b3adcaf48b1aab"
   },
   {
     "repo": "recurve",
-    "message": "Add ranger ultimate abilities, upgrade cards, and HUD indicators",
-    "date": "2026-07-08T09:12:26Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/8713bb4fe6e8210a3b61727967d9dcfc80d2d9f5"
+    "message": "Balancing ultimate abilities",
+    "date": "2026-07-08T19:32:19Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/701197aedcec5de06f37d9d630dcbdb5f2afa06d"
   },
   {
     "repo": "steam-analyzer",
