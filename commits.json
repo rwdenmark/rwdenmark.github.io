@@ -1,21 +1,21 @@
 [
   {
     "repo": "recurve",
+    "message": "Reapplying loading screen fix",
+    "date": "2026-07-08T09:25:08Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/bf76c88f28019a0773792d3c857bf73858b4ce10"
+  },
+  {
+    "repo": "recurve",
+    "message": "Add ranger ultimate abilities, upgrade cards, and HUD indicators",
+    "date": "2026-07-08T09:12:26Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/8713bb4fe6e8210a3b61727967d9dcfc80d2d9f5"
+  },
+  {
+    "repo": "recurve",
     "message": "Fixing positioning issue with initial loading screen",
     "date": "2026-07-08T07:21:38Z",
     "url": "https://github.com/rwdenmark/recurve/commit/e51203fc444a549dcda53f5930db548872a060c3"
-  },
-  {
-    "repo": "recurve",
-    "message": "Fixing issue with necromancer spawning",
-    "date": "2026-07-08T07:07:09Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/7b976a3aba09b9db4121d914842a16271b754742"
-  },
-  {
-    "repo": "recurve",
-    "message": "Updating hud style and loading screen",
-    "date": "2026-07-08T06:46:55Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/1b26e83eb31224f48d80b0ba89500b0fb8c30712"
   },
   {
     "repo": "steam-analyzer",
