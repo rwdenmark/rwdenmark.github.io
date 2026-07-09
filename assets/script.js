@@ -136,6 +136,9 @@
     var W = 0;
     var animating = false;
     var finishNav = null;
+    var touchDevice = (navigator.maxTouchPoints || 0) > 0 ||
+      'ontouchstart' in window ||
+      (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
 
     function wrap(i) { return (i + group.length) % group.length; }
 
@@ -185,9 +188,9 @@
     }
 
     function updateNavButtons() {
-      var multi = group.length > 1;
-      btnPrev.style.display = multi ? '' : 'none';
-      btnNext.style.display = multi ? '' : 'none';
+      var shown = group.length > 1 && !touchDevice;
+      btnPrev.style.display = shown ? '' : 'none';
+      btnNext.style.display = shown ? '' : 'none';
     }
 
     function open(img) {
