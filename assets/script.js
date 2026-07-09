@@ -186,26 +186,29 @@
       if (e.target === box || e.target.classList.contains('lightbox-figure')) close();
     });
 
-    var touchX = 0, touchY = 0, dragging = false, horizontal = false;
+    var touchX = 0, touchY = 0, dragging = false, axis = null;
     box.addEventListener('touchstart', function (e) {
       if (e.touches.length > 1) { dragging = false; return; }
       var t = e.changedTouches[0];
       touchX = t.clientX; touchY = t.clientY;
-      dragging = true; horizontal = false;
+      dragging = true; axis = null;
       bigImg.style.transition = 'none';
     }, { passive: true });
     box.addEventListener('touchmove', function (e) {
       if (!dragging) return;
       var t = e.changedTouches[0];
       var dx = t.clientX - touchX, dy = t.clientY - touchY;
-      if (!horizontal && Math.abs(dx) < Math.abs(dy)) {
-        dragging = false;
-        bigImg.style.transition = '';
-        bigImg.style.transform = '';
-        return;
+      if (axis === null) {
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
       }
-      horizontal = true;
-      bigImg.style.transform = 'translateX(' + dx + 'px)';
+      if (axis === 'x') {
+        bigImg.style.transform = 'translateX(' + dx + 'px)';
+      } else {
+        bigImg.style.transform = 'translateY(' + dy + 'px)';
+        var prog = Math.min(Math.abs(dy) / 320, 1);
+        box.style.background = 'rgba(1, 4, 9, ' + (0.92 - prog * 0.72) + ')';
+      }
     }, { passive: true });
     box.addEventListener('touchend', function (e) {
       if (!dragging) return;
@@ -213,7 +216,7 @@
       var t = e.changedTouches[0];
       var dx = t.clientX - touchX, dy = t.clientY - touchY;
       bigImg.style.transition = '';
-      if (group.length > 1 && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (axis === 'x' && group.length > 1 && Math.abs(dx) > 40) {
         var dir = dx < 0 ? 1 : -1;
         show(index + dir);
         bigImg.style.transition = 'none';
@@ -221,7 +224,12 @@
         void bigImg.offsetWidth;
         bigImg.style.transition = '';
         bigImg.style.transform = '';
+      } else if (axis === 'y' && Math.abs(dy) > 90) {
+        close();
+        box.style.background = '';
+        bigImg.style.transform = '';
       } else {
+        box.style.background = '';
         bigImg.style.transform = '';
       }
     }, { passive: true });

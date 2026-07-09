@@ -446,6 +446,7 @@ body[data-page="about"] .gallery-tabs {
   background: rgba(1, 4, 9, 0.92);
   opacity: 0; visibility: hidden;
   transition: opacity 0.2s ease, visibility 0.2s ease;
+  touch-action: none;
 }
 .lightbox.open { opacity: 1; visibility: visible; }
 .lightbox-figure {
@@ -463,8 +464,8 @@ body[data-page="about"] .gallery-tabs {
   background: var(--card-bg);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
   cursor: default;
-  transition: transform 0.25s ease;
-  touch-action: pan-y;
+  transition: transform 0.31s ease;
+  touch-action: none;
 }
 .lightbox-btn {
   position: absolute;
