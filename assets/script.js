@@ -186,17 +186,43 @@
       if (e.target === box || e.target.classList.contains('lightbox-figure')) close();
     });
 
-    var touchX = 0, touchY = 0;
+    var touchX = 0, touchY = 0, dragging = false, horizontal = false;
     box.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) { dragging = false; return; }
       var t = e.changedTouches[0];
       touchX = t.clientX; touchY = t.clientY;
+      dragging = true; horizontal = false;
+      bigImg.style.transition = 'none';
     }, { passive: true });
-    box.addEventListener('touchend', function (e) {
-      if (group.length < 2) return;
+    box.addEventListener('touchmove', function (e) {
+      if (!dragging) return;
       var t = e.changedTouches[0];
       var dx = t.clientX - touchX, dy = t.clientY - touchY;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-        show(dx < 0 ? index + 1 : index - 1);
+      if (!horizontal && Math.abs(dx) < Math.abs(dy)) {
+        dragging = false;
+        bigImg.style.transition = '';
+        bigImg.style.transform = '';
+        return;
+      }
+      horizontal = true;
+      bigImg.style.transform = 'translateX(' + dx + 'px)';
+    }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      if (!dragging) return;
+      dragging = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - touchX, dy = t.clientY - touchY;
+      bigImg.style.transition = '';
+      if (group.length > 1 && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        var dir = dx < 0 ? 1 : -1;
+        show(index + dir);
+        bigImg.style.transition = 'none';
+        bigImg.style.transform = 'translateX(' + (dir * box.clientWidth) + 'px)';
+        void bigImg.offsetWidth;
+        bigImg.style.transition = '';
+        bigImg.style.transform = '';
+      } else {
+        bigImg.style.transform = '';
       }
     }, { passive: true });
   })();

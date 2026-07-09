@@ -463,6 +463,8 @@ body[data-page="about"] .gallery-tabs {
   background: var(--card-bg);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
   cursor: default;
+  transition: transform 0.25s ease;
+  touch-action: pan-y;
 }
 .lightbox-btn {
   position: absolute;
@@ -481,13 +483,16 @@ body[data-page="about"] .gallery-tabs {
   background: rgba(47, 129, 247, 0.08);
 }
 .lightbox-close { top: 16px; right: 16px; width: 40px; height: 40px; font-size: 1.5rem; }
-.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; font-size: 1.5rem; }
+.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; font-size: 2rem; }
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
 @media (max-width: 520px) {
   .lightbox { padding: 12px; }
   .lightbox-nav { display: none !important; }
   .lightbox-close { width: 36px; height: 36px; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .lightbox-nav { display: none !important; }
 }
 
 .gallery-tabs { display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; margin: 32px 0 16px; }
