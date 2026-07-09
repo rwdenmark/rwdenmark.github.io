@@ -503,7 +503,8 @@ body[data-page="about"] .gallery-tabs {
   color: var(--accent-hover);
   background: rgba(47, 129, 247, 0.08);
 }
-.lightbox-close { top: 16px; right: 16px; width: 40px; height: 40px; font-size: 1.5rem; }
+.lightbox-close { top: 16px; right: 16px; width: 40px; height: 40px; }
+.lightbox-close svg { width: 20px; height: 20px; display: block; flex-shrink: 0; }
 .lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; }
 .lightbox-nav svg { width: 24px; height: 24px; display: block; flex-shrink: 0; }
 .lightbox-prev { left: 16px; }
