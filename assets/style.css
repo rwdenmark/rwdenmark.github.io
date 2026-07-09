@@ -495,7 +495,8 @@ body[data-page="about"] .gallery-tabs {
   background: rgba(47, 129, 247, 0.08);
 }
 .lightbox-close { top: 16px; right: 16px; width: 40px; height: 40px; font-size: 1.5rem; }
-.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; font-size: 2rem; }
+.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; }
+.lightbox-nav svg { width: 24px; height: 24px; display: block; }
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
 @media (max-width: 520px) {

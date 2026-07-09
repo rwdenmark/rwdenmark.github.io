@@ -112,8 +112,8 @@
     box.setAttribute('aria-modal', 'true');
     box.setAttribute('aria-label', 'Photo viewer');
     box.innerHTML =
-      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo">‹</button>' +
-      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo">›</button>' +
+      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></button>' +
       '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>' +
       '<div class="lightbox-viewport"><div class="lightbox-track">' +
         '<div class="lightbox-slide"><img class="lightbox-img" alt="" /></div>' +
@@ -135,6 +135,7 @@
     var lastFocus = null;
     var W = 0;
     var animating = false;
+    var finishNav = null;
 
     function wrap(i) { return (i + group.length) % group.length; }
 
@@ -171,6 +172,7 @@
         if (done) return;
         done = true;
         track.removeEventListener('transitionend', onEnd);
+        finishNav = null;
         index = wrap(index + dir);
         renderStrip();
         centerTrack(false);
@@ -178,6 +180,7 @@
       }
       function onEnd(e) { if (e.propertyName === 'transform') finish(); }
       track.addEventListener('transitionend', onEnd);
+      finishNav = finish;
       setTimeout(finish, 700);
     }
 
@@ -246,7 +249,8 @@
 
     var touchX = 0, touchY = 0, dragging = false, axis = null;
     box.addEventListener('touchstart', function (e) {
-      if (e.touches.length > 1 || animating) { dragging = false; return; }
+      if (e.touches.length > 1) { dragging = false; return; }
+      if (animating && finishNav) finishNav();
       var t = e.changedTouches[0];
       touchX = t.clientX; touchY = t.clientY;
       dragging = true; axis = null; didDrag = false;
