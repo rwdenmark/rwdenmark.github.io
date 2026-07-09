@@ -185,6 +185,20 @@
     box.addEventListener('click', function (e) {
       if (e.target === box || e.target.classList.contains('lightbox-figure')) close();
     });
+
+    var touchX = 0, touchY = 0;
+    box.addEventListener('touchstart', function (e) {
+      var t = e.changedTouches[0];
+      touchX = t.clientX; touchY = t.clientY;
+    }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      if (group.length < 2) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - touchX, dy = t.clientY - touchY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        show(dx < 0 ? index + 1 : index - 1);
+      }
+    }, { passive: true });
   })();
 
   var path = window.location.pathname;
