@@ -13,6 +13,14 @@
 html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 :focus { outline: none; }
 :focus-visible {
   outline: 2px solid var(--accent);
