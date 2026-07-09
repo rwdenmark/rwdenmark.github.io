@@ -1,22 +1,16 @@
 name: Recent commits cache
 
-# Generates commits.json once an hour so the projects page reads a static file
-# instead of calling the GitHub API from each visitor's browser (which hit the
-# unauthenticated 60/hour-per-IP limit and silently blanked the feed).
-#
-# GitHub Actions cron is best-effort and often delayed by tens of minutes, so
-# this runs "roughly hourly," which is plenty for a recent-activity widget.
+# Generates commits.json hourly so the projects page reads a static file instead of
+# calling the GitHub API per visitor (the unauthenticated 60/hour/IP limit blanked the feed).
+# Actions cron is best-effort and often delayed, which is fine for a recent-activity widget.
 on:
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
 
-# Shared push lock with the daily-hits workflow. Both push to main and can fire on
-# the same top-of-hour minute (05:00 / 06:00 UTC), so a single shared group serializes
-# them and they never push at once. cancel-in-progress is false so neither job ever
-# cancels the other mid-run. A queued run waits and then runs. This also keeps a
-# delayed copy of THIS hourly job from overlapping the next one (it queues instead).
-# The rebase-retry on the push step remains the correctness backstop.
+# Shared push lock with the other main-pushing workflows so two jobs never push at once.
+# cancel-in-progress false means a queued run waits rather than cancelling. The rebase-retry
+# on the push step is the correctness backstop.
 concurrency:
   group: main-push
   cancel-in-progress: false

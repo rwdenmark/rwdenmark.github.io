@@ -1,10 +1,8 @@
 name: Visit alert email
 
-# Polls the GoatCounter API every 15 minutes and emails when new VISITORS
-# appear (GoatCounter "visits", deduplicated sessions, so refreshes by the same
-# person do not send mail), replacing the fixed daily digest. No email when nothing changed, so
-# zero-count emails are gone. GitHub delays scheduled runs by 5-30 minutes under
-# load, so "as soon as" means within roughly half an hour of the visit.
+# Polls GoatCounter every 15 minutes and emails only when new deduplicated visitors appear,
+# so refreshes and zero-count runs never send mail. Actions cron is delayed under load, so
+# alerts land within roughly half an hour of a visit.
 on:
   schedule:
     - cron: '*/15 * * * *'

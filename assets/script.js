@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  document.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  });
+
   (function () {
     var els = document.querySelectorAll('.last-updated');
     if (!els.length) return;
@@ -139,6 +143,7 @@
     var touchDevice = (navigator.maxTouchPoints || 0) > 0 ||
       'ontouchstart' in window ||
       (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    var bgRegions = [].slice.call(document.querySelectorAll('header, main, footer'));
 
     function wrap(i) { return (i + group.length) % group.length; }
 
@@ -170,10 +175,11 @@
       if (animating || group.length < 2) return;
       animating = true;
       setTransform(baseX() - dir * (W + GAP), 0, true);
-      var done = false;
+      var done = false, timer;
       function finish() {
         if (done) return;
         done = true;
+        clearTimeout(timer);
         track.removeEventListener('transitionend', onEnd);
         finishNav = null;
         index = wrap(index + dir);
@@ -184,7 +190,7 @@
       function onEnd(e) { if (e.propertyName === 'transform') finish(); }
       track.addEventListener('transitionend', onEnd);
       finishNav = finish;
-      setTimeout(finish, 700);
+      timer = setTimeout(finish, 700);
     }
 
     function updateNavButtons() {
@@ -201,6 +207,7 @@
       updateNavButtons();
       renderStrip();
       box.classList.add('open');
+      bgRegions.forEach(function (el) { el.setAttribute('aria-hidden', 'true'); });
       document.body.style.overflow = 'hidden';
       centerTrack(false);
       btnClose.focus();
@@ -209,6 +216,7 @@
 
     function close() {
       box.classList.remove('open');
+      bgRegions.forEach(function (el) { el.removeAttribute('aria-hidden'); });
       document.body.style.overflow = '';
       box.style.background = '';
       document.removeEventListener('keydown', onKey);
@@ -295,7 +303,9 @@
     }, { passive: true });
 
     window.addEventListener('resize', function () {
-      if (box.classList.contains('open')) centerTrack(false);
+      if (!box.classList.contains('open')) return;
+      if (animating && finishNav) { finishNav(); return; }
+      centerTrack(false);
     });
   })();
 
@@ -315,8 +325,7 @@
     ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
   } catch (e) {}
 
-  // Count this homepage view in GoatCounter (server-side bot filtering and unique
-  // detection, no cookies). Owner excluded via the rwd_nocount flag above.
+  // Count this homepage view in GoatCounter (bot-filtered, no cookies). Owner excluded via rwd_nocount above.
   if (isHome && !ownerExcluded) {
     var gcImg = new Image();
     gcImg.src = 'https://rwdenmark.goatcounter.com/count' +
@@ -369,9 +378,7 @@
     var svgs = document.querySelectorAll('.bg-pulse');
     if (!svgs.length) return;
     var NS = 'http://www.w3.org/2000/svg';
-    // L, START_S, DASH, and DUR pair with the stroke-dasharray values in
-    // _layouts/default.html (wire-a/b/c) and the animation durations in
-    // assets/style.css (.pa/.pb/.pc). Change one and the other two must change with it.
+    // Coupled to the dash arrays in default.html and the durations in style.css. Change one, change all three.
     var TILE = 280, MAXT = 30, L = 1226.28, START_S = 889.71, DASH = 18, STEP = 1 / 30;
     var S_MIN = 521.45, S_MAX = 1085.652;
     var DUR = { pa: 20, pb: 857 / 30, pc: 706 / 30 };
