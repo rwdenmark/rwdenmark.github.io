@@ -112,8 +112,8 @@
     box.setAttribute('aria-modal', 'true');
     box.setAttribute('aria-label', 'Photo viewer');
     box.innerHTML =
-      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg></button>' +
-      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></button>' +
       '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>' +
       '<div class="lightbox-viewport"><div class="lightbox-track">' +
         '<div class="lightbox-slide"><img class="lightbox-img" alt="" /></div>' +
