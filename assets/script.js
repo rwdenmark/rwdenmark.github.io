@@ -77,6 +77,7 @@
         var on = t.dataset.gallery === name;
         t.classList.toggle('active', on);
         t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.setAttribute('tabindex', on ? '0' : '-1');
       });
       panels.forEach(function (p) {
         p.hidden = p.dataset.galleryPanel !== name;
@@ -86,14 +87,103 @@
     tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { activate(t.dataset.gallery); });
       t.addEventListener('keydown', function (e) {
-        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var next;
+        if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        else return;
         e.preventDefault();
-        var next = e.key === 'ArrowRight'
-          ? (i + 1) % tabs.length
-          : (i - 1 + tabs.length) % tabs.length;
         tabs[next].focus();
         activate(tabs[next].dataset.gallery);
       });
+    });
+  })();
+
+  (function () {
+    var thumbs = document.querySelectorAll('.gallery .card img');
+    if (!thumbs.length) return;
+
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Photo viewer');
+    box.innerHTML =
+      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo">‹</button>' +
+      '<figure class="lightbox-figure">' +
+        '<img class="lightbox-img" alt="" />' +
+      '</figure>' +
+      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo">›</button>' +
+      '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>';
+    document.body.appendChild(box);
+
+    var bigImg = box.querySelector('.lightbox-img');
+    var btnPrev = box.querySelector('.lightbox-prev');
+    var btnNext = box.querySelector('.lightbox-next');
+    var btnClose = box.querySelector('.lightbox-close');
+
+    var group = [];
+    var index = 0;
+    var lastFocus = null;
+
+    function show(i) {
+      index = (i + group.length) % group.length;
+      var src = group[index];
+      bigImg.src = src.currentSrc || src.src;
+      bigImg.alt = src.alt || '';
+      var multi = group.length > 1;
+      btnPrev.style.display = multi ? '' : 'none';
+      btnNext.style.display = multi ? '' : 'none';
+    }
+
+    function open(img) {
+      var panel = img.closest('.gallery');
+      group = [].slice.call(panel.querySelectorAll('.card img'));
+      lastFocus = img;
+      show(group.indexOf(img));
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      document.addEventListener('keydown', onKey);
+    }
+
+    function close() {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      if (lastFocus) lastFocus.focus();
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      else if (e.key === 'ArrowRight' && group.length > 1) { e.preventDefault(); show(index + 1); }
+      else if (e.key === 'ArrowLeft' && group.length > 1) { e.preventDefault(); show(index - 1); }
+      else if (e.key === 'Tab') {
+        var f = [].slice.call(box.querySelectorAll('button')).filter(function (b) {
+          return b.style.display !== 'none';
+        });
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    thumbs.forEach(function (img) {
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('aria-label', 'View larger: ' + (img.alt || 'photo'));
+      img.addEventListener('click', function () { open(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
+      });
+    });
+
+    btnPrev.addEventListener('click', function () { show(index - 1); });
+    btnNext.addEventListener('click', function () { show(index + 1); });
+    btnClose.addEventListener('click', close);
+    box.addEventListener('click', function (e) {
+      if (e.target === box || e.target.classList.contains('lightbox-figure')) close();
     });
   })();
 
