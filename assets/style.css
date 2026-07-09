@@ -480,6 +480,7 @@ body[data-page="about"] .gallery-tabs {
 }
 .lightbox-btn {
   position: absolute;
+  z-index: 2;
   background: var(--card-bg);
   color: var(--text);
   border: 1px solid var(--border);
