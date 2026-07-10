@@ -32,7 +32,7 @@ favicon.svg, favicon.ico    Favicons
 og-image.png                Open Graph preview image
 robots.txt                  Allow-all crawl policy plus sitemap pointer
 projects/                   Project card thumbnails
-jax/, boundary-waters/, cats/   Photos for the About galleries (thumbs/ subdirs hold generated 320w/640w grid sizes)
+jax/, boundary-waters/, cats/   Photos for the About galleries. Photos wider than 640px have generated 320w/640w grid sizes in a thumbs/ subdir (jax photos are 600px, so no thumbs there)
 ```
 
 ## Deploy
