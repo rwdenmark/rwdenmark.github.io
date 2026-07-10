@@ -60,7 +60,7 @@ jobs:
           end_now=$(TZ='America/Chicago' date -d '+1 hour' '+%Y-%m-%dT%H:00:00%:z')
 
           # The API only filters correctly on UTC Z-suffix timestamps (verified
-          # 7/4/2026: offset form like 00:00:00-05:00 parses but matches zero
+          # 7/4/2026, offset form like 00:00:00-05:00 parses but matches zero
           # visits, naive is a 400). So compute Central day boundaries first,
           # then convert those instants to Z-form for the query.
           start_z=$(date -u -d "$start_today" '+%Y-%m-%dT%H:%M:%SZ')
@@ -73,7 +73,7 @@ jobs:
           if [ -f "$state_file" ]; then
             state_date=$(cut -d'|' -f1 "$state_file")
             state_count=$(cut -d'|' -f2 "$state_file")
-            # Self-heal a malformed state file: treat it as no state and quietly
+            # Self-heal a malformed state file. Treat it as no state and quietly
             # re-baseline rather than erroring every run until it is hand-fixed.
             if echo "$state_date" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' \
                && echo "$state_count" | grep -qE '^[0-9]+$'; then
@@ -87,7 +87,7 @@ jobs:
           send=false; summary=""; missed=0; new=0
 
           if [ "$have_state" = false ]; then
-            # First run ever: record the baseline quietly, never email a backlog.
+            # First run ever. Record the baseline quietly, never email a backlog.
             echo "Initializing state at $today|$total_today"
           else
             if [ "$state_date" != "$today" ]; then
@@ -133,7 +133,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       # State is committed and pushed BEFORE the email goes out, same pattern as
-      # the old daily job: if the push fails, no email is sent and the next poll
+      # the old daily job. If the push fails, no email is sent and the next poll
       # retries cleanly instead of double-emailing.
       - name: Write state before emailing
         if: steps.check.outputs.changed == 'true'
@@ -148,7 +148,10 @@ jobs:
 
       - name: Send email
         if: steps.check.outputs.send == 'true'
-        uses: dawidd6/action-send-mail@v3
+        # Pinned to the commit the v3 tag pointed at (v3.11.0). Third-party action
+        # holding the Gmail app password, so a moving tag is a supply-chain risk.
+        # Bump deliberately by updating the SHA.
+        uses: dawidd6/action-send-mail@4226df7daafa6fc901a43789c49bf7ab309066e7 # v3.11.0
         with:
           server_address: smtp.gmail.com
           server_port: 465

@@ -51,7 +51,7 @@
     }
 
     // Copy the address AND let the mailto proceed. A page cannot detect whether
-    // a mail app is configured, so this covers both cases: a mail app opens with
+    // a mail app is configured, so this covers both cases. A mail app opens with
     // the address ready, and without one the visitor still has it on the clipboard.
     link.addEventListener('click', function () {
       var addr = link.getAttribute('href').replace('mailto:', '');
@@ -136,9 +136,12 @@
     var animating = false;
     var finishNav = null;
     // Touch-primary devices only (phones, tablets). A touchscreen laptop driven
-    // by a mouse keeps the arrow buttons. Matches the CSS hide rule.
-    var touchDevice = window.matchMedia &&
-      window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    // by a mouse keeps the arrow buttons. Matches the CSS hide rule. Checked per
+    // open so a convertible that switches input mode gets the right controls.
+    function touchDevice() {
+      return window.matchMedia &&
+        window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    }
     var bgRegions = [].slice.call(document.querySelectorAll('header, main, footer'));
 
     function wrap(i) { return (i + group.length) % group.length; }
@@ -191,7 +194,7 @@
     }
 
     function updateNavButtons() {
-      var shown = group.length > 1 && !touchDevice;
+      var shown = group.length > 1 && !touchDevice();
       btnPrev.style.display = shown ? '' : 'none';
       btnNext.style.display = shown ? '' : 'none';
     }
@@ -361,6 +364,7 @@
     var HEALTH = 'api/health';
     var TIMEOUT_MS = 1500;
     function withSlash(u) { return u.charAt(u.length - 1) === '/' ? u : u + '/'; }
+    function healthUrl(base) { return withSlash(base) + HEALTH; }
 
     // One readable probe of EDI's health endpoint (the one app that sends CORS
     // headers) answers for the whole box, since all apps share it. res.ok proves
@@ -370,7 +374,7 @@
     for (var i = 0; i < demoLinks.length; i++) {
       if (demoLinks[i].dataset.home.indexOf('/edi') !== -1) { ediLink = demoLinks[i]; break; }
     }
-    var pingUrl = ediLink ? withSlash(ediLink.dataset.home) + HEALTH : null;
+    var pingUrl = ediLink ? healthUrl(ediLink.dataset.home) : null;
 
     function boxOnline(ms) {
       if (!pingUrl) return Promise.resolve(false);
@@ -385,6 +389,10 @@
       var link = e.target.closest('a.demo-link[data-home]');
       if (!link) return;
       e.preventDefault();
+      // Ignore extra clicks while a probe is in flight. They would open a second
+      // blank tab and capture "Connecting…" as the label to restore.
+      if (link.dataset.probing) return;
+      link.dataset.probing = '1';
 
       // Open the tab synchronously so it isn't blocked as a popup (an async open would be).
       var tab = window.open('', '_blank');
@@ -412,9 +420,10 @@
           target = home;
         } else {
           // box or app tier is down, warm the Render copy's Neon before we land there
-          fetch(withSlash(cloud) + HEALTH, { cache: 'no-store', mode: 'no-cors' }).catch(function () {});
+          fetch(healthUrl(cloud), { cache: 'no-store', mode: 'no-cors' }).catch(function () {});
         }
         link.textContent = label;
+        delete link.dataset.probing;
         if (tab) { tab.location = target; }
         else { window.location.href = target; } // popup blocked, fall back to same tab
       });
@@ -450,14 +459,24 @@
       };
       // Poll only while the tab is visible. Hidden tabs stop pinging, and a
       // returning visitor gets one immediate refresh so the dot is never stale.
+      // The first two follow-ups run at 30s to catch a box that is mid-wake,
+      // then a parked tab backs off to one ping every 2 minutes.
       var pollTimer = null;
+      var pollCount = 0;
+      var scheduleNext = function () {
+        pollTimer = setTimeout(function () {
+          pollCount++;
+          refreshStatus();
+          scheduleNext();
+        }, pollCount < 2 ? 30000 : 120000);
+      };
       var startPolling = function () {
         if (pollTimer) return;
         refreshStatus();
-        pollTimer = setInterval(refreshStatus, 30000);
+        scheduleNext();
       };
       var stopPolling = function () {
-        clearInterval(pollTimer);
+        clearTimeout(pollTimer);
         pollTimer = null;
       };
       document.addEventListener('visibilitychange', function () {

@@ -191,7 +191,9 @@ body[data-page="404"] main a:hover,
   text-decoration: underline;
 }
 
-.section-title { font-size: 1.5rem; font-weight: 700; line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em; }
+/* Gallery tabs share the section-title type so the two never drift. */
+.section-title, .gallery-tab { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
+.section-title { line-height: 1; margin: 0 0 16px; }
 .section-title + p { margin-top: 0; }
 .section-title:not(:first-child) { margin-top: 32px; }
 
@@ -479,7 +481,8 @@ body[data-page="about"] .gallery-tabs {
   /* 100% of the slide (viewport minus lightbox padding), never wider than the
      slide itself, so neighboring photos can't bleed into the gap on small screens. */
   max-width: min(100%, 1100px);
-  max-height: 80vh;
+  max-height: 80vh; /* fallback for browsers without dvh */
+  max-height: 80dvh;
   width: auto; height: auto;
   object-fit: contain;
   border-radius: 8px;
@@ -541,9 +544,6 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tabs { display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; margin: 32px 0 16px; }
 .gallery-tab {
   font-family: inherit;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
   color: var(--muted);
   background: none;
   border: none;

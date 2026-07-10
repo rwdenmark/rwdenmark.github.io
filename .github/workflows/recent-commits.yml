@@ -50,7 +50,7 @@ jobs:
               | jq --arg repo "$repo" -c '.[] | {
                   repo: $repo,
                   message: (.commit.message | split("\n")[0]),
-                  date: (.commit.author.date // .commit.committer.date),
+                  date: (.commit.committer.date // .commit.author.date),
                   url: .html_url
                 }' >> all.ndjson \
               || echo "::warning::Failed to fetch commits for $repo, feed will omit it this run."

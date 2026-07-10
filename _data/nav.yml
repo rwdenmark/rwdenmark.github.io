@@ -1,0 +1,5 @@
+# Header nav, in display order. id must match the page's page_id front matter.
+- { id: home, title: Home, url: / }
+- { id: projects, title: Projects, url: /projects.html }
+- { id: about, title: About, url: /about.html }
+- { id: resume, title: Resume, url: /resume.html }

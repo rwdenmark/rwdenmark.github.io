@@ -14,7 +14,7 @@ Layout and shared chrome (header, footer, animated circuit background, copy-to-c
 _config.yml                 Jekyll config
 _layouts/default.html       Shared page chrome
 _includes/cert-card.html    Certification card (featured and list variants)
-_data/                      Page data (projects, certs, galleries, references, testimonials, utilities)
+_data/                      Page data (nav, projects, certs, galleries, references, testimonials, utilities)
 _data/commits.json          Recent-commits feed, generated hourly by the workflow, rendered at build
 _data/last_updated.yml      Footer date of the last real content commit, same workflow, rendered at build
 assets/style.css            All CSS
@@ -29,6 +29,8 @@ resume.html                 Resume page (mirrors Resume_Ryan_Denmark.pdf)
 .github/actions/commit-push Shared commit-and-push-with-rebase-retry step for both workflows
 .github/last-seen-visits.txt Last visitor count seen by the visit-alert poller
 favicon.svg, favicon.ico    Favicons
+apple-touch-icon.png        iOS home-screen icon
+googlec0603268e666aeeb.html Google Search Console ownership verification
 og-image.png                Open Graph preview image
 robots.txt                  Allow-all crawl policy plus sitemap pointer
 projects/                   Project card thumbnails
@@ -53,7 +55,7 @@ Otherwise just push to a feature branch and let GitHub Pages render it.
 
 ## Hit counter and visit-alert email
 
-Every page sends a pageview to [GoatCounter](https://www.goatcounter.com) (`rwdenmark.goatcounter.com`), which filters bots and detects unique visitors server-side. A GitHub Actions workflow (`.github/workflows/visit-alert.yml`) polls the GoatCounter API every 15 minutes and emails via Gmail SMTP only when new visitors appeared (deduplicated GoatCounter visits, so one person refreshing does not send mail, and there are no zero-count emails). GitHub delays scheduled runs, so alerts land within roughly half an hour of a visit. The last seen visitor count is committed to `.github/last-seen-visits.txt` before each email so a failed push can never double-send, and day-rollover views are caught against the prior day's final total. Requires repo secrets `MAIL_USERNAME`, `MAIL_PASSWORD` (a Gmail app password), and `GOATCOUNTER_TOKEN` (a GoatCounter API key with "Read statistics").
+Every page sends a pageview to [GoatCounter](https://www.goatcounter.com) (`rwdenmark.goatcounter.com`), which filters bots and detects unique visitors server-side. A GitHub Actions workflow (`.github/workflows/visit-alert.yml`) polls the GoatCounter API every 15 minutes and emails via Gmail SMTP only when new visitors appeared (deduplicated GoatCounter visits, so one person refreshing does not send mail, and there are no zero-count emails). GitHub delays scheduled runs, so alerts land within roughly half an hour of a visit. The last seen visitor count is committed to `.github/last-seen-visits.txt` before each email so a failed push can never double-send, and day-rollover views are caught against the prior day's final total. Requires repo secrets `MAIL_USERNAME`, `MAIL_PASSWORD` (a Gmail app password), and `GOATCOUNTER_TOKEN` (a GoatCounter API key with "Read statistics"). To exclude your own visits, load any page once with `?nocount=1` (persists in that browser via localStorage), and undo it with `?nocount=0`.
 
 ## License
 
