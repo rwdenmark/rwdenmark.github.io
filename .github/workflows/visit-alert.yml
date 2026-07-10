@@ -71,9 +71,17 @@ jobs:
           state_file=".github/last-seen-visits.txt"
           state_date=""; state_count=0; have_state=false
           if [ -f "$state_file" ]; then
-            have_state=true
             state_date=$(cut -d'|' -f1 "$state_file")
             state_count=$(cut -d'|' -f2 "$state_file")
+            # Self-heal a malformed state file: treat it as no state and quietly
+            # re-baseline rather than erroring every run until it is hand-fixed.
+            if echo "$state_date" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' \
+               && echo "$state_count" | grep -qE '^[0-9]+$'; then
+              have_state=true
+            else
+              echo "::warning::Malformed state file ($(cat "$state_file")), re-baselining."
+              state_date=""; state_count=0
+            fi
           fi
 
           send=false; summary=""; missed=0; new=0

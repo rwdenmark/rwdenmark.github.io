@@ -116,9 +116,9 @@
     box.setAttribute('aria-modal', 'true');
     box.setAttribute('aria-label', 'Photo viewer');
     box.innerHTML =
-      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg></button>' +
-      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></button>' +
-      '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close viewer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-nav lightbox-prev" aria-label="Previous photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-nav lightbox-next" aria-label="Next photo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></button>' +
+      '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close viewer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>' +
       '<div class="lightbox-viewport"><div class="lightbox-track">' +
         '<div class="lightbox-slide"><img class="lightbox-img" alt="" /></div>' +
         '<div class="lightbox-slide"><img class="lightbox-img" alt="" /></div>' +
@@ -140,9 +140,10 @@
     var W = 0;
     var animating = false;
     var finishNav = null;
-    var touchDevice = (navigator.maxTouchPoints || 0) > 0 ||
-      'ontouchstart' in window ||
-      (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    // Touch-primary devices only (phones, tablets). A touchscreen laptop driven
+    // by a mouse keeps the arrow buttons. Matches the CSS hide rule.
+    var touchDevice = window.matchMedia &&
+      window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     var bgRegions = [].slice.call(document.querySelectorAll('header, main, footer'));
 
     function wrap(i) { return (i + group.length) % group.length; }
@@ -309,8 +310,7 @@
     });
   })();
 
-  var path = window.location.pathname;
-  var isHome = path === '/' || path.endsWith('/index.html');
+  var path = window.location.pathname.replace(/index\.html$/, '');
 
   var ownerExcluded = false;
   try {
@@ -325,11 +325,12 @@
     ownerExcluded = localStorage.getItem('rwd_nocount') === '1';
   } catch (e) {}
 
-  // Count this homepage view in GoatCounter (bot-filtered, no cookies). Owner excluded via rwd_nocount above.
-  if (isHome && !ownerExcluded) {
+  // Count this pageview in GoatCounter (bot-filtered, no cookies, visitors
+  // deduplicated server-side). Owner excluded via rwd_nocount above.
+  if (!ownerExcluded) {
     var gcImg = new Image();
     gcImg.src = 'https://rwdenmark.goatcounter.com/count' +
-      '?p=/' +
+      '?p=' + encodeURIComponent(path || '/') +
       '&t=' + encodeURIComponent(document.title) +
       '&r=' + encodeURIComponent(document.referrer) +
       '&rnd=' + Math.random().toString(36).slice(2);
@@ -340,8 +341,8 @@
     if (!mount) return;
 
     function escapeHtml(s) {
-      return String(s).replace(/[<>&"]/g, function (c) {
-        return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c];
+      return String(s).replace(/[<>&"']/g, function (c) {
+        return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#39;' }[c];
       });
     }
     function relativeTime(iso) {
@@ -365,7 +366,7 @@
           html += '<li class="commit-item">' +
             '<a class="commit-repo" href="' + escapeHtml(c.url) + '" rel="noopener noreferrer" target="_blank">' + escapeHtml(c.repo) + '</a>' +
             '<span class="commit-msg">' + escapeHtml(c.message) + '</span>' +
-            '<time class="commit-time" datetime="' + c.date + '">' + relativeTime(c.date) + '</time>' +
+            '<time class="commit-time" datetime="' + escapeHtml(c.date) + '">' + escapeHtml(relativeTime(c.date)) + '</time>' +
             '</li>';
         });
         html += '</ul>';

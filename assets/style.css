@@ -11,7 +11,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
 
 img {
   -webkit-user-select: none;
@@ -49,7 +49,8 @@ body {
   color: var(--text);
   background: var(--canvas);
   line-height: 1.6;
-  min-height: 100vh;
+  min-height: 100vh; /* fallback for browsers without dvh */
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
@@ -164,11 +165,24 @@ footer .container {
   font-size: 0.9rem;
   color: var(--muted);
 }
-footer a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
-footer a:hover { color: var(--accent-hover); text-decoration: underline; }
+/* Shared inline text-link treatment (footer, 404 page, reference meta, commit repos). */
+footer a,
 body[data-page="404"] main a,
-body[data-page="404"] main a:visited { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
-body[data-page="404"] main a:hover { color: var(--accent-hover); text-decoration: underline; }
+body[data-page="404"] main a:visited,
+.reference-meta a,
+.reference-meta a:visited,
+.commit-repo {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+footer a:hover,
+body[data-page="404"] main a:hover,
+.reference-meta a:hover,
+.commit-repo:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
 
 .section-title { font-size: 1.5rem; font-weight: 700; line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em; }
 .section-title + p { margin-top: 0; }
@@ -214,8 +228,6 @@ body[data-page="about"] .gallery-tabs {
 .reference-card blockquote p:last-child { margin-bottom: 0; }
 .testimonial-attribution { margin: 0; font-size: 0.9rem; color: var(--muted); }
 .testimonial-attribution strong { color: var(--text); }
-.reference-meta a, .reference-meta a:visited { color: var(--accent); text-decoration: none; }
-.reference-meta a:hover { color: var(--accent-hover); text-decoration: underline; }
 .reference-header { margin-bottom: 12px; }
 .reference-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: var(--text); }
 .reference-role { margin: 2px 0 0; font-size: 0.9rem; color: var(--muted); }
@@ -225,6 +237,13 @@ body[data-page="about"] .gallery-tabs {
 .projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .projects:has(> .project-card:last-child:nth-child(2n)):not(:has(> .project-card:last-child:nth-child(3n))) {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+/* Tablets and half-snapped windows get 2 comfortable columns instead of 3 cramped ones. */
+@media (max-width: 900px) {
+  .projects,
+  .projects:has(> .project-card:last-child:nth-child(2n)):not(:has(> .project-card:last-child:nth-child(3n))) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 640px) {
   .projects,
@@ -503,15 +522,15 @@ body[data-page="about"] .gallery-tabs {
   background: rgba(47, 129, 247, 0.08);
 }
 .lightbox-close { top: 16px; right: 16px; width: 40px; height: 40px; }
-.lightbox-close svg { width: 20px; height: 20px; display: block; flex-shrink: 0; }
-.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 40px; }
+.lightbox-close svg { width: 24px; height: 24px; display: block; flex-shrink: 0; }
+.lightbox-nav { top: 50%; transform: translateY(-50%); width: 40px; height: 34px; }
 .lightbox-nav svg { width: 24px; height: 24px; display: block; flex-shrink: 0; }
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
 @media (max-width: 520px) {
   .lightbox { padding: 12px; }
-  .lightbox-nav { display: none !important; }
   .lightbox-close { width: 36px; height: 36px; }
+  .lightbox-nav { width: 36px; height: 30px; }
 }
 @media (hover: none) and (pointer: coarse) {
   .lightbox-nav { display: none !important; }
@@ -535,6 +554,10 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .gallery-tab.active:hover { color: var(--text); cursor: default; }
 
+/* Reserve the feed's approximate rendered height (heading plus five rows on
+   desktop) so the late fetch fills the slot instead of pushing the footer down. */
+#recent-commits { min-height: 290px; }
+
 .commits-list {
   list-style: none;
   padding: 0;
@@ -553,13 +576,7 @@ body[data-page="about"] .gallery-tabs {
   font-size: 0.95rem;
 }
 .commit-item:last-child { border-bottom: none; }
-.commit-repo {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-.commit-repo:hover { color: var(--accent-hover); text-decoration: underline; }
+.commit-repo { font-weight: 500; flex-shrink: 0; }
 .commit-msg {
   color: var(--text);
   flex: 1;
@@ -631,21 +648,25 @@ body[data-page="about"] .gallery-tabs {
   footer .container { font-size: clamp(0.66rem, 3.3vw, 0.82rem); padding: 10px 12px; gap: 8px; flex-wrap: nowrap; }
   footer .container a, footer .container span { white-space: nowrap; }
 
-  /* Continuous Learning minor cards. Logo and title up top with the meta on one line,
-     and the credential link in the bottom-right, packed tighter than the featured cards. */
+  /* Continuous Learning minor cards, same format as the featured cards on small
+     screens. Logo and title share the top line, then the meta, then the credential
+     link, all left-aligned with the featured cards above. */
   .cert-card {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-areas: "logo info" ".    link";
+    grid-template-areas:
+      "logo  title"
+      "meta  meta"
+      "link  link";
     align-items: center;
     column-gap: 10px;
-    row-gap: 4px;
-    padding: 8px 12px;
+    row-gap: 6px;
+    padding: 10px 20px 12px;
   }
+  .cert-card .cert-body { display: contents; }
   .cert-card .cert-logo { grid-area: logo; width: 24px; height: 24px; }
-  .cert-card .cert-body { grid-area: info; }
-  .cert-card h3 { font-size: 0.9rem; }
-  .cert-card .cert-meta { font-size: 0.78rem; white-space: nowrap; }
+  .cert-card h3 { grid-area: title; font-size: 0.9rem; }
+  .cert-card .cert-meta { grid-area: meta; font-size: 0.78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cert-card .cert-link { grid-area: link; justify-self: start; padding: 3px 10px; font-size: 0.78rem; }
 }
 @media (prefers-reduced-motion: reduce) {

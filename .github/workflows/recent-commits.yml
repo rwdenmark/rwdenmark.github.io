@@ -43,13 +43,15 @@ jobs:
 
           : > all.ndjson
           for repo in $repos; do
+            # One bad repo must not kill the feed, but it should not vanish silently either.
             gh api "repos/$OWNER/$repo/commits?per_page=3" \
               | jq --arg repo "$repo" -c '.[] | {
                   repo: $repo,
                   message: (.commit.message | split("\n")[0]),
                   date: (.commit.author.date // .commit.committer.date),
                   url: .html_url
-                }' >> all.ndjson || true
+                }' >> all.ndjson \
+              || echo "::warning::Failed to fetch commits for $repo, feed will omit it this run."
           done
 
           # Merge, sort newest-first, keep the 5 most recent across all repos.

@@ -8,7 +8,9 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}" />
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}" />
   <link rel="alternate icon" href="{{ '/favicon.ico' | relative_url }}" />
-  {% if page.page_id == 'home' %}<link rel="preconnect" href="https://rwdenmark.goatcounter.com" crossorigin />{% endif %}
+  <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}" />
+  <meta name="theme-color" content="#010409" />
+  <link rel="preconnect" href="https://rwdenmark.goatcounter.com" crossorigin />
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
   <script src="{{ '/assets/script.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <meta property="og:type" content="website" />
