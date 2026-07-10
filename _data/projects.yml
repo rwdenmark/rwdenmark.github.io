@@ -5,7 +5,6 @@
   height: 500
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
   description: "Endless top-down survival shooter. Aim with the mouse and loop from grass field to troll cave and back, stacking roguelite upgrade cards as enemies grow tankier and faster each cycle. Spring Boot leaderboard."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/recurve
   demo: https://recurve-325o.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/recurve/
@@ -16,7 +15,6 @@
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
   description: "Arcade fixed-shooter on an HTML5 canvas with original pixel art and synthesized 8-bit sound effects. Clear waves of orbs and shelter behind eroding bunkers. Spring Boot backend persists scores to a leaderboard."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/astro-siege
   demo: https://astro-siege.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/astro/
@@ -27,7 +25,6 @@
   height: 800
   stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
   description: "Converts between X12 EDI, JSON, YAML, and XML. Parses X12 837 claims (Professional, Institutional, Dental) into a structured model, then serializes to JSON, YAML, or XML, converting automatically."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/edi-format-converter
   demo: https://edi-format-converter.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/edi/
@@ -38,7 +35,6 @@
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, TypeScript, Battle.net API]
   description: "Spring Boot REST service that aggregates a WoW character profile from Battle.net OAuth and Raider.IO. Returns item level, raid and Mythic+ scores, achievements, mounts, and the Blizzard render."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/wow-explorer
   demo: https://wow-explorer.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/wow/
@@ -49,7 +45,6 @@
   height: 800
   stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
   description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/steam-analyzer
   demo: https://steam-analyzer.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/steam/
@@ -60,7 +55,6 @@
   height: 800
   stack: [Python, Flask, langdetect, gunicorn, MyMemory API]
   description: "Flask web app that auto-detects the language of any text and translates it to English via the free MyMemory API. On short input it uses the translation result itself to self-correct the language guess."
-  note: "The live demo may take up to a minute to load while the backend wakes up."
   github: https://github.com/rwdenmark/translator
   demo: https://translator-n227.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/translate/

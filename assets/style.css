@@ -7,6 +7,13 @@
   --muted: #7d8590;
   --accent: #2f81f7;
   --accent-hover: #58a6ff;
+  /* Central column geometry. Everything below derives from --rail-width.
+     The 1044px media queries are this width plus 2x32px container padding,
+     kept literal because media queries cannot read custom properties. */
+  --rail-width: 980px;
+  --rail-half: calc(var(--rail-width) / 2);
+  /* Circuit halves stop 5px short of the rail edge so the pattern tucks under it. */
+  --circuit-half-inset: calc(var(--rail-half) - 5px);
 }
 
 * { box-sizing: border-box; }
@@ -66,7 +73,7 @@ body {
   z-index: 0; pointer-events: none; user-select: none;
 }
 .bg-half {
-  position: absolute; top: 0; height: 100%; width: calc(50% - 485px);
+  position: absolute; top: 0; height: 100%; width: calc(50% - var(--circuit-half-inset));
   display: block; overflow: hidden;
 }
 .bg-half-left { left: 0; }
@@ -92,8 +99,8 @@ body {
 .rail-bg {
   position: fixed;
   top: 0; bottom: 0;
-  left: calc(50% - 490px);
-  right: calc(50% - 490px);
+  left: calc(50% - var(--rail-half));
+  right: calc(50% - var(--rail-half));
   background: var(--canvas);
   z-index: 1;
   pointer-events: none;
@@ -103,8 +110,8 @@ body::before, body::after {
   width: 2px; background: rgba(255, 255, 255, 0.15);
   pointer-events: none; z-index: 2;
 }
-body::before { left: calc(50% - 490px); }
-body::after  { right: calc(50% - 490px); }
+body::before { left: calc(50% - var(--rail-half)); }
+body::after  { right: calc(50% - var(--rail-half)); }
 @media (max-width: 1044px) {
   .rail-bg { left: 0; right: 0; }
   body::before, body::after { display: none; }
@@ -140,10 +147,10 @@ header .container {
 .links a.active { color: var(--text); border-bottom-color: var(--accent); }
 .links a.active:hover { color: var(--text); border-bottom-color: var(--accent); cursor: default; }
 .link-icon { display: block; width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
-.link-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.link-text, .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .links-social a { display: inline-flex; align-items: center; padding: 0; border-bottom: 0; }
 
-.container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+.container { max-width: var(--rail-width); margin: 0 auto; padding: 0 32px; }
 .name-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
 h1 { font-size: 2.5rem; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--text); }
 .location { font-size: 1rem; color: var(--muted); }
@@ -285,14 +292,14 @@ body[data-page="about"] .gallery-tabs {
   background: var(--canvas);
 }
 .project-stack { display: flex; flex-wrap: wrap; gap: 4px; align-self: start; align-items: flex-start; align-content: flex-start; }
-.project-stack span {
-  font-size: 0.78rem;
+/* Shared stack-pill base, sized per context below. */
+.project-stack span, .script-stack span {
   color: var(--muted);
   background: var(--canvas);
   border: 1px solid var(--border);
-  padding: 2px 8px;
   border-radius: 12px;
 }
+.project-stack span { font-size: 0.78rem; padding: 2px 8px; }
 .project-card p { margin: 0; font-size: 0.95rem; }
 .project-footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 .project-note {
@@ -345,14 +352,7 @@ body[data-page="about"] .gallery-tabs {
 .script-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .script-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -0.005em; }
 .script-stack { display: flex; flex-wrap: wrap; gap: 4px; }
-.script-stack span {
-  font-size: 0.72rem;
-  color: var(--muted);
-  background: var(--canvas);
-  border: 1px solid var(--border);
-  padding: 1px 8px;
-  border-radius: 12px;
-}
+.script-stack span { font-size: 0.72rem; padding: 1px 8px; }
 .script-info p { margin: 5px 0 0; font-size: 0.9rem; color: var(--muted); }
 .script-actions { flex: 0 0 auto; align-self: center; }
 .script-actions a { padding: 6px 14px; white-space: nowrap; }
@@ -476,7 +476,9 @@ body[data-page="about"] .gallery-tabs {
 }
 .lightbox.open { opacity: 1; visibility: visible; }
 .lightbox-img {
-  max-width: min(92vw, 1100px);
+  /* 100% of the slide (viewport minus lightbox padding), never wider than the
+     slide itself, so neighboring photos can't bleed into the gap on small screens. */
+  max-width: min(100%, 1100px);
   max-height: 80vh;
   width: auto; height: auto;
   object-fit: contain;
@@ -553,11 +555,6 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tab:hover { color: var(--accent-hover); }
 .gallery-tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .gallery-tab.active:hover { color: var(--text); cursor: default; }
-
-/* Reserve just under the feed's rendered height (heading plus five rows on
-   desktop) so the late fetch fills the slot instead of pushing the footer down.
-   Deliberately a touch short, a few px of shift beats an empty strip below the list. */
-#recent-commits { min-height: 260px; }
 
 .commits-list {
   list-style: none;

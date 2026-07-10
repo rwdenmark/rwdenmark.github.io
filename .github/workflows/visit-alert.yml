@@ -23,9 +23,9 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Default shallow checkout. This job only reads one state file and pushes
+      # one commit, it never walks history (recent-commits.yml is the one that does).
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Check for new views since last poll
         id: check
@@ -109,8 +109,9 @@ jobs:
               send=true
               summary="New visitors: $((new + missed))"
               if [ "$missed" -gt 0 ]; then summary="$summary (including $missed late on $state_date)"; fi
-              summary="$summary
-          Visitors today ($today): $total_today"
+              # $'\n' keeps the second line flush left in the email body, a literal
+              # newline here would carry this script's YAML indentation into it.
+              summary="$summary"$'\n'"Visitors today ($today): $total_today"
             fi
           fi
 
@@ -134,28 +135,16 @@ jobs:
       # State is committed and pushed BEFORE the email goes out, same pattern as
       # the old daily job: if the push fails, no email is sent and the next poll
       # retries cleanly instead of double-emailing.
-      - name: Record state before emailing
+      - name: Write state before emailing
         if: steps.check.outputs.changed == 'true'
-        run: |
-          echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-visits.txt
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/last-seen-visits.txt
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: record last seen visit total [skip ci]"
-          n=0
-          until git push; do
-            n=$((n+1))
-            if [ "$n" -ge 5 ]; then
-              echo "::error::Failed to push after $n attempts."
-              exit 1
-            fi
-            echo "Push rejected (attempt $n), rebasing onto latest main..."
-            git pull --rebase origin main
-          done
+        run: echo "${{ steps.check.outputs.today }}|${{ steps.check.outputs.total }}" > .github/last-seen-visits.txt
+
+      - name: Commit state before emailing
+        if: steps.check.outputs.changed == 'true'
+        uses: ./.github/actions/commit-push
+        with:
+          paths: .github/last-seen-visits.txt
+          message: "chore: record last seen visit total [skip ci]"
 
       - name: Send email
         if: steps.check.outputs.send == 'true'

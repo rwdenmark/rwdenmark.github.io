@@ -1,0 +1,36 @@
+name: Commit and push
+description: >
+  Commits the given paths as github-actions[bot] and pushes to main. Both
+  scheduled workflows push to the same branch and can fire on the same minute,
+  so a bare push may be rejected as non-fast-forward. On rejection this rebases
+  onto the latest main and retries, up to 5 attempts. No-op when nothing changed.
+inputs:
+  paths:
+    description: Space-separated paths to git add
+    required: true
+  message:
+    description: Commit message
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        git config user.name  "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add ${{ inputs.paths }}
+        if git diff --cached --quiet; then
+          echo "No changes to commit."
+          exit 0
+        fi
+        git commit -m "${{ inputs.message }}"
+        n=0
+        until git push; do
+          n=$((n+1))
+          if [ "$n" -ge 5 ]; then
+            echo "::error::Failed to push after $n attempts."
+            exit 1
+          fi
+          echo "Push rejected (attempt $n), rebasing onto latest main..."
+          git pull --rebase origin main
+        done

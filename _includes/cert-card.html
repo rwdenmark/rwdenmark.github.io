@@ -1,0 +1,23 @@
+{% comment %}
+  One card, two variants. Pass cert=<entry from _data/certs.yml> and
+  featured=true for the large home-page cards, omit featured for the list rows.
+{% endcomment %}
+{% if include.featured %}
+<article class="cert-feature">
+  <div class="cert-feature-head">
+    <img class="cert-logo-lg" src="{{ include.cert.logo | default: '/assets/anthropic-mark.png' | relative_url }}" alt="{{ include.cert.alt | default: 'Anthropic' }}" width="50" height="50" />
+    <h3>{{ include.cert.title }}</h3>
+  </div>
+  <p class="cert-meta">{{ include.cert.meta }}</p>
+  <a class="cert-link" href="{{ include.cert.url }}" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
+</article>
+{% else %}
+<article class="cert-card">
+  <img class="cert-logo" src="{{ include.cert.logo | default: '/assets/anthropic-mark.png' | relative_url }}" alt="{{ include.cert.alt | default: 'Anthropic' }}" width="30" height="30" />
+  <div class="cert-body">
+    <h3>{{ include.cert.title }}</h3>
+    <p class="cert-meta">{{ include.cert.meta }}</p>
+  </div>
+  <a class="cert-link" href="{{ include.cert.url }}" rel="noopener noreferrer" target="_blank">Show credential &rarr;</a>
+</article>
+{% endif %}

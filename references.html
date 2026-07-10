@@ -8,55 +8,16 @@ og_description: LinkedIn recommendations from a direct manager, a mentor, a peer
 
 <h2 class="section-title">References</h2>
 
+{% for r in site.data.references %}
 <article class="reference-card">
   <header class="reference-header">
-    <p class="reference-name">Tyler Thompson</p>
-    <p class="reference-role">Implementation Manager, Smart Data Solutions &middot; direct manager</p>
-    <p class="reference-meta">May 14, 2026 &middot; <a href="https://www.linkedin.com/in/rwdenmark/details/recommendations/" rel="noopener noreferrer" target="_blank">View on LinkedIn</a></p>
+    <p class="reference-name">{{ r.name }}</p>
+    <p class="reference-role">{{ r.role }} &middot; {{ r.relation }}</p>
+    <p class="reference-meta">{{ r.date }} &middot; <a href="https://www.linkedin.com/in/rwdenmark/details/recommendations/" rel="noopener noreferrer" target="_blank">View on LinkedIn</a></p>
   </header>
   <blockquote>
-    <p>Ryan was part of our implementation and support team for years, at SmartData Solutions, and his work was excellent throughout that time.</p>
-    <p>I considered him my go-to, my right-hand man, who was eager to jump into any situation, with minimal guidance, and see it through to completion. He was always the first to volunteer and ask how he can make a situation easier for myself and the team.</p>
-    <p>He demonstrated strong technical skill (coding, design, troubleshooting) and was a strong, natural mentor to the newer engineers around him. He demonstrated keen understanding of our implementation processes and policies and executed his project assignments timely and with quality.</p>
-    <p>His client communication was exceptional, able to easily communicate complex and sensitive details to both technical and non-technical client contacts with ease. This was called out on multiple occasions by our clients (unsolicited).</p>
-    <p>Any organization, looking for an experienced, professional and thoughtful engineer would benefit majorly with Ryan on their team.</p>
+    {% for p in r.quote %}<p>{{ p }}</p>
+    {% endfor %}
   </blockquote>
 </article>
-
-<article class="reference-card">
-  <header class="reference-header">
-    <p class="reference-name">Marc Velasquez</p>
-    <p class="reference-role">Support Manager, Smart Data Solutions &middot; mentor</p>
-    <p class="reference-meta">May 14, 2026 &middot; <a href="https://www.linkedin.com/in/rwdenmark/details/recommendations/" rel="noopener noreferrer" target="_blank">View on LinkedIn</a></p>
-  </header>
-  <blockquote>
-    <p>I worked with Ryan at Smart Data Solutions, where we collaborated closely while he served as a Software Engineer II. During that time, I consistently saw Ryan operate at a very high level - both technically and professionally.</p>
-    <p>Ryan has a strong ability to design and deliver complex systems while keeping practicality and maintainability in mind. He approaches problems thoughtfully, writes clean, reliable code, and makes sound technical decisions even under pressure.</p>
-    <p>What really sets Ryan apart at a senior level is his leadership. He regularly elevated the team through code reviews, design discussions, and informal mentorship, and was someone other developers naturally turned to for guidance.</p>
-    <p>In addition to technical talent, Ryan is reliable, communicative, and genuinely enjoyable to work with. He brings a calm, positive presence to the team and takes real ownership of outcomes.</p>
-  </blockquote>
-</article>
-
-<article class="reference-card">
-  <header class="reference-header">
-    <p class="reference-name">Willard Elliott</p>
-    <p class="reference-role">Java Developer, Smart Data Solutions &middot; cross-team senior</p>
-    <p class="reference-meta">May 18, 2026 &middot; <a href="https://www.linkedin.com/in/rwdenmark/details/recommendations/" rel="noopener noreferrer" target="_blank">View on LinkedIn</a></p>
-  </header>
-  <blockquote>
-    <p>I worked with Ryan for over seven years at Smart Data Solutions. My team handled support for live services to our clients, implemented by his team, so most of what I knew about Ryan came from the quality of development my team had to support. The short version: his work was the kind we hoped to see. Clean hand-offs, documented edge cases, and when something did surface in production, he engaged quickly and saw it through.</p>
-    <p>He treated support like a real partner rather than a downstream catch-all, which is rarer than it should be. The clients he delivered consistently came online with fewer post-go-live issues than average, and the ones that did come up got resolved quickly with Ryan's contribution. I'd hire him onto any team that values production discipline and clean cross-team partnership.</p>
-  </blockquote>
-</article>
-
-<article class="reference-card">
-  <header class="reference-header">
-    <p class="reference-name">Brandon Maweu</p>
-    <p class="reference-role">Software Engineer, Smart Data Solutions &middot; peer</p>
-    <p class="reference-meta">May 15, 2026 &middot; <a href="https://www.linkedin.com/in/rwdenmark/details/recommendations/" rel="noopener noreferrer" target="_blank">View on LinkedIn</a></p>
-  </header>
-  <blockquote>
-    <p>I worked alongside Ryan at Smart Data Solutions, and he was one of the engineers I most enjoyed collaborating with. He had a way of making complex client systems feel approachable. He explained his thinking clearly rather than just stating conclusions, and he was generous with his time during pairing sessions and design discussions.</p>
-    <p>He was patient with questions across the team and consistent in his attention to detail, which made everyone he worked with stronger. Ryan is the kind of teammate who makes the engineers around him better, and any backend team would be glad to have him.</p>
-  </blockquote>
-</article>
+{% endfor %}

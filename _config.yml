@@ -2,6 +2,9 @@ title: Ryan Denmark
 url: https://rwdenmark.github.io
 author: Ryan Denmark
 
+# Render build-time dates (footer fallback) in Central, not UTC
+timezone: America/Chicago
+
 # Don't process these files/folders into the built site
 exclude:
   - README.md

@@ -1,8 +1,10 @@
 name: Recent commits cache
 
-# Generates commits.json hourly so the projects page reads a static file instead of
-# calling the GitHub API per visitor (the unauthenticated 60/hour/IP limit blanked the feed).
-# Actions cron is best-effort and often delayed, which is fine for a recent-activity widget.
+# Generates _data/commits.json hourly. Jekyll renders the feed into the projects page
+# at build (the commit here triggers the rebuild), so visitors fetch nothing and the
+# GitHub API is never called per visitor (the unauthenticated 60/hour/IP limit blanked
+# the old client-side feed). Actions cron is best-effort and often delayed, which is
+# fine for a recent-activity widget.
 on:
   schedule:
     - cron: '0 * * * *'
@@ -32,7 +34,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate commits.json
+      - name: Generate _data/commits.json
         run: |
           set -euo pipefail
 
@@ -55,41 +57,24 @@ jobs:
           done
 
           # Merge, sort newest-first, keep the 5 most recent across all repos.
-          jq -s 'sort_by(.date) | reverse | .[0:5]' all.ndjson > commits.json
+          jq -s 'sort_by(.date) | reverse | .[0:5]' all.ndjson > _data/commits.json
           rm -f all.ndjson
-          echo "Wrote commits.json:"
-          cat commits.json
+          echo "Wrote _data/commits.json:"
+          cat _data/commits.json
 
       - name: Compute last content-update date
         run: |
           # Date of the most recent commit that changed real content, anything except
-          # the bot-maintained housekeeping files (.github/*, commits.json,
-          # last-updated.txt). So the footer reflects content edits (any page, the resume
-          # PDF, new About photos), not the hourly cache pushes or the daily email-gate commits.
-          d=$(git log -1 --no-merges --format=%cs -- . ':(exclude).github' ':(exclude)commits.json' ':(exclude)last-updated.txt')
+          # the bot-maintained housekeeping files (.github/*, _data/commits.json,
+          # _data/last_updated.yml). So the footer reflects content edits (any page, the
+          # resume PDF, new About photos), not the hourly cache pushes or the email-gate
+          # commits. Jekyll renders the date into the footer at build.
+          d=$(git log -1 --no-merges --format=%cs -- . ':(exclude).github' ':(exclude)_data/commits.json' ':(exclude)_data/last_updated.yml')
           echo "Last content update: $d"
-          echo "$d" > last-updated.txt
+          printf 'date: "%s"\n' "$d" > _data/last_updated.yml
 
       - name: Commit if changed
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add commits.json last-updated.txt
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: update recent commits cache [skip ci]"
-          # The daily-hits workflow also pushes to main and can fire on the same
-          # top-of-hour minute (05:00 / 06:00 UTC), so a bare push may be rejected
-          # as non-fast-forward. Rebase onto the latest main and retry up to 5x.
-          n=0
-          until git push; do
-            n=$((n+1))
-            if [ "$n" -ge 5 ]; then
-              echo "::error::Failed to push after $n attempts."
-              exit 1
-            fi
-            echo "Push rejected (attempt $n), rebasing onto latest main..."
-            git pull --rebase origin main
-          done
+        uses: ./.github/actions/commit-push
+        with:
+          paths: _data/commits.json _data/last_updated.yml
+          message: "chore: update recent commits cache [skip ci]"

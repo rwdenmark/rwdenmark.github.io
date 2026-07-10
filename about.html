@@ -23,7 +23,18 @@ og_description: Outside of work. Family, hiking, and gaming.
 {% for g in site.data.galleries %}
 <div class="gallery" id="gallery-{{ g.id }}" role="tabpanel" aria-labelledby="tab-{{ g.id }}" data-gallery-panel="{{ g.id }}"{% unless forloop.first %} hidden{% endunless %}>
   {% for photo in g.items %}
-  <div class="card"><img src="{{ '/' | append: g.dir | append: '/' | append: photo.file | relative_url }}" width="{{ photo.w }}" height="{{ photo.h }}" alt="{{ photo.alt }}" loading="lazy" /></div>
+  {% assign orig = '/' | append: g.dir | append: '/' | append: photo.file %}
+  {% if photo.w > 640 %}
+  {%- comment -%}
+    Photos wider than 640px have pre-generated grid thumbs (thumbs/320, thumbs/640).
+    The browser picks by slot size and DPR, the lightbox loads the original via data-full.
+  {%- endcomment -%}
+  {% assign t320 = '/' | append: g.dir | append: '/thumbs/320/' | append: photo.file %}
+  {% assign t640 = '/' | append: g.dir | append: '/thumbs/640/' | append: photo.file %}
+  <div class="card"><img src="{{ t640 | relative_url }}" srcset="{{ t320 | relative_url }} 320w, {{ t640 | relative_url }} 640w, {{ orig | relative_url }} {{ photo.w }}w" sizes="(max-width: 520px) 46vw, 300px" data-full="{{ orig | relative_url }}" width="{{ photo.w }}" height="{{ photo.h }}" alt="{{ photo.alt }}" loading="lazy" /></div>
+  {% else %}
+  <div class="card"><img src="{{ orig | relative_url }}" width="{{ photo.w }}" height="{{ photo.h }}" alt="{{ photo.alt }}" loading="lazy" /></div>
+  {% endif %}
   {% endfor %}
 </div>
 {% endfor %}

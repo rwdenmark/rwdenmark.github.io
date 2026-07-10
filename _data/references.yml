@@ -1,0 +1,35 @@
+# Full LinkedIn recommendations, rendered by references.html.
+# The home-page pull quotes in testimonials.yml are excerpts of these.
+- name: Tyler Thompson
+  role: Implementation Manager, Smart Data Solutions
+  relation: direct manager
+  date: May 14, 2026
+  quote:
+    - "Ryan was part of our implementation and support team for years, at SmartData Solutions, and his work was excellent throughout that time."
+    - "I considered him my go-to, my right-hand man, who was eager to jump into any situation, with minimal guidance, and see it through to completion. He was always the first to volunteer and ask how he can make a situation easier for myself and the team."
+    - "He demonstrated strong technical skill (coding, design, troubleshooting) and was a strong, natural mentor to the newer engineers around him. He demonstrated keen understanding of our implementation processes and policies and executed his project assignments timely and with quality."
+    - "His client communication was exceptional, able to easily communicate complex and sensitive details to both technical and non-technical client contacts with ease. This was called out on multiple occasions by our clients (unsolicited)."
+    - "Any organization, looking for an experienced, professional and thoughtful engineer would benefit majorly with Ryan on their team."
+- name: Marc Velasquez
+  role: Support Manager, Smart Data Solutions
+  relation: mentor
+  date: May 14, 2026
+  quote:
+    - "I worked with Ryan at Smart Data Solutions, where we collaborated closely while he served as a Software Engineer II. During that time, I consistently saw Ryan operate at a very high level - both technically and professionally."
+    - "Ryan has a strong ability to design and deliver complex systems while keeping practicality and maintainability in mind. He approaches problems thoughtfully, writes clean, reliable code, and makes sound technical decisions even under pressure."
+    - "What really sets Ryan apart at a senior level is his leadership. He regularly elevated the team through code reviews, design discussions, and informal mentorship, and was someone other developers naturally turned to for guidance."
+    - "In addition to technical talent, Ryan is reliable, communicative, and genuinely enjoyable to work with. He brings a calm, positive presence to the team and takes real ownership of outcomes."
+- name: Willard Elliott
+  role: Java Developer, Smart Data Solutions
+  relation: cross-team senior
+  date: May 18, 2026
+  quote:
+    - "I worked with Ryan for over seven years at Smart Data Solutions. My team handled support for live services to our clients, implemented by his team, so most of what I knew about Ryan came from the quality of development my team had to support. The short version: his work was the kind we hoped to see. Clean hand-offs, documented edge cases, and when something did surface in production, he engaged quickly and saw it through."
+    - "He treated support like a real partner rather than a downstream catch-all, which is rarer than it should be. The clients he delivered consistently came online with fewer post-go-live issues than average, and the ones that did come up got resolved quickly with Ryan's contribution. I'd hire him onto any team that values production discipline and clean cross-team partnership."
+- name: Brandon Maweu
+  role: Software Engineer, Smart Data Solutions
+  relation: peer
+  date: May 15, 2026
+  quote:
+    - "I worked alongside Ryan at Smart Data Solutions, and he was one of the engineers I most enjoyed collaborating with. He had a way of making complex client systems feel approachable. He explained his thinking clearly rather than just stating conclusions, and he was generous with his time during pairing sessions and design discussions."
+    - "He was patient with questions across the team and consistent in his attention to detail, which made everyone he worked with stronger. Ryan is the kind of teammate who makes the engineers around him better, and any backend team would be glad to have him."

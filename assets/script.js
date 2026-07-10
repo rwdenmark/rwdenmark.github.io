@@ -13,19 +13,12 @@
         year: 'numeric', month: 'long', day: 'numeric'
       });
     }
+    // The date itself is rendered at build from _data/last_updated.yml,
+    // this pass only reformats YYYY-MM-DD into the long form.
     els.forEach(function (el) {
       var f = /^(\d{4})-(\d{2})-(\d{2})/.exec(el.textContent.trim());
       if (f) el.textContent = fmt(+f[1], +f[2], +f[3]);
     });
-    fetch('/last-updated.txt')
-      .then(function (r) { return r.ok ? r.text() : ''; })
-      .then(function (txt) {
-        var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(txt.trim());
-        if (!m) return;
-        var pretty = fmt(+m[1], +m[2], +m[3]);
-        els.forEach(function (el) { el.textContent = pretty; });
-      })
-      .catch(function () {});
   })();
 
   (function () {
@@ -57,9 +50,11 @@
       }
     }
 
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      var addr = link.dataset.email;
+    // Copy the address AND let the mailto proceed. A page cannot detect whether
+    // a mail app is configured, so this covers both cases: a mail app opens with
+    // the address ready, and without one the visitor still has it on the clipboard.
+    link.addEventListener('click', function () {
+      var addr = link.getAttribute('href').replace('mailto:', '');
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(addr).then(
           function () { showToast(true, addr); },
@@ -149,7 +144,8 @@
     function wrap(i) { return (i + group.length) % group.length; }
 
     function fillSlide(imgEl, srcImg) {
-      imgEl.src = srcImg.currentSrc || srcImg.src;
+      // data-full points at the original photo when the thumb is a srcset variant.
+      imgEl.src = srcImg.dataset.full || srcImg.currentSrc || srcImg.src;
       imgEl.alt = srcImg.alt || '';
     }
 
@@ -337,14 +333,11 @@
   }
 
   (function () {
-    var mount = document.getElementById('recent-commits');
-    if (!mount) return;
+    // The Recent Activity list is rendered at build from _data/commits.json.
+    // This pass only upgrades the build-time short dates to live relative times.
+    var times = document.querySelectorAll('time.commit-time[datetime]');
+    if (!times.length) return;
 
-    function escapeHtml(s) {
-      return String(s).replace(/[<>&"']/g, function (c) {
-        return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#39;' }[c];
-      });
-    }
     function relativeTime(iso) {
       var d = new Date(iso);
       var diff = (Date.now() - d.getTime()) / 1000;
@@ -355,24 +348,124 @@
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    var url = mount.dataset.commitsUrl || 'commits.json';
-    fetch(url)
-      .then(function (r) { return r.ok ? r.json() : []; })
-      .then(function (commits) {
-        if (!Array.isArray(commits) || commits.length === 0) return;
+    times.forEach(function (t) {
+      t.textContent = relativeTime(t.getAttribute('datetime'));
+    });
+  })();
 
-        var html = '<h2 class="section-title">Recent Activity</h2><ul class="commits-list">';
-        commits.forEach(function (c) {
-          html += '<li class="commit-item">' +
-            '<a class="commit-repo" href="' + escapeHtml(c.url) + '" rel="noopener noreferrer" target="_blank">' + escapeHtml(c.repo) + '</a>' +
-            '<span class="commit-msg">' + escapeHtml(c.message) + '</span>' +
-            '<time class="commit-time" datetime="' + escapeHtml(c.date) + '">' + escapeHtml(relativeTime(c.date)) + '</time>' +
-            '</li>';
+  (function () {
+    // Live Demo failover. Probe the self-hosted app, open it if up, else use the Render copy. Also wakes the Neon DB.
+    var demoLinks = document.querySelectorAll('a.demo-link[data-home]');
+    if (!demoLinks.length) return;
+
+    var HEALTH = 'api/health';
+    var TIMEOUT_MS = 1500;
+    function withSlash(u) { return u.charAt(u.length - 1) === '/' ? u : u + '/'; }
+
+    // One readable probe of EDI's health endpoint (the one app that sends CORS
+    // headers) answers for the whole box, since all apps share it. res.ok proves
+    // the app tier is actually serving, an opaque no-cors probe cannot tell a
+    // Funnel 502 from healthy.
+    var ediLink = null;
+    for (var i = 0; i < demoLinks.length; i++) {
+      if (demoLinks[i].dataset.home.indexOf('/edi') !== -1) { ediLink = demoLinks[i]; break; }
+    }
+    var pingUrl = ediLink ? withSlash(ediLink.dataset.home) + HEALTH : null;
+
+    function boxOnline(ms) {
+      if (!pingUrl) return Promise.resolve(false);
+      var ctrl = new AbortController();
+      var timer = setTimeout(function () { ctrl.abort(); }, ms);
+      return fetch(pingUrl, { signal: ctrl.signal, cache: 'no-store' })
+        .then(function (res) { clearTimeout(timer); return res.ok; })
+        .catch(function () { clearTimeout(timer); return false; });
+    }
+
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a.demo-link[data-home]');
+      if (!link) return;
+      e.preventDefault();
+
+      // Open the tab synchronously so it isn't blocked as a popup (an async open would be).
+      var tab = window.open('', '_blank');
+      if (tab) {
+        tab.opener = null; // same protection the plain links get from rel=noopener
+        // Style the interstitial about:blank via DOM (document.write is deprecated).
+        try {
+          tab.document.title = 'Connecting…';
+          var meta = tab.document.createElement('meta');
+          meta.name = 'color-scheme';
+          meta.content = 'dark';
+          tab.document.head.appendChild(meta);
+          tab.document.body.style.margin = '0';
+          tab.document.body.style.background = '#0d1117';
+        } catch (err) {}
+      }
+      var home = link.dataset.home;
+      var cloud = link.getAttribute('href'); // Render fallback from the template
+      var label = link.textContent;
+      link.textContent = 'Connecting…';
+
+      boxOnline(TIMEOUT_MS).then(function (online) {
+        var target = cloud;
+        if (online) {
+          target = home;
+        } else {
+          // box or app tier is down, warm the Render copy's Neon before we land there
+          fetch(withSlash(cloud) + HEALTH, { cache: 'no-store', mode: 'no-cors' }).catch(function () {});
+        }
+        link.textContent = label;
+        if (tab) { tab.location = target; }
+        else { window.location.href = target; } // popup blocked, fall back to same tab
+      });
+    });
+
+    // Status dots. The shared boxOnline probe drives every dot since all apps share one box.
+    var projDots = document.querySelectorAll('.project-dot');
+    var notes = document.querySelectorAll('.project-note');
+    if (projDots.length && ediLink) {
+      var STATUS_KEY = 'rwd_selfHostOnline';
+
+      var applyStatus = function (online) {
+        projDots.forEach(function (d) { d.style.display = online ? 'inline-block' : 'none'; });
+        // Box is up, the demo loads instantly, so drop the cold-start note.
+        notes.forEach(function (n) { n.style.display = online ? 'none' : ''; });
+      };
+
+      // Paint last-known status first so the cold-start note doesn't flash for returning visitors.
+      var cached = null;
+      try { cached = localStorage.getItem(STATUS_KEY); } catch (err) {}
+      if (cached === 'true' || cached === 'false') {
+        applyStatus(cached === 'true');
+      } else {
+        projDots.forEach(function (d) { d.style.display = 'none'; });
+        notes.forEach(function (n) { n.style.display = 'none'; });
+      }
+
+      var refreshStatus = function () {
+        boxOnline(2000).then(function (online) {
+          applyStatus(online);
+          try { localStorage.setItem(STATUS_KEY, String(online)); } catch (err) {}
         });
-        html += '</ul>';
-        mount.innerHTML = html;
-      })
-      .catch(function () {});
+      };
+      // Poll only while the tab is visible. Hidden tabs stop pinging, and a
+      // returning visitor gets one immediate refresh so the dot is never stale.
+      var pollTimer = null;
+      var startPolling = function () {
+        if (pollTimer) return;
+        refreshStatus();
+        pollTimer = setInterval(refreshStatus, 30000);
+      };
+      var stopPolling = function () {
+        clearInterval(pollTimer);
+        pollTimer = null;
+      };
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopPolling();
+        else startPolling();
+      });
+      if (!document.hidden) startPolling();
+    }
   })();
 
   (function () {
