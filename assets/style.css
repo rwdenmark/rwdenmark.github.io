@@ -602,7 +602,7 @@ body[data-page="about"] .gallery-tabs {
 
 @media (max-width: 1044px) {
   header .container { background: transparent; border: none; padding: 0 32px; }
-  header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
+  body > header { background: var(--header-bg); border-bottom: 2px solid var(--border); padding: 24px 0; }
   footer { background: var(--header-bg); border-top: 2px solid var(--border); }
   footer .container { background: transparent; border: none; }
 }
@@ -610,11 +610,33 @@ body[data-page="about"] .gallery-tabs {
   .skill-row { grid-template-columns: 1fr; gap: 4px; }
 }
 @media (max-width: 520px) {
-  header .container { padding: 20px 20px; }
+  body > header { padding: 0; }
+  header .container { padding: 8px 20px; }
   main { padding: 20px 0; }
   .container { padding: 0 20px; }
   h1 { font-size: 1.875rem; }
   .gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+
+  /* Footer, shrink the text so the source link and updated date share one line. */
+  footer .container { font-size: 0.7rem; padding: 10px 12px; gap: 8px; flex-wrap: nowrap; }
+  footer .container a, footer .container span { white-space: nowrap; }
+
+  /* Continuous Learning minor cards. Logo and title up top with the meta on one line,
+     and the credential link in the bottom-right, packed tighter than the featured cards. */
+  .cert-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo info" "link link";
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 4px;
+    padding: 8px 12px;
+  }
+  .cert-card .cert-logo { grid-area: logo; width: 24px; height: 24px; }
+  .cert-card .cert-body { grid-area: info; }
+  .cert-card h3 { font-size: 0.9rem; }
+  .cert-card .cert-meta { font-size: 0.78rem; white-space: nowrap; }
+  .cert-card .cert-link { grid-area: link; justify-self: end; padding: 3px 10px; font-size: 0.78rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -643,7 +665,7 @@ body[data-page="about"] .gallery-tabs {
     background: #ffffff; border: none; padding: 0;
   }
   .links, .download-pdf, .copy-toast { display: none !important; }
-  header { border-bottom: 1px solid #cccccc; padding: 0 0 8px; margin-bottom: 16px; }
+  body > header { border-bottom: 1px solid #cccccc; padding: 0 0 8px; margin-bottom: 16px; }
   footer { display: none; }
   h1 { font-size: 1.5rem; }
   .resume-section-title {
