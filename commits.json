@@ -1,5 +1,11 @@
 [
   {
+    "repo": "astro-siege",
+    "message": "Removing highlighting and adding a loading screen",
+    "date": "2026-07-10T00:24:21Z",
+    "url": "https://github.com/rwdenmark/astro-siege/commit/4d786bfba75158c93bf433475f4f62c500e99c2e"
+  },
+  {
     "repo": "wow-explorer",
     "message": "Add in-memory H2 dev profile, use Postgres only in prod",
     "date": "2026-07-09T01:02:05Z",
@@ -22,11 +28,5 @@
     "message": "Balancing ultimate abilities",
     "date": "2026-07-08T19:32:19Z",
     "url": "https://github.com/rwdenmark/recurve/commit/701197aedcec5de06f37d9d630dcbdb5f2afa06d"
-  },
-  {
-    "repo": "steam-analyzer",
-    "message": "Fix store client bean name collision and add a context boot test",
-    "date": "2026-07-07T08:56:33Z",
-    "url": "https://github.com/rwdenmark/steam-analyzer/commit/8435f480def24b286285e28b2224230227d9c8d0"
   }
 ]
