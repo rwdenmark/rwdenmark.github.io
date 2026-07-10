@@ -554,9 +554,10 @@ body[data-page="about"] .gallery-tabs {
 .gallery-tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .gallery-tab.active:hover { color: var(--text); cursor: default; }
 
-/* Reserve the feed's approximate rendered height (heading plus five rows on
-   desktop) so the late fetch fills the slot instead of pushing the footer down. */
-#recent-commits { min-height: 290px; }
+/* Reserve just under the feed's rendered height (heading plus five rows on
+   desktop) so the late fetch fills the slot instead of pushing the footer down.
+   Deliberately a touch short, a few px of shift beats an empty strip below the list. */
+#recent-commits { min-height: 260px; }
 
 .commits-list {
   list-style: none;
