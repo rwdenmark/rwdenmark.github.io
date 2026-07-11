@@ -1,6 +1,12 @@
 [
   {
     "repo": "recurve",
+    "message": "Rebalance cards and spawning around the new progression.js XP track, with tiered card ramps, accent borders, and a matching SpawnModel mirror",
+    "date": "2026-07-11T06:27:37Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/0c78695283bd2731e3894ad1ab96373c5cd34ed9"
+  },
+  {
+    "repo": "recurve",
     "message": "Fix shared charge queue, pause and spawn bugs, dedupe enemy/arrow creation",
     "date": "2026-07-11T04:23:12Z",
     "url": "https://github.com/rwdenmark/recurve/commit/372fce79c63182a9482ca9f1c0c43d2ce2cfcc16"
@@ -22,11 +28,5 @@
     "message": "Updated main menu and game over menu. Added ultimate cards and Main Menu button",
     "date": "2026-07-08T21:05:32Z",
     "url": "https://github.com/rwdenmark/recurve/commit/83f1da182fef9874f74abc4864fcf04ac83db388"
-  },
-  {
-    "repo": "recurve",
-    "message": "Fixing enemy hurt animation to prevent teleporting",
-    "date": "2026-07-08T20:09:53Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/0c70127da872142a78a059d162b3adcaf48b1aab"
   }
 ]
