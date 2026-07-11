@@ -1,5 +1,11 @@
 [
   {
+    "repo": "recurve",
+    "message": "Fix shared charge queue, pause and spawn bugs, dedupe enemy/arrow creation",
+    "date": "2026-07-11T04:23:12Z",
+    "url": "https://github.com/rwdenmark/recurve/commit/372fce79c63182a9482ca9f1c0c43d2ce2cfcc16"
+  },
+  {
     "repo": "astro-siege",
     "message": "Removing highlighting and adding a loading screen",
     "date": "2026-07-10T00:24:21Z",
@@ -22,11 +28,5 @@
     "message": "Fixing enemy hurt animation to prevent teleporting",
     "date": "2026-07-08T20:09:53Z",
     "url": "https://github.com/rwdenmark/recurve/commit/0c70127da872142a78a059d162b3adcaf48b1aab"
-  },
-  {
-    "repo": "recurve",
-    "message": "Balancing ultimate abilities",
-    "date": "2026-07-08T19:32:19Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/701197aedcec5de06f37d9d630dcbdb5f2afa06d"
   }
 ]
