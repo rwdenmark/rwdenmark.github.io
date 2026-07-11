@@ -17,3 +17,10 @@ exclude:
 plugins:
   - jekyll-sitemap
 
+# Keep the Search Console verification file published but out of the sitemap
+defaults:
+  - scope:
+      path: "googlec0603268e666aeeb.html"
+    values:
+      sitemap: false
+
