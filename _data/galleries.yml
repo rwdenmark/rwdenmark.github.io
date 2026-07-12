@@ -4,10 +4,10 @@
   dir: boundary-waters
   items:
     - { file: bw-01.webp, w: 1000, h: 1000, alt: "Ryan and Rebecca with Jax on a rocky lakeshore at sunset" }
-    - { file: bw-02.webp, w: 750, h: 1000, alt: "Selfie of Ryan and Rebecca in a pink ball cap under a cloudy sky" }
-    - { file: bw-03.webp, w: 750, h: 1000, alt: "Wet golden retriever sitting in front of a wooden bridge rail with a lake behind" }
+    - { file: bw-02.webp, w: 750, h: 1000, alt: "Selfie of Ryan and Rebecca under a cloudy sky" }
+    - { file: bw-03.webp, w: 750, h: 1000, alt: "Wet Jax sitting at a wooden bridge rail with a lake behind" }
     - { file: bw-04.webp, w: 750, h: 1000, alt: "Ryan standing on a bridge over a lake with Jax sitting at his feet" }
-    - { file: bw-05.webp, w: 750, h: 1000, alt: "Jax standing against the bridge rail next to Ryan, both looking at the lake" }
+    - { file: bw-05.webp, w: 750, h: 1000, alt: "Jax with his front paws up on the bridge rail beside Ryan" }
     - { file: bw-06.webp, w: 750, h: 1000, alt: "Selfie of Ryan and Rebecca on a wooded trail lined with birch trees" }
     - { file: bw-07.webp, w: 750, h: 1000, alt: "Ryan crouching beside Jax on a leafy forest trail" }
     - { file: bw-08.webp, w: 750, h: 1000, alt: "Jax licking Ryan's face on a forest trail" }
@@ -19,18 +19,18 @@
   title: Jax
   dir: jax
   items:
-    - { file: jax-01.webp, w: 600, h: 600, alt: "Jax with Ryan in the yard" }
+    - { file: jax-01.webp, w: 600, h: 600, alt: "Ryan holding puppy Jax in the yard" }
     - { file: jax-02.webp, w: 600, h: 600, alt: "Jax as a puppy on his back" }
     - { file: jax-03.webp, w: 600, h: 600, alt: "Jax sitting on a blanket" }
     - { file: jax-04.webp, w: 600, h: 600, alt: "Jax sniffing behind furniture" }
     - { file: jax-05.webp, w: 600, h: 600, alt: "Jax with toys" }
     - { file: jax-06.webp, w: 600, h: 600, alt: "Jax sitting with leash on" }
     - { file: jax-07.webp, w: 600, h: 600, alt: "Jax with a frisbee on his face outside" }
-    - { file: jax-08.webp, w: 600, h: 600, alt: "Jax and the cat on a dog bed" }
+    - { file: jax-08.webp, w: 600, h: 600, alt: "Jax and Eva on a dog bed" }
     - { file: jax-09.webp, w: 600, h: 600, alt: "Jax upside down" }
     - { file: jax-10.webp, w: 600, h: 600, alt: "Jax smiling indoors" }
     - { file: jax-11.webp, w: 600, h: 600, alt: "Jax with Ryan in the car" }
-    - { file: jax-12.webp, w: 600, h: 600, alt: "Jax in a birthday bandana" }
+    - { file: jax-12.webp, w: 600, h: 600, alt: "Jax wearing a birthday tie" }
 - id: cats
   title: Cats
   dir: cats

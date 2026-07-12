@@ -1,6 +1,6 @@
 - title: Recurve
   thumb: /projects/recurve.webp
-  alt: "Top-down view of Recurve: a hooded archer drawing a bow and firing arrows down a path as armored knights close in, with grass, a water pond, trees, a stone fort, and a mountain border."
+  alt: "Top-down view of Recurve gameplay, an archer firing arrows at approaching knights on a grassy field."
   width: 750
   height: 500
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
@@ -10,7 +10,7 @@
   home: https://rdenmark.savannah-luma.ts.net/recurve/
 - title: Astro Siege
   thumb: /projects/astro-siege.webp
-  alt: "Astro Siege gameplay: five rows of glowing orb enemies in purple, blue, and green descend toward four green battlement bunkers and a dome-turret cannon firing upward, a red saucer crossing the top, with SCORE, HI-SCORE, WAVE, and LIVES on a retro green HUD."
+  alt: "Astro Siege gameplay, rows of glowing orb enemies descending toward bunkers and a player cannon in retro pixel art."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
@@ -20,7 +20,7 @@
   home: https://rdenmark.savannah-luma.ts.net/astro/
 - title: EDI Format Converter
   thumb: /projects/edi-format-converter.webp
-  alt: "EDI Format Converter showing a raw X12 837 claim on the left and its parsed JSON on the right, with X12, JSON, YAML, XML and STRING toggles and 837P/837I/837D sample buttons, in a dark purple theme."
+  alt: "EDI Format Converter with a raw X12 837 claim beside its parsed JSON output."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, X12 EDI, JSON, Docker, JUnit]
@@ -30,7 +30,7 @@
   home: https://rdenmark.savannah-luma.ts.net/edi/
 - title: WoW Explorer
   thumb: /projects/wow-explorer.webp
-  alt: "WoW Explorer character lookup interface showing item level 232, raid progress 1 of 9 mythic, Raider.IO 3010.2, and a Void Elf Monk character render."
+  alt: "WoW Explorer character lookup showing item level, raid progress, Raider.IO score, and a character render."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, TypeScript, Battle.net API]
@@ -40,7 +40,7 @@
   home: https://rdenmark.savannah-luma.ts.net/wow/
 - title: Steam Analyzer
   thumb: /projects/steam-analyzer.webp
-  alt: "Steam Analyzer dashboard for profile Zeu showing 178 games owned, 24,616.2 hours played, 52 never played, 29.2% backlog, a 10 years of service card, and Play Next picks Ori and the Blind Forest and Metro: Last Light Redux."
+  alt: "Steam Analyzer dashboard with library stats, hours played, backlog percentage, and play-next picks."
   width: 1200
   height: 800
   stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
@@ -50,7 +50,7 @@
   home: https://rdenmark.savannah-luma.ts.net/steam/
 - title: Translate to English
   thumb: /projects/translate-to-english.webp
-  alt: "Translate to English app in a dark green two-panel layout: an 'Any language' input on the left and an 'English' output on the right, under the heading Type anything. Translate to English."
+  alt: "Translate to English app with an any-language input panel and an English output panel."
   width: 1200
   height: 800
   stack: [Python, Flask, langdetect, gunicorn, MyMemory API]
