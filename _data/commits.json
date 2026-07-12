@@ -1,5 +1,11 @@
 [
   {
+    "repo": "wow-explorer",
+    "message": "Setting keepalive-time to 0",
+    "date": "2026-07-12T07:10:17Z",
+    "url": "https://github.com/rwdenmark/wow-explorer/commit/fe86d3eb15b43b9802eb19b80fd3539c1b1038aa"
+  },
+  {
     "repo": "recurve",
     "message": "Rebalance cards and spawning around the new progression.js XP track, with tiered card ramps, accent borders, and a matching SpawnModel mirror",
     "date": "2026-07-11T06:27:37Z",
@@ -22,11 +28,5 @@
     "message": "Add in-memory H2 dev profile, use Postgres only in prod",
     "date": "2026-07-09T01:02:05Z",
     "url": "https://github.com/rwdenmark/wow-explorer/commit/a960980caf436261a8dfbd0a0fa2a7c2ff934a6d"
-  },
-  {
-    "repo": "recurve",
-    "message": "Updated main menu and game over menu. Added ultimate cards and Main Menu button",
-    "date": "2026-07-08T21:05:32Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/83f1da182fef9874f74abc4864fcf04ac83db388"
   }
 ]
