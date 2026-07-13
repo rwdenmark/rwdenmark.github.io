@@ -1,5 +1,17 @@
 [
   {
+    "repo": "arrowvania",
+    "message": "Minor fix to README",
+    "date": "2026-07-13T04:28:00Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/eabf4f337827cddc396bbccbed06d751b640f2ed"
+  },
+  {
+    "repo": "arrowvania",
+    "message": "Initial Commit: Arrowvania",
+    "date": "2026-07-13T04:25:44Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/00cfc543ce6c56e4a35557f98cd8a64668bc208f"
+  },
+  {
     "repo": "wow-explorer",
     "message": "Setting keepalive-time to 0",
     "date": "2026-07-12T07:10:17Z",
@@ -16,17 +28,5 @@
     "message": "Fix shared charge queue, pause and spawn bugs, dedupe enemy/arrow creation",
     "date": "2026-07-11T04:23:12Z",
     "url": "https://github.com/rwdenmark/recurve/commit/372fce79c63182a9482ca9f1c0c43d2ce2cfcc16"
-  },
-  {
-    "repo": "astro-siege",
-    "message": "Removing highlighting and adding a loading screen",
-    "date": "2026-07-10T00:24:21Z",
-    "url": "https://github.com/rwdenmark/astro-siege/commit/4d786bfba75158c93bf433475f4f62c500e99c2e"
-  },
-  {
-    "repo": "wow-explorer",
-    "message": "Add in-memory H2 dev profile, use Postgres only in prod",
-    "date": "2026-07-09T01:02:05Z",
-    "url": "https://github.com/rwdenmark/wow-explorer/commit/a960980caf436261a8dfbd0a0fa2a7c2ff934a6d"
   }
 ]
