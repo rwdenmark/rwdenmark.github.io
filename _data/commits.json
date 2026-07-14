@@ -1,6 +1,12 @@
 [
   {
     "repo": "arrowvania",
+    "message": "Add sound, knight AI, and consolidate the renderer",
+    "date": "2026-07-14T03:48:21Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/1eb2b4f894ecb7c55af2db0df05b03599253b983"
+  },
+  {
+    "repo": "arrowvania",
     "message": "Minor fix to README",
     "date": "2026-07-13T04:28:00Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/eabf4f337827cddc396bbccbed06d751b640f2ed"
@@ -22,11 +28,5 @@
     "message": "Rebalance cards and spawning around the new progression.js XP track, with tiered card ramps, accent borders, and a matching SpawnModel mirror",
     "date": "2026-07-11T06:27:37Z",
     "url": "https://github.com/rwdenmark/recurve/commit/0c78695283bd2731e3894ad1ab96373c5cd34ed9"
-  },
-  {
-    "repo": "recurve",
-    "message": "Fix shared charge queue, pause and spawn bugs, dedupe enemy/arrow creation",
-    "date": "2026-07-11T04:23:12Z",
-    "url": "https://github.com/rwdenmark/recurve/commit/372fce79c63182a9482ca9f1c0c43d2ce2cfcc16"
   }
 ]
