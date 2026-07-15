@@ -1,6 +1,12 @@
 [
   {
     "repo": "arrowvania",
+    "message": "Add bombs, speed booster, main menu, and a full AI and engine pass",
+    "date": "2026-07-15T05:09:08Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/dfb8524dfe3feb4665f31d57a46f2cb69b18d0b5"
+  },
+  {
+    "repo": "arrowvania",
     "message": "Add sound, knight AI, and consolidate the renderer",
     "date": "2026-07-14T03:48:21Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/1eb2b4f894ecb7c55af2db0df05b03599253b983"
@@ -10,12 +16,6 @@
     "message": "Minor fix to README",
     "date": "2026-07-13T04:28:00Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/eabf4f337827cddc396bbccbed06d751b640f2ed"
-  },
-  {
-    "repo": "arrowvania",
-    "message": "Initial Commit: Arrowvania",
-    "date": "2026-07-13T04:25:44Z",
-    "url": "https://github.com/rwdenmark/arrowvania/commit/00cfc543ce6c56e4a35557f98cd8a64668bc208f"
   },
   {
     "repo": "wow-explorer",
