@@ -1,0 +1,18 @@
+---
+layout: default
+page_id: certifications
+title: Continuous Learning - Ryan Denmark
+description: Certifications and courses I have completed.
+---
+
+<h2 class="section-title">Continuous Learning</h2>
+<div class="cert-featured">
+  {% for c in site.data.certs.featured %}
+  {% include cert-card.html cert=c featured=true %}
+  {% endfor %}
+</div>
+<div class="certs">
+  {% for c in site.data.certs.list %}
+  {% include cert-card.html cert=c %}
+  {% endfor %}
+</div>

@@ -21,12 +21,13 @@ description: Software engineer in Minnesota.
 
 <h2 class="section-title">Continuous Learning</h2>
 <div class="cert-featured">
-  {% for c in site.data.certs.featured %}
+  {% for c in site.data.certs.featured limit:2 %}
   {% include cert-card.html cert=c featured=true %}
   {% endfor %}
 </div>
 <div class="certs">
-  {% for c in site.data.certs.list %}
+  {% for c in site.data.certs.list limit:2 %}
   {% include cert-card.html cert=c %}
   {% endfor %}
 </div>
+<p class="certs-all"><a href="{{ '/certifications.html' | relative_url }}">See all certifications &rarr;</a></p>
