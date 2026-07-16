@@ -1,6 +1,12 @@
 [
   {
     "repo": "arrowvania",
+    "message": "Redo the menus with an animated starfield, persist sound settings, add UI click and new menu music, fix speed-boost jumping, and reset cleanly on quit instead of reloading",
+    "date": "2026-07-16T03:46:07Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/07132cc20a0482869f0891d543133d278ba11952"
+  },
+  {
+    "repo": "arrowvania",
     "message": "Add bombs, speed booster, main menu, and a full AI and engine pass",
     "date": "2026-07-15T05:09:08Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/dfb8524dfe3feb4665f31d57a46f2cb69b18d0b5"
@@ -10,12 +16,6 @@
     "message": "Add sound, knight AI, and consolidate the renderer",
     "date": "2026-07-14T03:48:21Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/1eb2b4f894ecb7c55af2db0df05b03599253b983"
-  },
-  {
-    "repo": "arrowvania",
-    "message": "Minor fix to README",
-    "date": "2026-07-13T04:28:00Z",
-    "url": "https://github.com/rwdenmark/arrowvania/commit/eabf4f337827cddc396bbccbed06d751b640f2ed"
   },
   {
     "repo": "wow-explorer",
