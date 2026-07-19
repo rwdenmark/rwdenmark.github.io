@@ -1,7 +1,7 @@
 featured:
-  - title: Exploring SAP Business Technology Platform
+  - title: SAP Cloud Platform Integration Service Overview
     meta: "SAP Learning &middot; Issued 2026"
-    url: https://badger.learning.sap.com/verify/xulil-sumyf-bomyn-lugic-kigor
+    url: https://badger.learning.sap.com/verify/xinec-gumod-fumyb-mufet-kabob
     logo: /assets/sap-logo.webp
     alt: SAP
   - title: Building with the Claude API
@@ -10,6 +10,11 @@ featured:
     logo: /assets/anthropic-mark.png
     alt: Anthropic
 list:
+  - title: Exploring SAP Business Technology Platform
+    meta: "SAP Learning &middot; Issued 2026"
+    url: https://badger.learning.sap.com/verify/xulil-sumyf-bomyn-lugic-kigor
+    logo: /assets/sap-logo.webp
+    alt: SAP
   - title: Learning Basic ABAP Programming
     meta: "SAP Learning &middot; Issued 2026"
     url: https://badger.learning.sap.com/verify/xidal-novok-fudum-bokit-cydev
