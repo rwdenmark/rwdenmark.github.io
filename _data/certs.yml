@@ -20,19 +20,19 @@ list:
     url: https://badger.learning.sap.com/verify/xidal-novok-fudum-bokit-cydev
     logo: /assets/sap-logo.webp
     alt: SAP
-  - title: Claude Code in Action
-    meta: "Anthropic Education &middot; Issued 2026"
-    url: https://verify.skilljar.com/c/ygxskxtqsxp3
-    logo: /assets/anthropic-mark.png
-    alt: Anthropic
   - title: "AI Fluency: Framework &amp; Foundations"
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/5kh3sz4ox8cg
     logo: /assets/anthropic-mark.png
     alt: Anthropic
-  - title: Claude 101
+  - title: Introduction to Claude Cowork
     meta: "Anthropic Education &middot; Issued 2026"
-    url: https://verify.skilljar.com/c/tes7i72fth3j
+    url: https://verify.skilljar.com/c/5e2uxvj9iomi
+    logo: /assets/anthropic-mark.png
+    alt: Anthropic
+  - title: Claude Code in Action
+    meta: "Anthropic Education &middot; Issued 2026"
+    url: https://verify.skilljar.com/c/ygxskxtqsxp3
     logo: /assets/anthropic-mark.png
     alt: Anthropic
   - title: Claude Code 101
@@ -40,8 +40,8 @@ list:
     url: https://verify.skilljar.com/c/v9tsqkyjp7iv
     logo: /assets/anthropic-mark.png
     alt: Anthropic
-  - title: Introduction to Claude Cowork
+  - title: Claude 101
     meta: "Anthropic Education &middot; Issued 2026"
-    url: https://verify.skilljar.com/c/5e2uxvj9iomi
+    url: https://verify.skilljar.com/c/tes7i72fth3j
     logo: /assets/anthropic-mark.png
     alt: Anthropic
