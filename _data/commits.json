@@ -1,6 +1,12 @@
 [
   {
     "repo": "arrowvania",
+    "message": "Reorganize into src modules, harden the enemy AI, and grow the tests",
+    "date": "2026-07-19T02:06:46Z",
+    "url": "https://github.com/rwdenmark/arrowvania/commit/44d107890736f1c70a5399f2725d67550ff08941"
+  },
+  {
+    "repo": "arrowvania",
     "message": "Adding castle sandbox level. Fixing backgrounds and enemy pathfinding.",
     "date": "2026-07-18T21:12:59Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/a2decd846e15084cb1771bfaedc0375ff720a440"
@@ -10,12 +16,6 @@
     "message": "Fixing necromancer summon animation",
     "date": "2026-07-18T07:14:15Z",
     "url": "https://github.com/rwdenmark/arrowvania/commit/56dbbe421999540a310a6a7764b482f24b1b5ded"
-  },
-  {
-    "repo": "arrowvania",
-    "message": "removing unused assets",
-    "date": "2026-07-18T06:34:06Z",
-    "url": "https://github.com/rwdenmark/arrowvania/commit/eb5a7c0badddc20e8c575453fdb0785bd02583d1"
   },
   {
     "repo": "wow-explorer",
