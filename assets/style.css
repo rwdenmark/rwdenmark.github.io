@@ -263,7 +263,7 @@ body[data-page="about"] .gallery-tabs {
     "img skills ."
     "img .      actions"
     "img desc   actions"
-    "img .      .";
+    "img .      actions";
   align-items: stretch;
   row-gap: 0;
   padding: min(12px, 1.31cqi);
@@ -308,7 +308,10 @@ body[data-page="about"] .gallery-tabs {
   top: 14px;
   right: 14px;
 }
-.project-actions { grid-area: actions; display: flex; flex-direction: column; justify-content: space-between; gap: min(10px, 1.1cqi); align-items: stretch; }
+/* Both action buttons ignore the 6px online buffer. The actions column runs to the image bottom, so
+   View on GitHub sits flush with it, and it takes the same buffer as top padding, so Live Demo drops
+   by the same amount. Both derive from the one buffer value, so they scale and collapse together. */
+.project-actions { grid-area: actions; display: flex; flex-direction: column; justify-content: space-between; gap: min(10px, 1.1cqi); align-items: stretch; padding-top: clamp(0px, calc((100cqi - 780px) * 0.044), 6px); }
 .project-actions a, .script-actions a, .cert-link, .download-pdf, .testimonials-all a, .certs-all a {
   color: var(--accent);
   text-decoration: none;
@@ -333,6 +336,7 @@ body.selfhost-down .project-card {
 body.selfhost-down .project-card h3 { font-size: min(1.6rem, 3.2cqi); }
 body.selfhost-down .project-card p { font-size: min(0.95rem, 1.66cqi); }
 body.selfhost-down .project-note { font-size: min(0.82rem, 1.4cqi); line-height: 1.3; }
+body.selfhost-down .project-actions { padding-top: 0; }
 
 /* Phone stacks to a single column with the image on top and normal fixed sizes. */
 @media (max-width: 640px) {
