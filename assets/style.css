@@ -282,7 +282,7 @@ body[data-page="about"] .gallery-tabs {
   transform: translateY(-2px);
   border-color: var(--accent);
 }
-.project-card h3 { grid-area: title; font-size: min(1.6rem, 2.79cqi); font-weight: 700; margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
+.project-card h3 { grid-area: title; font-size: min(1.6rem, 4cqi); font-weight: 700; margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
 .project-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
 .project-stack { grid-area: skills; display: flex; flex-wrap: wrap; gap: min(4px, 0.44cqi); align-content: center; }
 /* Shared stack-pill base, sized per context below. */
@@ -292,10 +292,10 @@ body[data-page="about"] .gallery-tabs {
   border: 1px solid var(--border);
   border-radius: 12px;
 }
-.project-stack span { font-size: min(0.78rem, 1.36cqi); padding: 2px min(8px, 0.87cqi); }
+.project-stack span { font-size: min(0.78rem, 1.58cqi); padding: 2px min(8px, 0.87cqi); }
 /* Description and the cold-start note share the bottom row, the note sits under the description. */
 .desc-wrap { grid-area: desc; display: flex; flex-direction: column; justify-content: flex-end; gap: min(6px, 0.7cqi); min-width: 0; }
-.project-card p { margin: 0; line-height: 1.5; font-size: min(0.95rem, 1.63cqi); }
+.project-card p { margin: 0; line-height: 1.5; font-size: min(0.95rem, 1.7cqi); }
 .project-note { margin: 0; color: var(--muted); font-style: italic; font-size: min(0.82rem, 1.45cqi); line-height: 1.35; }
 .project-dot {
   display: none;
@@ -330,8 +330,8 @@ body[data-page="about"] .gallery-tabs {
 body.selfhost-down .project-card {
   grid-template-rows: 0 auto 3fr auto 5fr auto 0;
 }
-body.selfhost-down .project-card h3 { font-size: min(1.6rem, 2.72cqi); }
-body.selfhost-down .project-card p { font-size: min(0.95rem, 1.6cqi); }
+body.selfhost-down .project-card h3 { font-size: min(1.6rem, 3.2cqi); }
+body.selfhost-down .project-card p { font-size: min(0.95rem, 1.66cqi); }
 body.selfhost-down .project-note { font-size: min(0.82rem, 1.4cqi); line-height: 1.3; }
 
 /* Phone stacks to a single column with the image on top and normal fixed sizes. */
