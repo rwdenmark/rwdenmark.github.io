@@ -14,7 +14,7 @@
   width: 1200
   height: 800
   stack: [Java, Spring Boot, PostgreSQL, JavaScript, HTML5 Canvas]
-  description: "Arcade fixed-shooter on an HTML5 canvas with original pixel art and synthesized 8-bit sound effects. Clear waves of orbs and shelter behind eroding bunkers. Spring Boot backend persists scores to a leaderboard."
+  description: "Arcade fixed-shooter on an HTML5 canvas with original pixel art and synthesized 8-bit sound effects. Clear waves of orbs and shelter behind eroding bunkers. Spring Boot leaderboard."
   github: https://github.com/rwdenmark/astro-siege
   demo: https://astro-siege.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/astro/
@@ -44,7 +44,7 @@
   width: 1200
   height: 800
   stack: [Java, Spring Boot, Steam Web API, JavaScript, Docker]
-  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, never-played count, and a play-next pick."
+  description: "Spring Boot REST service that pulls a Steam profile's library and playtime from the Steam Web API. Computes a backlog dashboard with total games, hours played, and a play-next pick."
   github: https://github.com/rwdenmark/steam-analyzer
   demo: https://steam-analyzer.onrender.com
   home: https://rdenmark.savannah-luma.ts.net/steam/
