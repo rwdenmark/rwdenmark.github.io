@@ -15,16 +15,16 @@ list:
     url: https://badger.learning.sap.com/verify/xulil-sumyf-bomyn-lugic-kigor
     logo: /assets/sap-logo.webp
     alt: SAP
-  - title: Learning Basic ABAP Programming
-    meta: "SAP Learning &middot; Issued 2026"
-    url: https://badger.learning.sap.com/verify/xidal-novok-fudum-bokit-cydev
-    logo: /assets/sap-logo.webp
-    alt: SAP
   - title: "AI Fluency: Framework &amp; Foundations"
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/5kh3sz4ox8cg
     logo: /assets/anthropic-mark.png
     alt: Anthropic
+  - title: Learning Basic ABAP Programming
+    meta: "SAP Learning &middot; Issued 2026"
+    url: https://badger.learning.sap.com/verify/xidal-novok-fudum-bokit-cydev
+    logo: /assets/sap-logo.webp
+    alt: SAP
   - title: Introduction to Claude Cowork
     meta: "Anthropic Education &middot; Issued 2026"
     url: https://verify.skilljar.com/c/5e2uxvj9iomi
