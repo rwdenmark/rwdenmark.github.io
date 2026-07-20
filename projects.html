@@ -9,21 +9,23 @@ description: Side projects with live demos
 <div class="projects">
   {% for p in site.data.projects %}
   <article class="project-card">
-    <img class="project-thumb" src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}"{% if forloop.index <= 2 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async" />
+    <div class="thumb-wrap">
+      <img class="project-thumb" src="{{ p.thumb | relative_url }}" alt="{{ p.alt }}" width="{{ p.width }}" height="{{ p.height }}"{% if forloop.index <= 2 %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async" />
+    </div>
     <h3>{{ p.title }}{% if p.home %} <span class="project-dot" title="Self-hosted node online"><span class="sr-only">Self-hosted node online</span></span>{% endif %}</h3>
     <div class="project-stack">
       {% for s in p.stack %}<span>{{ s }}</span>
       {% endfor %}
     </div>
-    <p>{{ p.description }}</p>
-    <div class="project-footer">
-      <!-- Shared cold-start note. The status-dot script hides every .project-note
-           while the self-hosted box is up, so this stays one note, not per-project data. -->
+    <div class="desc-wrap">
+      <p>{{ p.description }}</p>
+      <!-- Shared cold-start note. The status-dot script hides every .project-note while the
+           self-hosted box is up, so this stays one note, not per-project data. -->
       <p class="project-note">The live demo may take up to a minute to load while the backend wakes up.</p>
-      <div class="project-actions">
-        <a href="{{ p.github }}" rel="noopener noreferrer" target="_blank">View on GitHub</a>
-        <a href="{{ p.demo }}"{% if p.home %} class="demo-link" data-home="{{ p.home }}"{% endif %} rel="noopener noreferrer" target="_blank">Live Demo</a>
-      </div>
+    </div>
+    <div class="project-actions">
+      <a href="{{ p.demo }}"{% if p.home %} class="demo-link" data-home="{{ p.home }}"{% endif %} rel="noopener noreferrer" target="_blank">Live Demo</a>
+      <a href="{{ p.github }}" rel="noopener noreferrer" target="_blank">View on GitHub</a>
     </div>
   </article>
   {% endfor %}

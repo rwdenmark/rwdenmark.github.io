@@ -439,6 +439,8 @@
         projDots.forEach(function (d) { d.style.display = online ? 'inline-block' : 'none'; });
         // Box is up, the demo loads instantly, so drop the cold-start note.
         notes.forEach(function (n) { n.style.display = online ? 'none' : ''; });
+        // Down state shows the note, so tighten the cards to keep their height. See style.css.
+        document.body.classList.toggle('selfhost-down', !online);
       };
 
       // Paint last-known status first so the cold-start note doesn't flash for returning visitors.
