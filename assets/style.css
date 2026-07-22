@@ -345,12 +345,14 @@ body.selfhost-down .project-actions { padding-top: 0; }
   .project-card h3 { display: flex; align-items: center; font-size: 1.3rem; }
   .project-card p { font-size: 0.95rem; }
   .project-stack span { font-size: 0.78rem; padding: 2px 8px; }
-  .project-card .project-note { font-size: 0.85rem; }
+  .project-card .project-note { font-size: 0.88rem; }
   .desc-wrap { justify-content: flex-start; }
   .project-actions { flex-direction: row; justify-content: space-between; gap: 12px; }
   .project-actions a { font-size: 0.9rem; padding: 6px 14px; }
   body.selfhost-down .project-card h3 { font-size: 1.3rem; }
   body.selfhost-down .project-card p { font-size: 0.95rem; }
+  /* On phones the note reads at a fixed size, not the container-scaled desktop size. */
+  body.selfhost-down .project-card .project-note { font-size: 0.88rem; }
   .project-dot { position: static; margin-left: 8px; flex: 0 0 auto; }
 }
 .testimonials-all, .certs-all { margin: 16px 0 0; }
